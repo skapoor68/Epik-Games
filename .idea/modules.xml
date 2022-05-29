@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/EpikGames.iml" filepath="$PROJECT_DIR$/.idea/modules/EpikGames.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/EpikGames.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/EpikGames.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/EpikGames.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/EpikGames.app.androidTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/EpikGames.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/EpikGames.app.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/EpikGames.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/EpikGames.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/epikgames.iml" filepath="$PROJECT_DIR$/.idea/modules/epikgames.iml" />
     </modules>
   </component>
 </project>
