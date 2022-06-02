@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#191717"
-    android:foregroundTint="#F1F1F1"
+    android:background="#E4C1C1"
+    android:backgroundTint="#DCC1C1"
+    android:foregroundTint="#91CF4A"
     android:textAlignment="textEnd"
     tools:context=".TestGUIMainScreen">
 
@@ -18,7 +19,7 @@
         android:layout_marginEnd="100dp"
         android:layout_marginBottom="626dp"
         android:background="#000000"
-        android:backgroundTint="#34A2FA"
+        android:backgroundTint="#A110FB"
         android:backgroundTintMode="add"
         android:padding="10dp"
         android:text="Epik Games"
@@ -98,5 +99,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button5"
         app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="10dp"
+        android:backgroundTint="#032BF4"
+        android:text="Team Info"
+        app:layout_constraintEnd_toStartOf="@+id/button4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button5" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="100dp"
+        android:backgroundTint="#032BF4"
+        android:text="Quit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button2"
+        app:layout_constraintTop_toBottomOf="@+id/button6" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
