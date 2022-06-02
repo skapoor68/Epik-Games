@@ -1,7 +1,8 @@
-package com.example.epikgames
+package com.example.epikgames.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.epikgames.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
