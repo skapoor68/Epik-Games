@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">epikgames</string>
+    <string name="title_activity_poker">PokerActivity</string>
+    <string name="team_info">Team Info</string>
+    <string name="quit">Quit</string>
+    <string name="blackjack">Blackjack</string>
+    <string name="chess">Chess</string>
+    <string name="wordle">Wordle</string>
+    <string name="epik_games">Epik Games</string>
+    <!-- Strings used for fragments for navigation -->
+
 </resources>
