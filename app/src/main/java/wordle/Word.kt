@@ -1,0 +1,4 @@
+package wordle
+
+class Word {
+}
