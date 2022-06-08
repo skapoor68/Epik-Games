@@ -1,4 +1,0 @@
-package wordle
-
-class Word {
-}
