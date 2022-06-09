@@ -35,7 +35,6 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
             tileView.id = tile.id
             val tileChar: TextView = tileView.findViewById(R.id.tile_char)
             tileChar.text = tile.char.toString()
-
             wordleGrid.addView(tileView)
         }
 
