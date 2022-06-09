@@ -1,4 +1,4 @@
 package wordle
 
-class Tile(val id: Int) {
+class Tile(val id: Int, val char: Char = ' ') {
 }
