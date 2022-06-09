@@ -15,6 +15,10 @@ class Board(val tileArray: Array<Tile> = Array(HEIGHT * WIDTH) { i -> Tile(i) })
     }
 
     fun type(char: Char) {
+        if (curTile >= tileArray.size - 1) {
+            return
+        }
+
         if (curTile % WIDTH == (WIDTH - 1)) {
             if (tileArray[curTile].char == ' ') {
                 tileArray[curTile] = Tile(tileArray[curTile].id, char)
