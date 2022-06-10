@@ -1,5 +1,7 @@
 package com.example.epikgames.activities
 
+import android.content.Intent
+import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -25,6 +27,12 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_wordle)
+
+        val rulesButton = findViewById<ImageButton>(R.id.wordleRulesButton)
+        rulesButton.setOnClickListener {
+            val intent = Intent(this, WordleRules::class.java)
+            startActivity(intent)
+        }
 
 
         val wordleGrid: androidx.gridlayout.widget.GridLayout = this.findViewById(R.id.wordle_grid)
@@ -111,4 +119,6 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
 
         }
     }
+
+
 }
