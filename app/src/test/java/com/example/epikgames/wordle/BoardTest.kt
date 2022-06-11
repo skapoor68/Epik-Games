@@ -42,4 +42,46 @@ class BoardTest {
         board.type('A')
     }
 
+    //Colors for letters are based off of https://mywordle.strivemath.com/?word=yoigd
+    @Test
+    fun guessWordFuncIrons01() {
+        //Set wordList to index 2 for word: irons
+        val actualColors: ArrayList<String> = arrayListOf()
+        actualColors.add("GRAY")
+        actualColors.add("YELLOW")
+        actualColors.add("GRAY")
+        actualColors.add("YELLOW")
+        actualColors.add("GRAY")
+        val testColorList: ArrayList<String> = board.guess("diary")
+        assertEquals(actualColors, testColorList)
+
+    }
+
+    //Test case fails. My code has difficult differentiating between marking duplicate letters as yellow or gray
+    @Test
+    fun guessWordFuncHello01() {
+        //Set wordList to index 0 for word: hello
+        val actualColors: ArrayList<String> = arrayListOf()
+        actualColors.add("YELLOW")
+        actualColors.add("GREEN")
+        actualColors.add("GRAY")
+        actualColors.add("GRAY")
+        actualColors.add("YELLOW")
+        val testColorList: ArrayList<String> = board.guess("level")
+        assertEquals(actualColors, testColorList)
+    }
+
+    @Test
+    fun guessWordFuncCards01() {
+        //Set wordList to index 1 for word: cards
+        val actualColors: ArrayList<String> = arrayListOf()
+        actualColors.add("YELLOW")
+        actualColors.add("GRAY")
+        actualColors.add("YELLOW")
+        actualColors.add("GRAY")
+        actualColors.add("GREEN")
+        val testColorList: ArrayList<String> = board.guess("decks")
+        assertEquals(actualColors, testColorList)
+    }
+
 }

@@ -20,6 +20,7 @@ const val TAG = "Wordle Activity: "
 
 class WordleActivity : AppCompatActivity(), View.OnClickListener {
     private val board = Board()
+    private var inputGuess = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -83,7 +84,7 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         if (v.id == "Enter".hashCode()) {
-            board.guess()
+            board.guess(inputGuess)
             updateBoardGUI()
             return
         }
@@ -95,6 +96,9 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         board.type((v.id).toChar())
+        inputGuess += v.id.toChar()
+        //When the end of the row is reached, set inputGuess to empty String
+
         updateBoardGUI()
     }
 
