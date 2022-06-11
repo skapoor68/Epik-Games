@@ -4,29 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000000"
     android:paddingBottom="10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:background="#121212">
 
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="414dp"
             android:layout_height="235dp"
-            android:layout_marginBottom="269dp"
-            android:background="#191818"
+            android:background="#121212"
             android:baselineAligned="false"
             android:gravity="center"
             android:orientation="vertical"
             android:paddingTop="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/imageView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.666"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/textView9"
@@ -73,28 +72,25 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="375dp"
-            android:layout_height="346dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginBottom="193dp"
+            android:layout_width="410dp"
+            android:layout_height="355dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="48dp"
             android:foregroundGravity="center"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/backButton"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-            app:layout_constraintVertical_bias="0.243"
             app:srcCompat="@drawable/worlde_rules" />
 
         <Button
             android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="157dp"
-            android:layout_marginTop="65dp"
-            android:layout_marginEnd="160dp"
-            android:layout_marginBottom="21dp"
+            android:layout_marginStart="156dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="156dp"
+            android:layout_marginBottom="20dp"
             android:backgroundTint="#2196F3"
             android:onClick="onClick"
             android:text="Go Back"
