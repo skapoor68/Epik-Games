@@ -5,10 +5,10 @@ import android.os.Bundle
 import android.widget.Button
 import com.example.epikgames.R
 
-class WordleRules : AppCompatActivity() {
+class WordleRulesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.wordle_rules)
+        setContentView(R.layout.wordle_rules_activity)
 
         val backButton: Button = findViewById(R.id.backButton)
         backButton.setOnClickListener() {

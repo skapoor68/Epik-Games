@@ -1,16 +1,11 @@
 package com.example.epikgames.activities
 
 import android.content.Intent
-import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.*
-import androidx.core.view.marginLeft
-import androidx.core.view.setPadding
 import com.example.epikgames.R
-import org.w3c.dom.Text
 import wordle.Board
 import wordle.WIDTH
 
@@ -30,7 +25,7 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
 
         val rulesButton = findViewById<ImageButton>(R.id.wordleRulesButton)
         rulesButton.setOnClickListener {
-            val intent = Intent(this, WordleRules::class.java)
+            val intent = Intent(this, WordleRulesActivity::class.java)
             startActivity(intent)
         }
 

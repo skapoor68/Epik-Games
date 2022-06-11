@@ -25,7 +25,7 @@
             android:name=".activities.WordleActivity"
             android:parentActivityName=".activities.MainActivity"
             android:exported="false" />
-        <activity android:name=".activities.WordleRules">
+        <activity android:name=".activities.WordleRulesActivity">
 
         </activity>
         <activity
