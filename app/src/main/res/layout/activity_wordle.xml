@@ -72,7 +72,9 @@
             android:layout_marginBottom="5dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="horizontal"></LinearLayout>
+            android:orientation="horizontal">
+
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/keyboard_row_2"
@@ -91,7 +93,18 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="horizontal"></LinearLayout>
+            android:orientation="horizontal">
+
+        </LinearLayout>
+
     </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/wordleRulesButton"
+        android:layout_width="57dp"
+        android:layout_height="55dp"
+        grid:srcCompat="@android:drawable/ic_menu_info_details"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="7dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
