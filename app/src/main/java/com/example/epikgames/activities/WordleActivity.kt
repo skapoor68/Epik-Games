@@ -1,6 +1,7 @@
 package com.example.epikgames.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.content.Intent;
 import android.view.View
 import android.widget.*
 import com.example.epikgames.R
