@@ -1,5 +1,6 @@
 package com.example.epikgames.activities
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -20,7 +21,6 @@ const val TAG = "Wordle Activity: "
 
 class WordleActivity : AppCompatActivity(), View.OnClickListener {
     private val board = Board()
-    private var inputGuess = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -84,7 +84,7 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         if (v.id == "Enter".hashCode()) {
-            board.guess(inputGuess)
+            board.guess()
             updateBoardGUI()
             return
         }
@@ -96,9 +96,6 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         board.type((v.id).toChar())
-        inputGuess += v.id.toChar()
-        //When the end of the row is reached, set inputGuess to empty String
-
         updateBoardGUI()
     }
 
@@ -111,7 +108,7 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
             val tileView: View = this.findViewById(i)
             val tileChar: TextView = tileView.findViewById(R.id.tile_char)
             tileChar.text = board.tileArray[i].char.toString()
-
+            tileView.setBackgroundColor(board.tileArray[i].color)
         }
     }
 }
