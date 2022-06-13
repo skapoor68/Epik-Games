@@ -1,4 +1,5 @@
 package wordle
 
-class Word {
+class Word() {
+
 }

@@ -1,12 +1,12 @@
 package com.example.epikgames.activities
-
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.content.Intent
 import android.view.View
 import android.widget.*
 import com.example.epikgames.R
 import wordle.Board
+import wordle.BoardController
 import wordle.WIDTH
 
 const val keyWidth = 95
@@ -16,7 +16,8 @@ const val keyHeight = 130
 const val TAG = "Wordle Activity: "
 
 class WordleActivity : AppCompatActivity(), View.OnClickListener {
-    private val board = Board()
+    private val boardC: BoardController = BoardController()
+    private val board = Board(solution = boardC.getRandWord())
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -38,7 +39,6 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
             tileView.id = tile.id
             val tileChar: TextView = tileView.findViewById(R.id.tile_char)
             tileChar.text = tile.char.toString()
-
             wordleGrid.addView(tileView)
         }
 
@@ -111,7 +111,7 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
             val tileView: View = this.findViewById(i)
             val tileChar: TextView = tileView.findViewById(R.id.tile_char)
             tileChar.text = board.tileArray[i].char.toString()
-
+            tileView.setBackgroundColor(board.tileArray[i].color)
         }
     }
 
