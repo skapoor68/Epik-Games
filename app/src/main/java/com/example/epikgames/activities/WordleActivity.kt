@@ -1,11 +1,12 @@
 package com.example.epikgames.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.content.Intent;
+import android.content.Intent
 import android.view.View
 import android.widget.*
 import com.example.epikgames.R
 import wordle.Board
+import wordle.BoardController
 import wordle.WIDTH
 
 const val keyWidth = 95
@@ -15,7 +16,8 @@ const val keyHeight = 130
 const val TAG = "Wordle Activity: "
 
 class WordleActivity : AppCompatActivity(), View.OnClickListener {
-    private val board = Board()
+    private val boardC: BoardController = BoardController()
+    private val board = Board(solution = boardC.getRandWord())
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
