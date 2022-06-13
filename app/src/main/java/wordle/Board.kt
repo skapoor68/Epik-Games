@@ -10,9 +10,11 @@ const val WIDTH = 5
 
 class Board(val tileArray: Array<Tile> = Array(HEIGHT * WIDTH) {i -> Tile(i)}) {
     private var curTile = 0
+    private var guessMade = false
     private val wordList: ArrayList<String> = arrayListOf()
 
     fun guess() {
+        guessMade = true
         var guessWord = ""
         var startTile = curTile - 4
         while (startTile <= curTile) {
@@ -25,12 +27,14 @@ class Board(val tileArray: Array<Tile> = Array(HEIGHT * WIDTH) {i -> Tile(i)}) {
         //Can add more words to list in Word class
         val wordList = getWords()
 
-        //Pick a random word using index of arraylist
+        //Pick a random word using index of arraylist(use this for
+        //actual implementation)
         //val randIndex = Math.random() * wordList.size
         //val actualWord = wordList[randIndex.toInt()]
 
         //Change index of wordList for purpose of running test cases
-        val actualWord = wordList[1]
+        val actualWord = wordList[0]
+
         guessWord = guessWord.lowercase()
 
 
@@ -65,18 +69,23 @@ class Board(val tileArray: Array<Tile> = Array(HEIGHT * WIDTH) {i -> Tile(i)}) {
     }
 
     fun type(char: Char) {
+        if (guessMade) {
+            guessMade = false
+            curTile++
+        }
+        
         if (curTile >= tileArray.size - 1) {
             return
         }
 
         if (curTile % WIDTH == (WIDTH - 1)) {
             if (tileArray[curTile].char == ' ') {
-                tileArray[curTile] = Tile(tileArray[curTile].id, char, Color.WHITE)
+                tileArray[curTile] = Tile(tileArray[curTile].id, char, 0)
             }
             return
         }
 
-        tileArray[curTile] = Tile(tileArray[curTile].id, char, Color.WHITE)
+        tileArray[curTile] = Tile(tileArray[curTile].id, char,0)
         curTile++
     }
 
