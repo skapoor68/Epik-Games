@@ -29,7 +29,11 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
             val intent = Intent(this, WordleRulesActivity::class.java)
             startActivity(intent)
         }
-
+        val exitButton = findViewById<ImageButton>(R.id.wordleExitButton)
+        exitButton.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
 
         val wordleGrid: androidx.gridlayout.widget.GridLayout = this.findViewById(R.id.wordle_grid)
 
