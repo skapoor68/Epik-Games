@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 alert.show()
             }
             R.id.quit_button -> {
-                finish()
+                finishAffinity()
             }
         }
     }
