@@ -114,6 +114,4 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
             tileView.setBackgroundColor(board.tileArray[i].color)
         }
     }
-
-
 }
