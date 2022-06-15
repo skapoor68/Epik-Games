@@ -36,15 +36,15 @@ class Board(val tileArray: Array<Tile> = Array(HEIGHT * WIDTH) {i -> Tile(i)}, v
         for (i in solution.indices) {
             //If characters match, mark it as GREEN
             if (solution[i] == guessWord[i]) {
-                tileArray[startTile + i].color = Color.GREEN
+                tileArray[startTile + i].color = Color.parseColor("#6ca965")
                 //If characters don't match but character is found in both words, mark it as YELLOW
             } else if (wordOccur[guessWord[i].code - 65] > 0 && guessOccur[guessWord[i].code - 65] > 0) {
-                tileArray[startTile + i].color = Color.YELLOW
+                tileArray[startTile + i].color = Color.parseColor("#c8b653")
                 wordOccur[guessWord[i].code - 65]--
                 guessOccur[guessWord[i].code - 65]--
             } else {
                 //Mark character as GRAY
-                tileArray[startTile + i].color = Color.GRAY
+                tileArray[startTile + i].color = Color.parseColor("#787c7f")
             }
         }
     }
