@@ -49,6 +49,21 @@ class Board(val tileArray: Array<Tile> = Array(HEIGHT * WIDTH) {i -> Tile(i)}, v
         }
     }
 
+    fun checkGuess() {
+        var startTile = curTile - 4
+        var guessCorrect = true
+        while (startTile <= curTile) {
+            if (tileArray[startTile].color != Color.GREEN) {
+                guessCorrect = false
+            }
+            startTile++
+        }
+
+        if (guessCorrect) {
+            //Alert Pop up Dialog
+        }
+    }
+
     fun delete() {
         TODO("Not yet implemented")
     }
