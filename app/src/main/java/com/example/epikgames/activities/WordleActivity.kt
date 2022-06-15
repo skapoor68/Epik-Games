@@ -93,7 +93,7 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
 
         if (v.id == "Enter".hashCode()) {
             board.guess()
-            updateBoardGUI()
+            updateTileColor()
             return
         }
 
@@ -117,12 +117,20 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
             val tile: View = tileView.findViewById(R.id.wordle_tile)
             val tileChar: TextView = tileView.findViewById(R.id.tile_char)
             tileChar.text = board.tileArray[i].char.toString()
+        }
+    }
+
+    // Updates the color of tiles in a row following a guess
+    private fun updateTileColor() {
+        val row = board.getRow()
+        for (i in row * WIDTH until row * WIDTH + WIDTH) {
+            val tileView: View = this.findViewById(i)
+            val tile: View = tileView.findViewById(R.id.wordle_tile)
             var roundedBorder = tile.background
-            println(roundedBorder)
             roundedBorder = DrawableCompat.wrap(roundedBorder)
             DrawableCompat.setTint(roundedBorder, board.tileArray[i].color)
-
         }
+
     }
 
 
