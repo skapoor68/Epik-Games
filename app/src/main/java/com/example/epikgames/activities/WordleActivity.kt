@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.content.Intent
 import android.view.View
 import android.widget.*
+import androidx.core.graphics.drawable.DrawableCompat
 import com.example.epikgames.R
 import wordle.Board
 import wordle.BoardController
@@ -113,9 +114,14 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
 
         for (i in row * WIDTH until row * WIDTH + WIDTH) {
             val tileView: View = this.findViewById(i)
+            val tile: View = tileView.findViewById(R.id.wordle_tile)
             val tileChar: TextView = tileView.findViewById(R.id.tile_char)
             tileChar.text = board.tileArray[i].char.toString()
-            tileView.setBackgroundColor(board.tileArray[i].color)
+            var roundedBorder = tile.background
+            println(roundedBorder)
+            roundedBorder = DrawableCompat.wrap(roundedBorder)
+            DrawableCompat.setTint(roundedBorder, board.tileArray[i].color)
+
         }
     }
 
