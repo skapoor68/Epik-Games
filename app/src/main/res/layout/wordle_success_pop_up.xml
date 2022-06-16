@@ -32,23 +32,25 @@
 
         <LinearLayout
             android:id="@+id/LinearLayout"
-            android:layout_width="340dp"
-            android:layout_height="74dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/play_again"
                 android:layout_width="141dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#032BF4"
-                android:text="@string/team_info" />
+                android:text="PLAY AGAIN" />
 
             <Button
+                android:id="@+id/quit_game"
                 android:layout_width="146dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#032BF4"
-                android:text="@string/team_info" />
+                android:text="QUIT" />
         </LinearLayout>
 
     </LinearLayout>

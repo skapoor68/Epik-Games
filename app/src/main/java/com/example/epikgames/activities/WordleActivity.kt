@@ -4,11 +4,12 @@ import android.os.Bundle
 import android.content.Intent
 import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
+import androidx.core.app.ActivityCompat.recreate
 import com.example.epikgames.R
 import wordle.Board
 import wordle.BoardController
 import wordle.WIDTH
-
 const val keyWidth = 95
 const val keyHeight = 130
 
@@ -40,6 +41,7 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
             tileChar.text = tile.char.toString()
             wordleGrid.addView(tileView)
         }
+
 
         // Step 2: Add buttons to rows in keyboard
         val keyboardRowOne: LinearLayout = this.findViewById(R.id.keyboard_row_1)
@@ -87,6 +89,13 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
 
         if (v.id == "Enter".hashCode()) {
             board.guess()
+            if (board.checkGuess()) {
+                val alert: AlertDialog.Builder = AlertDialog.Builder(this)
+                val dialogView: View = layoutInflater.inflate(R.layout.wordle_success_pop_up, null)
+                alert.setView(dialogView)
+                alert.create()
+                alert.show()
+            }
             updateBoardGUI()
             return
         }
@@ -105,7 +114,6 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
         // Gets the current row and updates the tiles as needed
 
         val row = board.getRow()
-
         for (i in row * WIDTH until row * WIDTH + WIDTH) {
             val tileView: View = this.findViewById(i)
             val tileChar: TextView = tileView.findViewById(R.id.tile_char)
