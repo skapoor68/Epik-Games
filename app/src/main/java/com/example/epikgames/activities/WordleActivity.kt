@@ -2,6 +2,7 @@ package com.example.epikgames.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
+import android.graphics.Color
 import android.view.View
 import android.widget.*
 import androidx.core.graphics.drawable.DrawableCompat
@@ -117,6 +118,7 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
             val tile: View = tileView.findViewById(R.id.wordle_tile)
             val tileChar: TextView = tileView.findViewById(R.id.tile_char)
             tileChar.text = board.tileArray[i].char.toString()
+            tileChar.setTextColor(Color.BLACK)
         }
     }
 
@@ -126,6 +128,8 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
         for (i in row * WIDTH until row * WIDTH + WIDTH) {
             val tileView: View = this.findViewById(i)
             val tile: View = tileView.findViewById(R.id.wordle_tile)
+            val tileChar: TextView = tileView.findViewById(R.id.tile_char)
+            tileChar.setTextColor(Color.WHITE)
             var roundedBorder = tile.background
             roundedBorder = DrawableCompat.wrap(roundedBorder)
             DrawableCompat.setTint(roundedBorder, board.tileArray[i].color)

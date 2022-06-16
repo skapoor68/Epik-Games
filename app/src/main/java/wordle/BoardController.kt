@@ -8,6 +8,7 @@ class BoardController() {
         wordList.add("CARDS")
         wordList.add("IRONS")
         wordList.add("WORDS")
+        wordList.add("SAMMY")
     }
 
     fun getRandWord(): String {
