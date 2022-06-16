@@ -59,7 +59,7 @@ class Board(val tileArray: Array<Tile> = Array(HEIGHT * WIDTH) {i -> Tile(i)}, v
             curTile++
         }
         
-        if (curTile >= tileArray.size - 1) {
+        if (curTile > tileArray.size - 1) {
             return
         }
 
