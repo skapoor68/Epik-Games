@@ -20,7 +20,6 @@ class Board(val tileArray: Array<Tile> = Array(HEIGHT * WIDTH) {i -> Tile(i)}, v
             guessWord += tileArray[startTile].char.toString()
             startTile++
         }
-        println(guessWord)
         startTile = curTile - 4
 
         //Have two arrays that will store the occurrences of characters in the guess word and actual word
@@ -59,7 +58,7 @@ class Board(val tileArray: Array<Tile> = Array(HEIGHT * WIDTH) {i -> Tile(i)}, v
             curTile++
         }
         
-        if (curTile >= tileArray.size - 1) {
+        if (curTile > tileArray.size - 1) {
             return
         }
 
