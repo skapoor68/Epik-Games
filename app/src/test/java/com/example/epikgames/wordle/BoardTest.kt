@@ -95,6 +95,7 @@ class BoardTest {
         assertEquals('J', board.tileArray[WIDTH * HEIGHT - 1].char)
     }
 
+
     //Colors for letters are based off of https://mywordle.strivemath.com/?word=yoigd
     @Test
     fun guessWordFuncIrons01() {
@@ -159,7 +160,6 @@ class BoardTest {
         board.guess()
 
         assertArrayEquals(actualColors, board.tileArray)
+
     }
-
-
 }
