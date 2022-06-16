@@ -46,14 +46,6 @@ class BoardTest {
 
     @Test
     fun typeIntoLastTile() {
-        board.type('A')
-        board.type('A')
-        board.type('A')
-        board.type('A')
-        board.type('A')
-
-        board.guess()
-
         board.type('B')
         board.type('B')
         board.type('B')
@@ -75,6 +67,14 @@ class BoardTest {
         board.type('D')
         board.type('D')
         board.type('D')
+
+        board.guess()
+
+        board.type('T')
+        board.type('T')
+        board.type('T')
+        board.type('T')
+        board.type('T')
 
         board.guess()
 
