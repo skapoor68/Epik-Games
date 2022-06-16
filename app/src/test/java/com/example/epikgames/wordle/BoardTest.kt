@@ -44,57 +44,6 @@ class BoardTest {
         board.type('A')
     }
 
-    @Test
-    fun typeIntoLastTile() {
-        board.type('A')
-        board.type('A')
-        board.type('A')
-        board.type('A')
-        board.type('A')
-
-        board.guess()
-
-        board.type('B')
-        board.type('B')
-        board.type('B')
-        board.type('B')
-        board.type('B')
-
-        board.guess()
-
-        board.type('C')
-        board.type('C')
-        board.type('C')
-        board.type('C')
-        board.type('C')
-
-        board.guess()
-
-        board.type('D')
-        board.type('D')
-        board.type('D')
-        board.type('D')
-        board.type('D')
-
-        board.guess()
-
-        board.type('E')
-        board.type('E')
-        board.type('E')
-        board.type('E')
-        board.type('E')
-
-        board.guess()
-
-        board.type('F')
-        board.type('G')
-        board.type('H')
-        board.type('I')
-        board.type('J')
-
-        assertEquals('J', board.tileArray[WIDTH * HEIGHT - 1].char)
-    }
-
     //Colors for letters are based off of https://mywordle.strivemath.com/?word=yoigd
     @Test
     fun guessWordFuncIrons01() {
@@ -159,7 +108,6 @@ class BoardTest {
         board.guess()
 
         assertArrayEquals(actualColors, board.tileArray)
+
     }
-
-
 }
