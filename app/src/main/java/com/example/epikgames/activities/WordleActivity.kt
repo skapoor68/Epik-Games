@@ -8,6 +8,7 @@ import android.widget.*
 import androidx.core.graphics.drawable.DrawableCompat
 import com.example.epikgames.R
 import wordle.Board
+import wordle.BoardColor
 import wordle.BoardController
 import wordle.WIDTH
 
@@ -132,7 +133,22 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
             tileChar.setTextColor(Color.WHITE)
             var roundedBorder = tile.background
             roundedBorder = DrawableCompat.wrap(roundedBorder)
-            DrawableCompat.setTint(roundedBorder, board.tileArray[i].color)
+            DrawableCompat.setTint(roundedBorder, Color.parseColor(board.tileArray[i].color.rgb))
+        }
+
+        for (i in board.letterStatus.indices) {
+            val key: View = this.findViewById(i + 65)
+            when (board.letterStatus[i]) {
+                2 -> {
+                    key.setBackgroundColor(Color.parseColor(BoardColor.GREEN.rgb))
+                }
+                1 -> {
+                    key.setBackgroundColor(Color.parseColor(BoardColor.YELLOW.rgb))
+                }
+                0 -> {
+                    key.setBackgroundColor(Color.parseColor(BoardColor.DARK_GRAY.rgb))
+                }
+            }
         }
 
     }

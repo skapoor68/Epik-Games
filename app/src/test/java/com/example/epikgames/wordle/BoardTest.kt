@@ -51,11 +51,11 @@ class BoardTest {
 
         val actualColors: Array<Tile> = Array(30) { i -> Tile(i) }
 
-        actualColors[0] = Tile(0, 'D', Color.GRAY)
-        actualColors[1] = Tile(1, 'I', Color.YELLOW)
-        actualColors[2] = Tile(2, 'A', Color.GRAY)
-        actualColors[3] = Tile(3, 'R', Color.YELLOW)
-        actualColors[5] = Tile(4, 'Y', Color.GRAY)
+        actualColors[0] = Tile(0, 'D', BoardColor.DARK_GRAY)
+        actualColors[1] = Tile(1, 'I', BoardColor.YELLOW)
+        actualColors[2] = Tile(2, 'A', BoardColor.DARK_GRAY)
+        actualColors[3] = Tile(3, 'R', BoardColor.YELLOW)
+        actualColors[5] = Tile(4, 'Y', BoardColor.DARK_GRAY)
 
         board.type('D')
         board.type('I')
@@ -64,6 +64,15 @@ class BoardTest {
         board.type('Y')
 
         board.guess()
+
+        val actualLetterStatus = Array(26) { _ -> -1}
+        actualLetterStatus['D'.code - 65] = 0
+        actualLetterStatus['I'.code - 65] = 1
+        actualLetterStatus['A'.code - 65] = 0
+        actualLetterStatus['R'.code - 65] = 1
+        actualLetterStatus['Y'.code - 65] = 0
+
+        assertArrayEquals(actualLetterStatus, board.letterStatus)
     }
 
     @Test
@@ -72,11 +81,11 @@ class BoardTest {
 
         val actualColors: Array<Tile> = Array(30) { i -> Tile(i) }
 
-        actualColors[0] = Tile(0, 'L', Color.YELLOW)
-        actualColors[1] = Tile(1, 'E', Color.GREEN)
-        actualColors[2] = Tile(2, 'V', Color.GRAY)
-        actualColors[3] = Tile(3, 'E', Color.YELLOW)
-        actualColors[4] = Tile(4, 'L', Color.YELLOW)
+        actualColors[0] = Tile(0, 'L', BoardColor.YELLOW)
+        actualColors[1] = Tile(1, 'E', BoardColor.GREEN)
+        actualColors[2] = Tile(2, 'V', BoardColor.DARK_GRAY)
+        actualColors[3] = Tile(3, 'E', BoardColor.YELLOW)
+        actualColors[4] = Tile(4, 'L', BoardColor.YELLOW)
 
         board.type('L')
         board.type('E')
@@ -86,6 +95,13 @@ class BoardTest {
         board.guess()
 
         assertArrayEquals(actualColors, board.tileArray)
+
+        val actualLetterStatus = Array(26) { _ -> -1}
+        actualLetterStatus['L'.code - 65] = 1
+        actualLetterStatus['E'.code - 65] = 2
+        actualLetterStatus['V'.code - 65] = 0
+
+        assertArrayEquals(actualLetterStatus, board.letterStatus)
     }
 
     @Test
@@ -94,11 +110,11 @@ class BoardTest {
 
         val actualColors: Array<Tile> = Array(30) { i -> Tile(i) }
 
-        actualColors[0] = Tile(0, 'D', Color.YELLOW)
-        actualColors[1] = Tile(1, 'E', Color.GRAY)
-        actualColors[2] = Tile(2, 'C', Color.YELLOW)
-        actualColors[3] = Tile(3, 'K', Color.GRAY)
-        actualColors[4] = Tile(4, 'S', Color.GREEN)
+        actualColors[0] = Tile(0, 'D', BoardColor.YELLOW)
+        actualColors[1] = Tile(1, 'E', BoardColor.DARK_GRAY)
+        actualColors[2] = Tile(2, 'C', BoardColor.YELLOW)
+        actualColors[3] = Tile(3, 'K', BoardColor.DARK_GRAY)
+        actualColors[4] = Tile(4, 'S', BoardColor.GREEN)
 
         board.type('D')
         board.type('E')
@@ -107,7 +123,16 @@ class BoardTest {
         board.type('S')
         board.guess()
 
+
         assertArrayEquals(actualColors, board.tileArray)
 
+        val actualLetterStatus = Array(26) { _ -> -1}
+        actualLetterStatus['D'.code - 65] = 1
+        actualLetterStatus['E'.code - 65] = 0
+        actualLetterStatus['C'.code - 65] = 1
+        actualLetterStatus['K'.code - 65] = 0
+        actualLetterStatus['S'.code - 65] = 2
+
+        assertArrayEquals(actualLetterStatus, board.letterStatus)
     }
 }
