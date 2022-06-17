@@ -31,6 +31,12 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
             startActivity(intent)
         }
 
+        val exitButton = findViewById<ImageButton>(R.id.wordleExitButton)
+        exitButton.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
         val wordleGrid: androidx.gridlayout.widget.GridLayout = this.findViewById(R.id.wordle_grid)
 
         // Step 1: Add tiles to empty grid layout
@@ -89,7 +95,7 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
 
         if (v.id == "Enter".hashCode()) {
             board.guess()
-            if (board.checkGuess()) {
+            if (board.guessCorrect()) {
                 val alert: AlertDialog.Builder = AlertDialog.Builder(this)
                 val dialogView: View = layoutInflater.inflate(R.layout.wordle_success_pop_up, null)
                 alert.setView(dialogView)

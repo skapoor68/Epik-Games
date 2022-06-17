@@ -2,7 +2,6 @@ package wordle
 
 import android.graphics.Color
 import android.view.View
-import android.widget.Button
 import android.widget.TextView
 import com.example.epikgames.R
 
@@ -21,7 +20,6 @@ class Board(val tileArray: Array<Tile> = Array(HEIGHT * WIDTH) {i -> Tile(i)}, v
             guessWord += tileArray[startTile].char.toString()
             startTile++
         }
-
         startTile = curTile - 4
 
         //Have two arrays that will store the occurrences of characters in the guess word and actual word
@@ -50,7 +48,7 @@ class Board(val tileArray: Array<Tile> = Array(HEIGHT * WIDTH) {i -> Tile(i)}, v
         }
     }
 
-    fun checkGuess(): Boolean {
+    fun guessCorrect(): Boolean {
         var startTile = curTile - 4
         while (startTile <= curTile) {
             if (tileArray[startTile].color != Color.GREEN) {
@@ -61,7 +59,6 @@ class Board(val tileArray: Array<Tile> = Array(HEIGHT * WIDTH) {i -> Tile(i)}, v
         return true
     }
 
-
     fun delete() {
         TODO("Not yet implemented")
     }
@@ -71,8 +68,8 @@ class Board(val tileArray: Array<Tile> = Array(HEIGHT * WIDTH) {i -> Tile(i)}, v
             guessMade = false
             curTile++
         }
-        
-        if (curTile >= tileArray.size - 1) {
+
+        if (curTile > tileArray.size - 1) {
             return
         }
 
