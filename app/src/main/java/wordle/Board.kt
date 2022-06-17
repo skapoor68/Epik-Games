@@ -73,7 +73,7 @@ class Board(val letterStatus: Array<Int> = Array(26) { _ -> -1}, val tileArray: 
             curTile++
         }
         
-        if (curTile >= tileArray.size - 1) {
+        if (curTile > tileArray.size - 1) {
             return
         }
 
