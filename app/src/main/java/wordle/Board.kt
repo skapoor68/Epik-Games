@@ -59,6 +59,10 @@ class Board(val tileArray: Array<Tile> = Array(HEIGHT * WIDTH) {i -> Tile(i)}, v
         return true
     }
 
+    fun loseGame(): Boolean {
+        return curTile == 29 && !guessCorrect()
+    }
+
     fun delete() {
         TODO("Not yet implemented")
     }

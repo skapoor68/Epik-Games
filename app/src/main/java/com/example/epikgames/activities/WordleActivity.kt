@@ -19,6 +19,7 @@ const val TAG = "Wordle Activity: "
 class WordleActivity : AppCompatActivity(), View.OnClickListener {
     private val boardC: BoardController = BoardController()
     private val board = Board(solution = boardC.getRandWord())
+    private val wordleGrid: androidx.gridlayout.widget.GridLayout = this.findViewById(R.id.wordle_grid)
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -37,7 +38,6 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
             startActivity(intent)
         }
 
-        val wordleGrid: androidx.gridlayout.widget.GridLayout = this.findViewById(R.id.wordle_grid)
 
         // Step 1: Add tiles to empty grid layout
         for (tile in board.tileArray) {
@@ -77,6 +77,7 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
 
 
     }
+    
 
     private fun addKeyboardButton(keyboardRow: LinearLayout, text: String, id: Int,
                                   width: Int = keyWidth) {
@@ -96,6 +97,13 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
         if (v.id == "Enter".hashCode()) {
             board.guess()
             if (board.guessCorrect()) {
+                val alert: AlertDialog.Builder = AlertDialog.Builder(this)
+                val dialogView: View = layoutInflater.inflate(R.layout.wordle_success_pop_up, null)
+                alert.setView(dialogView)
+                alert.create()
+                alert.show()
+            }
+            if (board.loseGame()) {
                 val alert: AlertDialog.Builder = AlertDialog.Builder(this)
                 val dialogView: View = layoutInflater.inflate(R.layout.wordle_success_pop_up, null)
                 alert.setView(dialogView)

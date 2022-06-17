@@ -27,5 +27,6 @@ class WordleSuccessActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
 }
 
