@@ -25,7 +25,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/sorry_you_ran_out_of_guesses_the_word_was"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />

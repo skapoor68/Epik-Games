@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat.recreate
 import com.example.epikgames.R
 
 class WordleSuccessActivity : AppCompatActivity() {
@@ -24,7 +23,7 @@ class WordleSuccessActivity : AppCompatActivity() {
         quitGame.setOnClickListener {
             val intent = Intent(this,
                 MainActivity::class.java)
-            startActivity(intent)
+            finishAndRemoveTask()
         }
     }
 
