@@ -1,19 +1,18 @@
 package wordle
 
-class BoardController() {
-    private val wordList: ArrayList<String> = arrayListOf()
+import WordsList
+import kotlin.random.Random
 
-    init {
-        wordList.add("HELLO")
-        wordList.add("CARDS")
-        wordList.add("IRONS")
-        wordList.add("WORDS")
-        wordList.add("SAMMY")
-    }
+
+class BoardController() {
+    private val words = WordsList.values()
 
     fun getRandWord(): String {
-        val randIndex = Math.random() * wordList.size
-        return wordList[randIndex.toInt()]
+        val index: Int = Random.nextInt(words.size)
+        return words[index].toString().uppercase()
     }
 
+    fun getWords(): Array<WordsList> {
+        return words
+    }
 }
