@@ -1,8 +1,6 @@
 package com.example.epikgames.wordle
 
 import junit.framework.TestCase.assertNotSame
-import junit.framework.TestCase.assertTrue
-import org.junit.Assert.assertArrayEquals
 import org.junit.Test
 import junit.framework.TestCase.assertEquals
 
