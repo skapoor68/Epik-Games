@@ -46,9 +46,6 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
         val wordleGrid: androidx.gridlayout.widget.GridLayout = this.findViewById(R.id.wordle_grid)
 
 
-        val wordleGrid: androidx.gridlayout.widget.GridLayout = findViewById(R.id.wordle_grid)
-
-
         // Step 1: Add tiles to empty grid layout
         for (tile in board.tileArray) {
             val tileView: View = layoutInflater.inflate(R.layout.wordle_tile, null)

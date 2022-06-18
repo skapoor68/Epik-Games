@@ -65,7 +65,7 @@ class Board(val letterStatus: Array<Int> = Array(26) { _ -> -1}, val tileArray: 
     fun guessCorrect(): Boolean {
         var startTile = curTile - 4
         while (startTile <= curTile) {
-            if (tileArray[startTile].color != Color.GREEN) {
+            if (tileArray[startTile].color != BoardColor.GREEN) {
                 return false
             }
             startTile++
