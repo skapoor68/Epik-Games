@@ -91,7 +91,4 @@ class Board(val letterStatus: Array<Int> = Array(26) { _ -> -1}, val tileArray: 
     fun getRow(): Int {
         return curTile / WIDTH
     }
-
-
-
 }
