@@ -8,7 +8,14 @@ import com.example.epikgames.R
 const val HEIGHT = 6
 const val WIDTH = 5
 
-class Board(val tileArray: Array<Tile> = Array(HEIGHT * WIDTH) {i -> Tile(i)}, val solution: String) {
+enum class BoardColor(val rgb: String) {
+    GREEN("#6ca965"),
+    YELLOW("#c8b653"),
+    DARK_GRAY("#787c7f"),
+    WHITE("#ffffff")
+}
+
+class Board(val letterStatus: Array<Int> = Array(26) { _ -> -1}, val tileArray: Array<Tile> = Array(HEIGHT * WIDTH) { i -> Tile(i)}, val solution: String) {
     private var curTile = 0
     private var guessMade = false
 
@@ -35,15 +42,22 @@ class Board(val tileArray: Array<Tile> = Array(HEIGHT * WIDTH) {i -> Tile(i)}, v
         for (i in solution.indices) {
             //If characters match, mark it as GREEN
             if (solution[i] == guessWord[i]) {
-                tileArray[startTile + i].color = Color.GREEN
+                tileArray[startTile + i].color = BoardColor.GREEN
+                letterStatus[guessWord[i].code - 65] = 2
                 //If characters don't match but character is found in both words, mark it as YELLOW
             } else if (wordOccur[guessWord[i].code - 65] > 0 && guessOccur[guessWord[i].code - 65] > 0) {
-                tileArray[startTile + i].color = Color.YELLOW
+                tileArray[startTile + i].color = BoardColor.YELLOW
+                if (letterStatus[guessWord[i].code - 65] != 2) {
+                    letterStatus[guessWord[i].code - 65] = 1
+                }
                 wordOccur[guessWord[i].code - 65]--
                 guessOccur[guessWord[i].code - 65]--
             } else {
                 //Mark character as GRAY
-                tileArray[startTile + i].color = Color.GRAY
+                if (letterStatus[guessWord[i].code - 65] < 1) {
+                    letterStatus[guessWord[i].code - 65] = 0
+                }
+                tileArray[startTile + i].color = BoardColor.DARK_GRAY
             }
         }
     }
@@ -79,19 +93,16 @@ class Board(val tileArray: Array<Tile> = Array(HEIGHT * WIDTH) {i -> Tile(i)}, v
 
         if (curTile % WIDTH == (WIDTH - 1)) {
             if (tileArray[curTile].char == ' ') {
-                tileArray[curTile] = Tile(tileArray[curTile].id, char, 0)
+                tileArray[curTile] = Tile(tileArray[curTile].id, char, BoardColor.WHITE)
             }
             return
         }
 
-        tileArray[curTile] = Tile(tileArray[curTile].id, char,0)
+        tileArray[curTile] = Tile(tileArray[curTile].id, char,BoardColor.WHITE)
         curTile++
     }
 
     fun getRow(): Int {
         return curTile / WIDTH
     }
-
-
-
 }

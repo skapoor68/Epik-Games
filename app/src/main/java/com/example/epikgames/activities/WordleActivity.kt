@@ -2,12 +2,18 @@ package com.example.epikgames.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
+import android.graphics.Color
 import android.view.View
 import android.widget.*
+
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat.recreate
+
+import androidx.core.graphics.drawable.DrawableCompat
+
 import com.example.epikgames.R
 import wordle.Board
+import wordle.BoardColor
 import wordle.BoardController
 import wordle.WIDTH
 const val keyWidth = 95
@@ -36,6 +42,9 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+        
+        val wordleGrid: androidx.gridlayout.widget.GridLayout = this.findViewById(R.id.wordle_grid)
+
 
         val wordleGrid: androidx.gridlayout.widget.GridLayout = findViewById(R.id.wordle_grid)
 
@@ -97,6 +106,7 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
 
         if (v.id == "Enter".hashCode()) {
             board.guess()
+
             if (board.guessCorrect()) {
                 val alert: AlertDialog.Builder = AlertDialog.Builder(this)
                 val dialogView: View = layoutInflater.inflate(R.layout.wordle_success_pop_up, null)
@@ -114,6 +124,8 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
                 alert.show()
             }
             updateBoardGUI()
+            updateTileColor()
+
             return
         }
 
@@ -133,9 +145,40 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
         val row = board.getRow()
         for (i in row * WIDTH until row * WIDTH + WIDTH) {
             val tileView: View = this.findViewById(i)
+            val tile: View = tileView.findViewById(R.id.wordle_tile)
             val tileChar: TextView = tileView.findViewById(R.id.tile_char)
             tileChar.text = board.tileArray[i].char.toString()
-            tileView.setBackgroundColor(board.tileArray[i].color)
+            tileChar.setTextColor(Color.BLACK)
         }
+    }
+
+    // Updates the color of tiles in a row following a guess
+    private fun updateTileColor() {
+        val row = board.getRow()
+        for (i in row * WIDTH until row * WIDTH + WIDTH) {
+            val tileView: View = this.findViewById(i)
+            val tile: View = tileView.findViewById(R.id.wordle_tile)
+            val tileChar: TextView = tileView.findViewById(R.id.tile_char)
+            tileChar.setTextColor(Color.WHITE)
+            var roundedBorder = tile.background
+            roundedBorder = DrawableCompat.wrap(roundedBorder)
+            DrawableCompat.setTint(roundedBorder, Color.parseColor(board.tileArray[i].color.rgb))
+        }
+
+        for (i in board.letterStatus.indices) {
+            val key: View = this.findViewById(i + 65)
+            when (board.letterStatus[i]) {
+                2 -> {
+                    key.setBackgroundColor(Color.parseColor(BoardColor.GREEN.rgb))
+                }
+                1 -> {
+                    key.setBackgroundColor(Color.parseColor(BoardColor.YELLOW.rgb))
+                }
+                0 -> {
+                    key.setBackgroundColor(Color.parseColor(BoardColor.DARK_GRAY.rgb))
+                }
+            }
+        }
+
     }
 }
