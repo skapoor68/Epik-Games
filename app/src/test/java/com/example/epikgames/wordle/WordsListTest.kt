@@ -20,6 +20,4 @@ class WordsListTest {
     fun randomWord() {
         assertNotSame(board1.solution, board2.solution)
     }
-
-
 }
