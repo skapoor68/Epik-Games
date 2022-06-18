@@ -25,7 +25,6 @@ const val TAG = "Wordle Activity: "
 class WordleActivity : AppCompatActivity(), View.OnClickListener {
     private val boardC: BoardController = BoardController()
     private val board = Board(solution = boardC.getRandWord())
-    private val wordleGrid: androidx.gridlayout.widget.GridLayout = this.findViewById(R.id.wordle_grid)
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -43,6 +42,9 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+        
+        val wordleGrid: androidx.gridlayout.widget.GridLayout = this.findViewById(R.id.wordle_grid)
+
 
 
         // Step 1: Add tiles to empty grid layout
