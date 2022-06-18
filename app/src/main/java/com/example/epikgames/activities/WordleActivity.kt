@@ -93,6 +93,12 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
             return
         }
 
+        if (v.id == "Enter".hashCode() && board.getCurTile() % WIDTH != (WIDTH - 1)) {
+            showToast()
+            return
+
+        }
+
         if (v.id == "Enter".hashCode()) {
             board.guess()
             updateTileColor()
@@ -150,7 +156,11 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
                 }
             }
         }
+    }
 
+    private fun showToast() {
+        val toast = Toast.makeText(this, "Not enough letters", Toast.LENGTH_SHORT)
+        toast.show()
     }
 
 
