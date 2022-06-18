@@ -1,7 +1,10 @@
 package wordle
 
+import android.graphics.Color
+import android.graphics.Color.WHITE
 
-class Tile(val id: Int, val char: Char = ' ', var color: Int = 0) {
+
+class Tile(val id: Int, val char: Char = ' ', var color: BoardColor = BoardColor.WHITE) {
 
     override fun toString(): String {
         return "$id, $char, $color"
