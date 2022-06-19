@@ -74,7 +74,7 @@ class Board(val letterStatus: Array<Int> = Array(26) { _ -> -1}, val tileArray: 
     }
 
     fun loseGame(): Boolean {
-        return curTile == 29 && !guessCorrect()
+        return curTile == 29
     }
 
     fun delete() {
