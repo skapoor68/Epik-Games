@@ -45,6 +45,18 @@ class BoardTest {
     }
 
     @Test
+    fun canGuessTest() {
+        board.type('C')
+        board.type('R')
+        board.type('A')
+        board.type('N')
+
+        assertEquals(false, board.canGuess())
+        board.type('E')
+        assertEquals(true, board.canGuess())
+    }
+
+    @Test
     fun typeIntoLastTile() {
         board.type('A')
         board.type('A')

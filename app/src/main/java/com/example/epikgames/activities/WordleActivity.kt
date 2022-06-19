@@ -101,13 +101,12 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
 
         if (v.id == "Enter".hashCode()) {
             //if there is less than 5 letters typed show error message
-            if (board.getCurTile() - 1 % WIDTH != (WIDTH - 1)
-                && board.getTypedLetters() < 5) {
+            if (!board.canGuess()) {
                 showToast()
                 return
-            } else {
-                board.guess()
             }
+
+            board.guess()
             updateTileColor()
             return
         }
@@ -166,8 +165,7 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun showToast() {
-        val toast = Toast.makeText(this, "Not enough letters", Toast.LENGTH_SHORT)
-        toast.show()
+        Toast.makeText(baseContext, "Not enough letters", Toast.LENGTH_SHORT).show()
     }
 
 
