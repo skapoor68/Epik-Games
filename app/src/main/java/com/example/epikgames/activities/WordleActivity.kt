@@ -11,6 +11,7 @@ import wordle.Board
 import wordle.BoardColor
 import wordle.BoardController
 import wordle.WIDTH
+import kotlin.math.abs
 
 const val keyWidth = 95
 const val keyHeight = 130
@@ -93,14 +94,20 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
             return
         }
 
-        if (v.id == "Enter".hashCode() && board.getCurTile() % WIDTH != (WIDTH - 1)) {
-            showToast()
-            return
-
-        }
+//        if (v.id == "Enter".hashCode() && board.getCurTile() % WIDTH != (WIDTH - 1)) {
+//            showToast()
+//            return
+//        }
 
         if (v.id == "Enter".hashCode()) {
-            board.guess()
+            //if there is less than 5 letters typed show error message
+            if (board.getCurTile() - 1 % WIDTH != (WIDTH - 1)
+                && board.getTypedLetters() < 5) {
+                showToast()
+                return
+            } else {
+                board.guess()
+            }
             updateTileColor()
             return
         }

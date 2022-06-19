@@ -7,6 +7,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.epikgames.R
 import com.example.epikgames.activities.WordleActivity
+import kotlinx.coroutines.processNextEventInCurrentThread
 import java.security.AccessController.getContext
 
 const val HEIGHT = 6
@@ -21,6 +22,7 @@ enum class BoardColor(val rgb: String) {
 
 class Board(val letterStatus: Array<Int> = Array(26) { _ -> -1}, val tileArray: Array<Tile> = Array(HEIGHT * WIDTH) { i -> Tile(i)}, val solution: String) {
     private var curTile = 0
+    private var typedLetters = 0
     private var guessMade = false
 
     fun guess() {
@@ -90,10 +92,20 @@ class Board(val letterStatus: Array<Int> = Array(26) { _ -> -1}, val tileArray: 
 
         tileArray[curTile] = Tile(tileArray[curTile].id, char,BoardColor.WHITE)
         curTile++
+        //increment the amount of letters typed in a given row (set to 1 for new row)
+        if (curTile % WIDTH == 1) {
+            typedLetters = 1
+        } else {
+            typedLetters++
+        }
     }
 
     fun getRow(): Int {
         return curTile / WIDTH
+    }
+
+    fun getTypedLetters() : Int {
+        return typedLetters
     }
 
     fun getCurTile() : Int {
