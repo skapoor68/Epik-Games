@@ -30,8 +30,6 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_wordle)
         println(board.solution)
-
-
         val rulesButton = findViewById<ImageButton>(R.id.wordleRulesButton)
         rulesButton.setOnClickListener {
             val intent = Intent(this, WordleRulesActivity::class.java)
@@ -58,7 +56,6 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
                 var roundedBorder = tileBox.background
                 roundedBorder = DrawableCompat.wrap(roundedBorder)
                 DrawableCompat.setTint(roundedBorder, Color.parseColor(tile.color.rgb))
-
                 wordleGrid.addView(tileView)
                 continue
             }
