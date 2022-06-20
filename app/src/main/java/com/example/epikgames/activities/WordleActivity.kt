@@ -108,6 +108,23 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
                 alert.setView(dialogView)
                 alert.create()
                 alert.show()
+
+                val playAgain: Button = findViewById(R.id.play_again)
+
+                playAgain.setOnClickListener {
+                    val intent = Intent(this,
+                        WordleActivity::class.java)
+                    startActivity(intent)
+                }
+                val quitGame: Button = findViewById(R.id.quit_game)
+                quitGame.setOnClickListener {
+                    val intent = Intent(this,
+                        MainActivity::class.java)
+                    startActivity(intent)
+
+                }
+                alert.create()
+                alert.show()
             } else if (board.loseGame()) {
                 val alert: AlertDialog.Builder = AlertDialog.Builder(this)
                 val dialogView: View = layoutInflater.inflate(R.layout.wordle_failure_pop_up, null)
