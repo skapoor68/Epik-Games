@@ -62,6 +62,13 @@ class Board(val letterStatus: Array<Int> = Array(26) { _ -> -1}, val tileArray: 
         }
     }
 
+    fun resetBoard() {
+        for (i in tileArray.indices) {
+            tileArray[i].color = BoardColor.WHITE
+        }
+        curTile = 0;
+    }
+
     fun guessCorrect(): Boolean {
         var startTile = curTile - 4
         while (startTile <= curTile) {
@@ -97,7 +104,6 @@ class Board(val letterStatus: Array<Int> = Array(26) { _ -> -1}, val tileArray: 
             }
             return
         }
-
         tileArray[curTile] = Tile(tileArray[curTile].id, char,BoardColor.WHITE)
         curTile++
     }
