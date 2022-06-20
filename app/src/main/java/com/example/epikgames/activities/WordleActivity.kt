@@ -22,8 +22,12 @@ const val keyHeight = 130
 const val TAG = "Wordle Activity: "
 
 class WordleActivity : AppCompatActivity(), View.OnClickListener {
-    private val boardC: BoardController = BoardController()
-    private val board = Board(solution = boardC.getRandWord())
+
+    companion object {
+        val boardC: BoardController = BoardController()
+        var board = Board(solution = boardC.getRandWord())
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
