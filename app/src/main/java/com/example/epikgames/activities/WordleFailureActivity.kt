@@ -6,15 +6,17 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.epikgames.R
+import wordle.Board
 import wordle.BoardController
 
 class WordleFailureActivity: AppCompatActivity() {
-    private val boardC: BoardController = BoardController()
+    private val boardC = BoardController()
+    private val board = Board(solution = boardC.getRandWord())
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.wordle_failure_pop_up)
         val failureView = findViewById<TextView>(R.id.failureTextView)
-        failureView.text = "Sorry! You ran out of guesses. The word was ${boardC.getRandWord()}"
+        failureView.text = "Sorry! You ran out of guesses. The word was ${board.solution}"
 
         val playAgain: Button = findViewById(R.id.play_again)
         val quitGame: Button = findViewById(R.id.quit_game)

@@ -45,7 +45,6 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
         
         val wordleGrid: androidx.gridlayout.widget.GridLayout = this.findViewById(R.id.wordle_grid)
 
-
         // Step 1: Add tiles to empty grid layout
         for (tile in board.tileArray) {
             val tileView: View = layoutInflater.inflate(R.layout.wordle_tile, null)
@@ -110,11 +109,9 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
                 alert.setView(dialogView)
                 alert.create()
                 alert.show()
-            }
-            if (board.loseGame()) {
+            } else if (board.loseGame()) {
                 val alert: AlertDialog.Builder = AlertDialog.Builder(this)
                 val dialogView: View = layoutInflater.inflate(R.layout.wordle_failure_pop_up, null)
-
                 alert.setView(dialogView)
                 alert.create()
                 alert.show()
