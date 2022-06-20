@@ -17,10 +17,8 @@ enum class BoardColor(val rgb: String) {
 
 class Board(val letterStatus: Array<Int> = Array(26) { _ -> -1}, val tileArray: Array<Tile> = Array(HEIGHT * WIDTH) { i -> Tile(i)}, val solution: String) {
     private var curTile = 0
-    private var guessMade = false
 
     fun guess() {
-        guessMade = true
         var guessWord = ""
         var startTile = curTile - 4
         while (startTile <= curTile) {
@@ -60,6 +58,7 @@ class Board(val letterStatus: Array<Int> = Array(26) { _ -> -1}, val tileArray: 
                 tileArray[startTile + i].color = BoardColor.DARK_GRAY
             }
         }
+        curTile++
     }
 
     fun resetBoard() {
@@ -89,11 +88,7 @@ class Board(val letterStatus: Array<Int> = Array(26) { _ -> -1}, val tileArray: 
     }
 
     fun type(char: Char) {
-        if (guessMade) {
-            guessMade = false
-            curTile++
-        }
-
+      
         if (curTile > tileArray.size - 1) {
             return
         }

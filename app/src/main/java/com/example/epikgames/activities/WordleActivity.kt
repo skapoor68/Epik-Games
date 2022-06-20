@@ -1,22 +1,21 @@
 package com.example.epikgames.activities
-
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
 import android.content.Intent
 import android.graphics.Color
-import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.*
+
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat.recreate
+
 import androidx.core.graphics.drawable.DrawableCompat
+
 import com.example.epikgames.R
 import wordle.Board
 import wordle.BoardColor
 import wordle.BoardController
 import wordle.WIDTH
-
 const val keyWidth = 95
 const val keyHeight = 130
 
@@ -54,7 +53,6 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
             tileChar.text = tile.char.toString()
             wordleGrid.addView(tileView)
         }
-
 
 
         // Step 2: Add buttons to rows in keyboard
@@ -109,46 +107,18 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
                 val alert: AlertDialog.Builder = AlertDialog.Builder(this)
                 val dialogView: View = layoutInflater.inflate(R.layout.wordle_success_pop_up, null)
                 alert.setView(dialogView)
-
-                val playAgain: Button = dialogView.findViewById(R.id.play_again)
-                playAgain.setOnClickListener {
-                    startActivity(Intent(this, WordleActivity::class.java))
-                    finish()
-                }
-
-                val quitGame: Button = dialogView.findViewById(R.id.quit_game)
-                quitGame.setOnClickListener {
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                }
                 alert.create()
                 alert.show()
-                return
-
             } else if (board.loseGame()) {
                 val alert: AlertDialog.Builder = AlertDialog.Builder(this)
                 val dialogView: View = layoutInflater.inflate(R.layout.wordle_failure_pop_up, null)
                 alert.setView(dialogView)
-                val failureView = dialogView.findViewById<TextView>(R.id.failureTextView)
-                failureView.text = "Sorry! You ran out of guesses. The correct word was ${board.solution}"
-
-                val playAgain: Button = dialogView.findViewById(R.id.play_again)
-                playAgain.setOnClickListener {
-                    startActivity(Intent(this, WordleActivity::class.java))
-                    finish()
-                }
-
-                val quitGame: Button = dialogView.findViewById(R.id.quit_game)
-                quitGame.setOnClickListener {
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                }
-
                 alert.create()
                 alert.show()
-                return
             }
+            updateBoardGUI()
             updateTileColor()
+
             return
         }
 
@@ -161,12 +131,6 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
         board.type((v.id).toChar())
         updateBoardGUI()
     }
-
-    fun quitGame() {
-
-    }
-
-
 
     private fun updateBoardGUI() {
         // Gets the current row and updates the tiles as needed
