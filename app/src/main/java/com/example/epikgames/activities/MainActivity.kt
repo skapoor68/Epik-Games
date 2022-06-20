@@ -29,18 +29,24 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.wordle_button -> {
-                val intent = Intent(this,
-                    WordleActivity::class.java)
+                val intent = Intent(
+                    this,
+                    WordleActivity::class.java
+                )
                 startActivity(intent)
             }
             R.id.chess_button -> {
-                val intent = Intent(this,
-                    ChessActivity::class.java)
+                val intent = Intent(
+                    this,
+                    ChessActivity::class.java
+                )
                 startActivity(intent)
             }
             R.id.blackjack_button -> {
-                val intent = Intent(this,
-                    BlackJackActivity::class.java)
+                val intent = Intent(
+                    this,
+                    BlackJackActivity::class.java
+                )
                 startActivity(intent)
             }
             R.id.team_info_button -> run {

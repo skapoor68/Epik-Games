@@ -1,4 +1,5 @@
 package com.example.epikgames.activities
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
@@ -19,11 +20,12 @@ const val keyHeight = 130
 const val TAG = "Wordle Activity: "
 
 class WordleActivity : AppCompatActivity(), View.OnClickListener {
-    private val boardC: BoardController = BoardController()
-    private val board = Board(solution = boardC.getRandWord())
+    companion object {
+        val boardC: BoardController = BoardController()
+        var board = Board(solution = boardC.getRandWord())
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_wordle)
 
@@ -40,11 +42,31 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
 
         val wordleGrid: androidx.gridlayout.widget.GridLayout = this.findViewById(R.id.wordle_grid)
 
+        println(board.getRow())
         // Step 1: Add tiles to empty grid layout
         for (tile in board.tileArray) {
+            if (tile.id < 5 * board.getRow()) {
+                val tileView: View = layoutInflater.inflate(R.layout.wordle_tile, null)
+                tileView.id = tile.id
+                val tileBox: View = tileView.findViewById(R.id.wordle_tile)
+                val tileChar: TextView = tileView.findViewById(R.id.tile_char)
+                tileChar.text = tile.char.toString()
+                tileChar.setTextColor(Color.WHITE)
+                var roundedBorder = tileBox.background
+                roundedBorder = DrawableCompat.wrap(roundedBorder)
+                DrawableCompat.setTint(roundedBorder, Color.parseColor(tile.color.rgb))
+
+                wordleGrid.addView(tileView)
+                continue
+            }
+
+            println(tile)
             val tileView: View = layoutInflater.inflate(R.layout.wordle_tile, null)
             tileView.id = tile.id
+            val tileBox: View = tileView.findViewById(R.id.wordle_tile)
             val tileChar: TextView = tileView.findViewById(R.id.tile_char)
+            var roundedBorder = tileBox.background
+            roundedBorder.setTintList(null)
             tileChar.text = tile.char.toString()
             wordleGrid.addView(tileView)
         }
@@ -78,12 +100,17 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
-    private fun addKeyboardButton(keyboardRow: LinearLayout, text: String, id: Int,
-                                  width: Int = keyWidth) {
+    private fun addKeyboardButton(
+        keyboardRow: LinearLayout, text: String, id: Int,
+        width: Int = keyWidth
+    ) {
         val button = Button(this)
         button.layoutParams = LinearLayout.LayoutParams(width, keyHeight)
         button.text = text
         button.id = id
+        if (text.length == 1) {
+            setKeyColor(button, board.letterStatus[button.id - 65])
+        }
         button.setOnClickListener(this)
         keyboardRow.addView(button)
     }
@@ -125,7 +152,7 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
 
     // Updates the color of tiles in a row following a guess
     private fun updateTileColor() {
-        val row = board.getRow()
+        val row = board.getRow() - 1
         for (i in row * WIDTH until row * WIDTH + WIDTH) {
             val tileView: View = this.findViewById(i)
             val tile: View = tileView.findViewById(R.id.wordle_tile)
@@ -138,19 +165,23 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
 
         for (i in board.letterStatus.indices) {
             val key: View = this.findViewById(i + 65)
-            when (board.letterStatus[i]) {
-                2 -> {
-                    key.setBackgroundColor(Color.parseColor(BoardColor.GREEN.rgb))
-                }
-                1 -> {
-                    key.setBackgroundColor(Color.parseColor(BoardColor.YELLOW.rgb))
-                }
-                0 -> {
-                    key.setBackgroundColor(Color.parseColor(BoardColor.DARK_GRAY.rgb))
-                }
-            }
+            setKeyColor(key, board.letterStatus[i])
         }
 
+    }
+
+    private fun setKeyColor(key: View, state: Int) {
+        when (state) {
+            2 -> {
+                key.setBackgroundColor(Color.parseColor(BoardColor.GREEN.rgb))
+            }
+            1 -> {
+                key.setBackgroundColor(Color.parseColor(BoardColor.YELLOW.rgb))
+            }
+            0 -> {
+                key.setBackgroundColor(Color.parseColor(BoardColor.DARK_GRAY.rgb))
+            }
+        }
     }
 
 
