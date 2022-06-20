@@ -29,6 +29,8 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_wordle)
+        println(board.solution)
+
 
         val rulesButton = findViewById<ImageButton>(R.id.wordleRulesButton)
         rulesButton.setOnClickListener {
@@ -46,9 +48,28 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
 
         // Step 1: Add tiles to empty grid layout
         for (tile in board.tileArray) {
+            if (tile.id < 5 * board.getRow()) {
+                val tileView: View = layoutInflater.inflate(R.layout.wordle_tile, null)
+                tileView.id = tile.id
+                val tileBox: View = tileView.findViewById(R.id.wordle_tile)
+                val tileChar: TextView = tileView.findViewById(R.id.tile_char)
+                tileChar.text = tile.char.toString()
+                tileChar.setTextColor(Color.WHITE)
+                var roundedBorder = tileBox.background
+                roundedBorder = DrawableCompat.wrap(roundedBorder)
+                DrawableCompat.setTint(roundedBorder, Color.parseColor(tile.color.rgb))
+
+                wordleGrid.addView(tileView)
+                continue
+            }
+
+            println(tile)
             val tileView: View = layoutInflater.inflate(R.layout.wordle_tile, null)
             tileView.id = tile.id
+            val tileBox: View = tileView.findViewById(R.id.wordle_tile)
             val tileChar: TextView = tileView.findViewById(R.id.tile_char)
+            var roundedBorder = tileBox.background
+            roundedBorder.setTintList(null)
             tileChar.text = tile.char.toString()
             wordleGrid.addView(tileView)
         }
@@ -90,6 +111,9 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
         button.layoutParams = LinearLayout.LayoutParams(width, keyHeight)
         button.text = text
         button.id = id
+        if (text.length == 1) {
+            setKeyColor(button, board.letterStatus[button.id - 65])
+        }
         button.setOnClickListener(this)
         keyboardRow.addView(button)
     }
@@ -101,27 +125,23 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
 
         if (v.id == "Enter".hashCode()) {
             board.guess()
-
             if (board.guessCorrect()) {
                 val alert: AlertDialog.Builder = AlertDialog.Builder(this)
                 val dialogView: View = layoutInflater.inflate(R.layout.wordle_success_pop_up, null)
                 alert.setView(dialogView)
-                alert.create()
-                alert.show()
-
-                val playAgain: Button = findViewById(R.id.play_again)
+                val playAgain: Button = dialogView.findViewById(R.id.play_again)
 
                 playAgain.setOnClickListener {
                     val intent = Intent(this,
                         WordleActivity::class.java)
                     startActivity(intent)
                 }
-                val quitGame: Button = findViewById(R.id.quit_game)
+
+                val quitGame: Button = dialogView.findViewById(R.id.quit_game)
                 quitGame.setOnClickListener {
                     val intent = Intent(this,
                         MainActivity::class.java)
                     startActivity(intent)
-
                 }
                 alert.create()
                 alert.show()
@@ -131,27 +151,24 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
                 val failureTextView = dialogView.findViewById<TextView>(R.id.failureTextView)
                 failureTextView.text = "Sorry! You ran out of guesses. The correct word was ${board.solution}"
                 alert.setView(dialogView)
-
-                val playAgain: Button = findViewById(R.id.play_again)
+                val playAgain: Button = dialogView.findViewById(R.id.play_again)
 
                 playAgain.setOnClickListener {
                     val intent = Intent(this,
                         WordleActivity::class.java)
                     startActivity(intent)
                 }
-                val quitGame: Button = findViewById(R.id.quit_game)
+                val quitGame: Button = dialogView.findViewById(R.id.quit_game)
                 quitGame.setOnClickListener {
                     val intent = Intent(this,
                         MainActivity::class.java)
                     startActivity(intent)
-
                 }
                 alert.create()
                 alert.show()
             }
             updateBoardGUI()
             updateTileColor()
-
             return
         }
 
@@ -169,8 +186,10 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
         // Gets the current row and updates the tiles as needed
 
         val row = board.getRow()
+
         for (i in row * WIDTH until row * WIDTH + WIDTH) {
             val tileView: View = this.findViewById(i)
+            val tile: View = tileView.findViewById(R.id.wordle_tile)
             val tileChar: TextView = tileView.findViewById(R.id.tile_char)
             tileChar.text = board.tileArray[i].char.toString()
             tileChar.setTextColor(Color.BLACK)
@@ -179,7 +198,7 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
 
     // Updates the color of tiles in a row following a guess
     private fun updateTileColor() {
-        val row = board.getRow()
+        val row = board.getRow() - 1
         for (i in row * WIDTH until row * WIDTH + WIDTH) {
             val tileView: View = this.findViewById(i)
             val tile: View = tileView.findViewById(R.id.wordle_tile)
@@ -192,18 +211,24 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
 
         for (i in board.letterStatus.indices) {
             val key: View = this.findViewById(i + 65)
-            when (board.letterStatus[i]) {
-                2 -> {
-                    key.setBackgroundColor(Color.parseColor(BoardColor.GREEN.rgb))
-                }
-                1 -> {
-                    key.setBackgroundColor(Color.parseColor(BoardColor.YELLOW.rgb))
-                }
-                0 -> {
-                    key.setBackgroundColor(Color.parseColor(BoardColor.DARK_GRAY.rgb))
-                }
-            }
+            setKeyColor(key, board.letterStatus[i])
         }
 
     }
+
+    private fun setKeyColor(key: View, state: Int) {
+        when (state) {
+            2 -> {
+                key.setBackgroundColor(Color.parseColor(BoardColor.GREEN.rgb))
+            }
+            1 -> {
+                key.setBackgroundColor(Color.parseColor(BoardColor.YELLOW.rgb))
+            }
+            0 -> {
+                key.setBackgroundColor(Color.parseColor(BoardColor.DARK_GRAY.rgb))
+            }
+        }
+    }
 }
+
+
