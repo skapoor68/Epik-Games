@@ -7,7 +7,6 @@ import android.view.View
 import android.widget.*
 
 import androidx.appcompat.app.AlertDialog
-import androidx.core.app.ActivityCompat.recreate
 
 import androidx.core.graphics.drawable.DrawableCompat
 
@@ -112,7 +111,24 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
             } else if (board.loseGame()) {
                 val alert: AlertDialog.Builder = AlertDialog.Builder(this)
                 val dialogView: View = layoutInflater.inflate(R.layout.wordle_failure_pop_up, null)
+                val failureTextView = dialogView.findViewById<TextView>(R.id.failureTextView)
+                failureTextView.text = "Sorry! You ran out of guesses. The correct word was ${board.solution}"
                 alert.setView(dialogView)
+
+                val playAgain: Button = findViewById(R.id.play_again)
+
+                playAgain.setOnClickListener {
+                    val intent = Intent(this,
+                        WordleActivity::class.java)
+                    startActivity(intent)
+                }
+                val quitGame: Button = findViewById(R.id.quit_game)
+                quitGame.setOnClickListener {
+                    val intent = Intent(this,
+                        MainActivity::class.java)
+                    startActivity(intent)
+
+                }
                 alert.create()
                 alert.show()
             }
