@@ -58,15 +58,12 @@ class Board(val letterStatus: Array<Int> = Array(26) { _ -> -1}, val tileArray: 
                 tileArray[startTile + i].color = BoardColor.DARK_GRAY
             }
         }
-        if (curTile < 29) {
-            curTile++
-        }
-
+        curTile++
     }
 
     fun guessCorrect(): Boolean {
         var startTile = curTile - 5
-        while (startTile <= curTile - 1) {
+        while (startTile < curTile) {
             if (tileArray[startTile].color != BoardColor.GREEN) {
                 return false
             }
@@ -76,7 +73,7 @@ class Board(val letterStatus: Array<Int> = Array(26) { _ -> -1}, val tileArray: 
     }
 
     fun loseGame(): Boolean {
-        return curTile == 29
+        return curTile == 30
     }
 
     fun delete() {

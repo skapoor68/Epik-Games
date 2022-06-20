@@ -30,6 +30,7 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        println(board.solution)
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_wordle)
@@ -126,6 +127,8 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
 
         if (v.id == "Enter".hashCode()) {
             board.guess()
+            updateBoardGUI()
+            updateTileColor()
             if (board.guessCorrect()) {
                 val alert: AlertDialog.Builder = AlertDialog.Builder(this)
                 val dialogView: View = layoutInflater.inflate(R.layout.wordle_success_pop_up, null)
@@ -144,6 +147,7 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
                         MainActivity::class.java)
                     startActivity(intent)
                 }
+                board = Board(solution = boardC.getRandWord())
                 alert.create()
                 alert.show()
             } else if (board.loseGame()) {
@@ -165,11 +169,10 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
                         MainActivity::class.java)
                     startActivity(intent)
                 }
+                board = Board(solution = boardC.getRandWord())
                 alert.create()
                 alert.show()
             }
-            updateBoardGUI()
-            updateTileColor()
             return
         }
 
@@ -186,8 +189,12 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
     private fun updateBoardGUI() {
         // Gets the current row and updates the tiles as needed
 
-        val row = board.getRow()
+        var row = board.getRow()
+        println(row)
 
+        if (row == 6) {
+            row--
+        }
         for (i in row * WIDTH until row * WIDTH + WIDTH) {
             val tileView: View = this.findViewById(i)
             val tile: View = tileView.findViewById(R.id.wordle_tile)
