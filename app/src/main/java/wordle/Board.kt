@@ -25,7 +25,6 @@ class Board(val letterStatus: Array<Int> = Array(26) { _ -> -1}, val tileArray: 
             guessWord += tileArray[startTile].char.toString()
             startTile++
         }
-        println(guessWord)
         startTile = curTile - 4
 
         //Have two arrays that will store the occurrences of characters in the guess word and actual word
@@ -62,12 +61,27 @@ class Board(val letterStatus: Array<Int> = Array(26) { _ -> -1}, val tileArray: 
         curTile++
     }
 
+    fun guessCorrect(): Boolean {
+        var startTile = curTile - 5
+        while (startTile < curTile) {
+            if (tileArray[startTile].color != BoardColor.GREEN) {
+                return false
+            }
+            startTile++
+        }
+        return true
+    }
+
+    fun loseGame(): Boolean {
+        return curTile == 30
+    }
+
     fun delete() {
         TODO("Not yet implemented")
     }
 
     fun type(char: Char) {
-        
+      
         if (curTile > tileArray.size - 1) {
             return
         }
@@ -78,7 +92,6 @@ class Board(val letterStatus: Array<Int> = Array(26) { _ -> -1}, val tileArray: 
             }
             return
         }
-
         tileArray[curTile] = Tile(tileArray[curTile].id, char,BoardColor.WHITE)
         curTile++
     }
