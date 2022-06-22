@@ -1,9 +1,14 @@
 package wordle
 
+import android.app.PendingIntent.getActivity
 import android.graphics.Color
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import com.example.epikgames.R
+import com.example.epikgames.activities.WordleActivity
+import kotlinx.coroutines.processNextEventInCurrentThread
+import java.security.AccessController.getContext
 
 const val HEIGHT = 6
 const val WIDTH = 5
@@ -98,5 +103,9 @@ class Board(val letterStatus: Array<Int> = Array(26) { _ -> -1}, val tileArray: 
 
     fun getRow(): Int {
         return curTile / WIDTH
+    }
+
+    fun canGuess(): Boolean {
+        return tileArray[curTile].char != ' ';
     }
 }
