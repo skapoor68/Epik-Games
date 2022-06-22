@@ -9,7 +9,6 @@ import wordle.*
 
 class BoardTest {
 
-    private val boardC: BoardController = BoardController()
     private val board = Board(solution = "DECKS")
 
     @Test

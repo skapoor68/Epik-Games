@@ -22,17 +22,14 @@ enum class BoardColor(val rgb: String) {
 
 class Board(val letterStatus: Array<Int> = Array(26) { _ -> -1}, val tileArray: Array<Tile> = Array(HEIGHT * WIDTH) { i -> Tile(i)}, val solution: String) {
     private var curTile = 0
-    private var guessMade = false
 
     fun guess() {
-        guessMade = true
         var guessWord = ""
         var startTile = curTile - 4
         while (startTile <= curTile) {
             guessWord += tileArray[startTile].char.toString()
             startTile++
         }
-        println(guessWord)
         startTile = curTile - 4
 
         //Have two arrays that will store the occurrences of characters in the guess word and actual word
@@ -66,6 +63,22 @@ class Board(val letterStatus: Array<Int> = Array(26) { _ -> -1}, val tileArray: 
                 tileArray[startTile + i].color = BoardColor.DARK_GRAY
             }
         }
+        curTile++
+    }
+
+    fun guessCorrect(): Boolean {
+        var startTile = curTile - 5
+        while (startTile < curTile) {
+            if (tileArray[startTile].color != BoardColor.GREEN) {
+                return false
+            }
+            startTile++
+        }
+        return true
+    }
+
+    fun loseGame(): Boolean {
+        return curTile == 30
     }
 
     fun delete() {
@@ -73,11 +86,7 @@ class Board(val letterStatus: Array<Int> = Array(26) { _ -> -1}, val tileArray: 
     }
 
     fun type(char: Char) {
-        if (guessMade) {
-            guessMade = false
-            curTile++
-        }
-        
+      
         if (curTile > tileArray.size - 1) {
             return
         }
@@ -88,7 +97,6 @@ class Board(val letterStatus: Array<Int> = Array(26) { _ -> -1}, val tileArray: 
             }
             return
         }
-
         tileArray[curTile] = Tile(tileArray[curTile].id, char,BoardColor.WHITE)
         curTile++
     }
