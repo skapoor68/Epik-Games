@@ -17,5 +17,11 @@ class ChessActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+        // TODO
+//    val rulesButton = findViewById<ImageButton>(R.id.chessRulesButton)
+//    rulesButton.setOnClickListener {
+//        val intent = Intent(this, WordleRulesActivity::class.java)
+//        startActivity(intent)
+//    }
     }
 }
