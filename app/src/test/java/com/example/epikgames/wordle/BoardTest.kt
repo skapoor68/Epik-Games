@@ -198,4 +198,37 @@ class BoardTest {
 
         assertArrayEquals(actualLetterStatus, board.letterStatus)
     }
+
+    @Test
+    fun deleteFromFirstTile() {
+        board.delete()
+        assertEquals(' ', board.tileArray[0].char)
+    }
+
+    @Test
+    fun deleteFromLastTile() {
+        board.type('D')
+        board.type('E')
+        board.type('C')
+        board.type('K')
+        board.type('S')
+        board.delete()
+        assertEquals(' ', board.tileArray[4].char)
+
+        board.type('F')
+        assertEquals('F', board.tileArray[4].char)
+    }
+
+    @Test
+    fun deleteFunctionality() {
+        board.type('D')
+        board.type('E')
+        board.type('C')
+        board.delete()
+        assertEquals(' ', board.tileArray[2].char)
+        assertEquals('E', board.tileArray[1].char)
+        board.type('G')
+        //tests the positioning of the current tile
+        assertEquals('G', board.tileArray[2].char)
+    }
 }
