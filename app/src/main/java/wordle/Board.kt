@@ -82,7 +82,25 @@ class Board(val letterStatus: Array<Int> = Array(26) { _ -> -1}, val tileArray: 
     }
 
     fun delete() {
-        TODO("Not yet implemented")
+//        TODO("Not yet implemented")
+        if (curTile < 0 || curTile > tileArray.size - 1) {
+            return
+        }
+
+        //when curTile is the first tile in the row
+        if (curTile % WIDTH == (WIDTH - 5)) {
+            if (tileArray[curTile].char != ' ') {
+                tileArray[curTile] = Tile(tileArray[curTile].id, ' ', BoardColor.WHITE)
+            }
+            return
+        }
+        //when curTile is the last tile in the row
+        if (curTile % WIDTH == (WIDTH - 1) && tileArray[curTile].char != ' ') {
+            tileArray[curTile] = Tile(tileArray[curTile].id, ' ', BoardColor.WHITE)
+            return
+        }
+        tileArray[curTile - 1] = Tile(tileArray[curTile - 1].id, ' ',BoardColor.WHITE)
+        curTile--
     }
 
     fun type(char: Char) {

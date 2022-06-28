@@ -4,54 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E4C1C1"
-    android:backgroundTint="#DCC1C1"
-    android:foregroundTint="#91CF4A"
+    android:background="@drawable/gradient"
+    android:elevation="@dimen/cardview_default_radius"
     android:textAlignment="textEnd"
     tools:context=".activities.MainActivity">
 
-    <LinearLayout
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:backgroundTint="#000000"
+        android:backgroundTintMode="add"
+        android:fontFamily="@font/bangers"
+        android:gravity="center"
+        android:padding="10dp"
+        android:shadowColor="#FFFFFF"
+        android:shadowDx="2"
+        android:shadowDy="1"
+        android:shadowRadius="1"
+        android:text="@string/epik_games"
+        android:textColor="#FFFFFF"
+        android:textSize="68sp"
+        android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.110000014"
-        android:baselineAligned="false">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/team_info_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#032BF4"
-                android:text="@string/team_info" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/quit_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#032BF4"
-                android:text="@string/quit" />
-        </LinearLayout>
-
-    </LinearLayout>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.068"
+        tools:ignore="TextContrastCheck" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -59,14 +40,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+        android:baselineAligned="false"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.163"
-        android:baselineAligned="false">
+        app:layout_constraintVertical_bias="0.163">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -79,9 +60,11 @@
                 android:id="@+id/blackjack_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#4CAF50"
+                android:backgroundTint="#45AA6F"
                 android:text="@string/blackjack"
-                android:textColor="#263238" />
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
@@ -95,9 +78,13 @@
                 android:id="@+id/chess_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#FF9800"
+                android:backgroundTint="#F18D56"
+                android:elevation="5dp"
                 android:text="@string/chess"
-                android:textColor="#424242" />
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
@@ -111,31 +98,59 @@
                 android:id="@+id/wordle_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#E64E4E"
+                android:backgroundTint="#DC5B71"
                 android:text="@string/wordle"
-                android:textColor="#000000" />
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
         </LinearLayout>
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="#000000"
-        android:backgroundTint="#A110FB"
-        android:backgroundTintMode="add"
-        android:gravity="center"
-        android:padding="10dp"
-        android:text="@string/epik_games"
-        android:textColor="#FFF"
-        android:textColorHighlight="#842429"
-        android:textSize="40sp"
-        android:textStyle="bold"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.106" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.110000014">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/team_info_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#FFFFFF"
+                android:elevation="@dimen/cardview_compat_inset_shadow"
+                android:text="@string/team_info"
+                android:textColor="#000000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/quit_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#FBFBFB"
+                android:text="@string/quit"
+                android:textColor="#000000" />
+        </LinearLayout>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
