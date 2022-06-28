@@ -16,8 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-<<<<<<< Updated upstream
-=======
+
     <Button
         android:id="@+id/blackjack_button2"
         android:layout_width="wrap_content"
@@ -48,7 +47,6 @@
         app:layout_constraintHorizontal_bias="0.084"
         app:layout_constraintStart_toStartOf="parent" />
 
->>>>>>> Stashed changes
     <ImageButton
         android:id="@+id/chessExitButton"
         android:layout_width="wrap_content"
