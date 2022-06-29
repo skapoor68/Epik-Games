@@ -1,8 +1,6 @@
 package com.example.epikgames.wordle
 
-import android.graphics.Color
 import junit.framework.TestCase.assertEquals
-import junit.framework.TestCase.assertTrue
 import org.junit.Assert.assertArrayEquals
 import org.junit.Test
 import wordle.*

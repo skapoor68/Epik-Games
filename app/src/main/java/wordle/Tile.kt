@@ -1,8 +1,5 @@
 package wordle
 
-import android.graphics.Color
-import android.graphics.Color.WHITE
-
 
 class Tile(val id: Int, val char: Char = ' ', var color: BoardColor = BoardColor.WHITE) {
 

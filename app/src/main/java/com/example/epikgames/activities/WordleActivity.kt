@@ -54,7 +54,7 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
             if (tile.id < 5 * board.getRow()) {
                 val tileView: View = layoutInflater.inflate(R.layout.wordle_tile, null)
                 tileView.id = tile.id
-                val tileBox: View = tileView.findViewById(R.id.wordle_tile)
+                val tileBox: View = tileView.findViewById(R.id.chess_tile)
                 val tileChar: TextView = tileView.findViewById(R.id.tile_char)
                 tileChar.text = tile.char.toString()
                 tileChar.setTextColor(Color.WHITE)
@@ -68,7 +68,7 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
             println(tile)
             val tileView: View = layoutInflater.inflate(R.layout.wordle_tile, null)
             tileView.id = tile.id
-            val tileBox: View = tileView.findViewById(R.id.wordle_tile)
+            val tileBox: View = tileView.findViewById(R.id.chess_tile)
             val tileChar: TextView = tileView.findViewById(R.id.tile_char)
             var roundedBorder = tileBox.background
             roundedBorder.setTintList(null)
@@ -208,7 +208,7 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
         }
         for (i in row * WIDTH until row * WIDTH + WIDTH) {
             val tileView: View = this.findViewById(i)
-            val tile: View = tileView.findViewById(R.id.wordle_tile)
+            val tile: View = tileView.findViewById(R.id.chess_tile)
             val tileChar: TextView = tileView.findViewById(R.id.tile_char)
             tileChar.text = board.tileArray[i].char.toString()
             tileChar.setTextColor(Color.BLACK)
@@ -220,7 +220,7 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
         val row = board.getRow() - 1
         for (i in row * WIDTH until row * WIDTH + WIDTH) {
             val tileView: View = this.findViewById(i)
-            val tile: View = tileView.findViewById(R.id.wordle_tile)
+            val tile: View = tileView.findViewById(R.id.chess_tile)
             val tileChar: TextView = tileView.findViewById(R.id.tile_char)
             tileChar.setTextColor(Color.WHITE)
             var roundedBorder = tile.background
