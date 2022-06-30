@@ -10,10 +10,7 @@ import android.view.DragEvent
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.children
 import androidx.gridlayout.widget.GridLayout
@@ -130,6 +127,12 @@ class ChessActivity : AppCompatActivity() {
         exitButton.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+        }
+
+        val undoButton = findViewById<Button>(R.id.undoButton)
+        undoButton.setOnClickListener {
+            controller.undo(board)
+            drawBoard()
         }
         // TODO
 //    val rulesButton = findViewById<ImageButton>(R.id.chessRulesButton)
