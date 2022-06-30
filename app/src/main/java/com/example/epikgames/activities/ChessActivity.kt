@@ -95,6 +95,7 @@ class ChessActivity : AppCompatActivity() {
             if (tilePiece != Piece.NONE) {
                 val text = TextView(this)
                 text.text = tilePiece.fanSymbol
+                text.textSize = 30f
                 text.setTextColor(Color.RED)
 
                 text.setOnLongClickListener {
@@ -146,6 +147,7 @@ class ChessActivity : AppCompatActivity() {
             if (tilePiece != Piece.NONE) {
                 val text = TextView(this)
                 text.text = tilePiece.fanSymbol
+                text.textSize = 30f
                 text.setTextColor(Color.RED)
 
                 text.setOnLongClickListener {
