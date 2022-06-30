@@ -31,7 +31,16 @@ class ChessController(tileIdArr: Array<Int>) {
     }
 
     fun undo(board: Board) {
-        board.undoMove()
+        try {
+            board.undoMove()
+        } catch (e: Exception) {
+
+        }
+
+    }
+
+    fun resign() {
+        TODO()
     }
 
     fun getSquare(tileId: Int): Square {
