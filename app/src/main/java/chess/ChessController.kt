@@ -25,16 +25,13 @@ class ChessController(tileIdArr: Array<Int>) {
     fun movePiece(board: Board, tileIdOne: Int, tileIdTwo: Int) {
         val squareOne = getSquare(tileIdOne)
         val squareTwo = getSquare(tileIdTwo)
-
-        board.doMove(Move(squareOne, squareTwo))
+        if (board.legalMoves().contains(Move(squareOne, squareTwo))) {
+            board.doMove(Move(squareOne, squareTwo), true)
+        }
     }
 
-    fun undo() {
-        TODO()
-    }
-
-    fun resign() {
-        TODO()
+    fun undo(board: Board) {
+        board.undoMove()
     }
 
     fun getSquare(tileId: Int): Square {
