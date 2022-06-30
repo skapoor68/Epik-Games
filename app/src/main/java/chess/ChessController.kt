@@ -25,8 +25,9 @@ class ChessController(tileIdArr: Array<Int>) {
     fun movePiece(board: Board, tileIdOne: Int, tileIdTwo: Int) {
         val squareOne = getSquare(tileIdOne)
         val squareTwo = getSquare(tileIdTwo)
-
-        board.doMove(Move(squareOne, squareTwo))
+        if (board.isMoveLegal(Move(squareOne, squareTwo), true)) {
+            board.doMove(Move(squareOne, squareTwo))
+        }
     }
 
     fun undo() {
