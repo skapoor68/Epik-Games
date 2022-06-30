@@ -20,6 +20,7 @@ import androidx.gridlayout.widget.GridLayout
 import chess.ChessController
 import com.example.epikgames.R
 import com.github.bhlangonijr.chesslib.Board
+import com.github.bhlangonijr.chesslib.BoardEventType
 import com.github.bhlangonijr.chesslib.Piece
 
 class ChessActivity : AppCompatActivity() {
@@ -65,6 +66,18 @@ class ChessActivity : AppCompatActivity() {
                     owner.removeView(v)
                     destination.addView(v)
                     controller.movePiece(board, owner.id, destination.id)
+
+                    if (board.isMated) {
+                        TODO()
+                    }
+
+                    if (board.isDraw) {
+                        TODO()
+                    }
+
+                    if (board.isStaleMate) {
+                        TODO()
+                    }
 
                     drawBoard()
                     v.visibility = View.VISIBLE

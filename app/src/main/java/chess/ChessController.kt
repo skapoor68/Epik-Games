@@ -30,12 +30,8 @@ class ChessController(tileIdArr: Array<Int>) {
         }
     }
 
-    fun undo() {
-        TODO()
-    }
-
-    fun resign() {
-        TODO()
+    fun undo(board: Board) {
+        board.undoMove()
     }
 
     fun getSquare(tileId: Int): Square {
