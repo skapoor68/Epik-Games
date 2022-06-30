@@ -17,12 +17,13 @@ import androidx.gridlayout.widget.GridLayout
 import chess.ChessController
 import com.example.epikgames.R
 import com.github.bhlangonijr.chesslib.Board
+import com.github.bhlangonijr.chesslib.BoardEventType
 import com.github.bhlangonijr.chesslib.Piece
 
 class ChessActivity : AppCompatActivity() {
     companion object {
-        val board: Board = Board()
-        val controller: ChessController = ChessController(Array(64) { it })
+        var board: Board = Board()
+        var controller: ChessController = ChessController(Array(64) { it })
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,6 +64,18 @@ class ChessActivity : AppCompatActivity() {
                     destination.addView(v)
                     controller.movePiece(board, owner.id, destination.id)
 
+                    if (board.isMated) {
+                        TODO()
+                    }
+
+                    if (board.isDraw) {
+                        TODO()
+                    }
+
+                    if (board.isStaleMate) {
+                        TODO()
+                    }
+
                     drawBoard()
                     v.visibility = View.VISIBLE
                     true
@@ -77,7 +90,7 @@ class ChessActivity : AppCompatActivity() {
             }
         }
 
-
+        val idArray = Array(64) { 0 }
         for (i in 0..63) {
             val tile: ConstraintLayout = generateNewTile(i)
             val inTile: LinearLayout = tile.getChildAt(0) as LinearLayout
@@ -86,6 +99,7 @@ class ChessActivity : AppCompatActivity() {
 
             // Sets id so that 0 is in the bottom left corner
             inTile.id = (7 - i / 8) * 8 + i % 8
+            idArray[(7 - i / 8) * 8 + i % 8] = inTile.id
 
             val tilePiece = board.getPiece(controller.getSquare(inTile.id))
 
@@ -118,6 +132,8 @@ class ChessActivity : AppCompatActivity() {
             val text = TextView(this)
             inTile.addView(text);
         }
+
+        controller = ChessController(idArray)
 
 
 
