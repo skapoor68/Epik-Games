@@ -8,17 +8,14 @@ import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.DragEvent
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.children
 import androidx.gridlayout.widget.GridLayout
 import chess.ChessController
 import com.example.epikgames.R
 import com.github.bhlangonijr.chesslib.Board
-import com.github.bhlangonijr.chesslib.BoardEventType
 import com.github.bhlangonijr.chesslib.Piece
 import com.github.bhlangonijr.chesslib.Side
 
@@ -176,7 +173,6 @@ class ChessActivity : AppCompatActivity() {
                 if (tilePiece.pieceSide == Side.WHITE) {
                     text.setTextColor(Color.WHITE)
                     text.typeface = Typeface.defaultFromStyle(Typeface.BOLD)
-
                 } else {
                     text.setTextColor(Color.BLACK)
                 }
@@ -215,7 +211,6 @@ class ChessActivity : AppCompatActivity() {
         } else {
             tile.setBackgroundColor(Color.parseColor("#A76D45"))
         }
-
         return tile
     }
 }
