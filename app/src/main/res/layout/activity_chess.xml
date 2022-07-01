@@ -15,17 +15,17 @@
         android:layout_height="0dp"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="133dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="50dp"
         android:padding="4dp"
         app:columnCount="8"
         app:layout_constraintBottom_toTopOf="@+id/draw_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chessRulesButton"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         app:rowCount="8"
         app:useDefaultMargins="false"
         grid:alignmentMode="alignBounds"
@@ -100,5 +100,29 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.023"
         app:srcCompat="@android:drawable/ic_dialog_info" />
+
+    <TextView
+        android:id="@+id/OpponentLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="93dp"
+        android:text="Opponent (Black)"
+        android:textStyle="bold"
+        android:textSize="45px"
+        app:layout_constraintTop_toTopOf="parent"
+        grid:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/playerLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="175dp"
+        android:text="Player (White)"
+        android:textStyle="bold"
+        android:textSize="45px"
+        app:layout_constraintBottom_toBottomOf="parent"
+        grid:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
