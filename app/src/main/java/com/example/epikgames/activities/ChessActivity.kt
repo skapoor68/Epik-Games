@@ -19,6 +19,7 @@ import com.example.epikgames.R
 import com.github.bhlangonijr.chesslib.Board
 import com.github.bhlangonijr.chesslib.BoardEventType
 import com.github.bhlangonijr.chesslib.Piece
+import com.github.bhlangonijr.chesslib.Side
 
 class ChessActivity : AppCompatActivity() {
     companion object {
@@ -107,7 +108,11 @@ class ChessActivity : AppCompatActivity() {
                 val text = TextView(this)
                 text.text = tilePiece.fanSymbol
                 text.textSize = 30f
-                text.setTextColor(Color.RED)
+                if (tilePiece.pieceSide == Side.WHITE) {
+                    text.setTextColor(Color.WHITE)
+                } else {
+                    text.setTextColor(Color.BLACK)
+                }
 
                 text.setOnLongClickListener {
                     text.setTextColor(Color.BLUE)
@@ -167,7 +172,11 @@ class ChessActivity : AppCompatActivity() {
                 val text = TextView(this)
                 text.text = tilePiece.fanSymbol
                 text.textSize = 30f
-                text.setTextColor(Color.RED)
+                if (tilePiece.pieceSide == Side.WHITE) {
+                    text.setTextColor(Color.WHITE)
+                } else {
+                    text.setTextColor(Color.BLACK)
+                }
 
                 text.setOnLongClickListener {
                     text.setTextColor(Color.BLUE)
@@ -198,9 +207,9 @@ class ChessActivity : AppCompatActivity() {
         val tile: ConstraintLayout = layoutInflater.inflate(R.layout.chess_tile, null) as ConstraintLayout
 
         if ((i / 8 % 2 == 0 && i % 2 == 0) || (i / 8 % 2 == 1 && i % 2 == 1)) {
-            tile.setBackgroundColor(Color.LTGRAY)
+            tile.setBackgroundColor(Color.parseColor("#EBECD0"))
         } else {
-            tile.setBackgroundColor(Color.BLACK)
+            tile.setBackgroundColor(Color.parseColor("#779556"))
         }
 
         return tile
