@@ -4,6 +4,7 @@ import android.content.ClipData
 import android.content.ClipDescription
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.DragEvent
@@ -107,12 +108,13 @@ class ChessActivity : AppCompatActivity() {
             if (tilePiece != Piece.NONE) {
                 val text = TextView(this)
                 text.text = tilePiece.fanSymbol
-                text.textSize = 30f
                 if (tilePiece.pieceSide == Side.WHITE) {
                     text.setTextColor(Color.WHITE)
+                    text.typeface = Typeface.defaultFromStyle(Typeface.BOLD)
                 } else {
                     text.setTextColor(Color.BLACK)
                 }
+                text.textSize = 35f
 
                 text.setOnLongClickListener {
                     text.setTextColor(Color.BLUE)
@@ -171,12 +173,14 @@ class ChessActivity : AppCompatActivity() {
             if (tilePiece != Piece.NONE) {
                 val text = TextView(this)
                 text.text = tilePiece.fanSymbol
-                text.textSize = 30f
                 if (tilePiece.pieceSide == Side.WHITE) {
                     text.setTextColor(Color.WHITE)
+                    text.typeface = Typeface.defaultFromStyle(Typeface.BOLD)
+
                 } else {
                     text.setTextColor(Color.BLACK)
                 }
+                text.textSize = 35f
 
                 text.setOnLongClickListener {
                     text.setTextColor(Color.BLUE)
@@ -207,9 +211,9 @@ class ChessActivity : AppCompatActivity() {
         val tile: ConstraintLayout = layoutInflater.inflate(R.layout.chess_tile, null) as ConstraintLayout
 
         if ((i / 8 % 2 == 0 && i % 2 == 0) || (i / 8 % 2 == 1 && i % 2 == 1)) {
-            tile.setBackgroundColor(Color.parseColor("#EBECD0"))
+            tile.setBackgroundColor(Color.parseColor("#F6E1AF"))
         } else {
-            tile.setBackgroundColor(Color.parseColor("#779556"))
+            tile.setBackgroundColor(Color.parseColor("#A76D45"))
         }
 
         return tile
