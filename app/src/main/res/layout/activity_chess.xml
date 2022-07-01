@@ -10,9 +10,9 @@
 
     <androidx.gridlayout.widget.GridLayout
         android:id="@+id/chess_grid"
-        android:layout_width="0dp"
+        android:layout_width="386dp"
 
-        android:layout_height="0dp"
+        android:layout_height="377dp"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="16dp"
         android:layout_marginTop="130dp"
@@ -141,7 +141,9 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/undoButton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.392"
         app:layout_constraintTop_toBottomOf="@+id/chess_grid"
+        app:layout_constraintVertical_bias="0.0"
         grid:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
