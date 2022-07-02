@@ -28,13 +28,10 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
         var board = Board(solution = boardC.getRandWord())
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
-        println(board.solution)
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_wordle)
-        println(board.solution)
+
         val rulesButton = findViewById<ImageButton>(R.id.wordleRulesButton)
         rulesButton.setOnClickListener {
             val intent = Intent(this, WordleRulesActivity::class.java)
