@@ -67,17 +67,20 @@ class ChessActivity : AppCompatActivity() {
                     owner.removeView(v)
                     destination.addView(v)
                     controller.movePiece(board, owner.id, destination.id)
+                    val scenario = controller.chessScenarios(board)
 
-                    if (board.isMated) {
-                        TODO()
-                    }
+                    when (scenario) {
+                        0 -> {
+                            Toast.makeText(this, "CHECKMATE",  Toast.LENGTH_SHORT).show()
+                        }
 
-                    if (board.isDraw) {
-                        TODO()
-                    }
+                        1 -> {
+                            Toast.makeText(this, "DRAW",  Toast.LENGTH_SHORT).show()
+                        }
 
-                    if (board.isStaleMate) {
-                        TODO()
+                        2 -> {
+                            Toast.makeText(this, "STALEMATE. NO OTHER MOVES CAN BE MADE",  Toast.LENGTH_SHORT).show()
+                        }
                     }
 
                     drawBoard()
