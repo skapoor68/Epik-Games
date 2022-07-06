@@ -29,6 +29,11 @@ class ChessActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chess)
 
+        val rulesButton = findViewById<ImageButton>(R.id.chessRulesButton)
+        rulesButton.setOnClickListener {
+            val intent = Intent(this, ChessRulesActivity::class.java)
+            startActivity(intent)
+        }
         val chessGrid = this.findViewById<GridLayout>(R.id.chess_grid)
 
         val dragListener = View.OnDragListener {view, e ->
@@ -154,12 +159,6 @@ class ChessActivity : AppCompatActivity() {
             controller.undo(board)
             drawBoard()
         }
-        // TODO
-//    val rulesButton = findViewById<ImageButton>(R.id.chessRulesButton)
-//    rulesButton.setOnClickListener {
-//        val intent = Intent(this, WordleRulesActivity::class.java)
-//        startActivity(intent)
-//    }
     }
 
     private fun drawBoard() {
