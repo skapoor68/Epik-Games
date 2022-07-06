@@ -44,6 +44,11 @@ class ChessController(tileIdArr: Array<Int>) {
         if (board.isStaleMate) {
             return 2
         }
+
+        if (board.isKingAttacked) {
+            return 3
+        }
+
         return -1
     }
 
@@ -53,7 +58,6 @@ class ChessController(tileIdArr: Array<Int>) {
         } catch (e: Exception) {
 
         }
-
     }
 
     fun resign() {

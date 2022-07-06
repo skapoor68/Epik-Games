@@ -71,15 +71,19 @@ class ChessActivity : AppCompatActivity() {
 
                     when (scenario) {
                         0 -> {
-                            Toast.makeText(this, "CHECKMATE",  Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, "CHECKMATE", Toast.LENGTH_SHORT).show()
                         }
 
                         1 -> {
-                            Toast.makeText(this, "DRAW",  Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, "DRAW", Toast.LENGTH_SHORT).show()
                         }
 
                         2 -> {
                             Toast.makeText(this, "STALEMATE. NO OTHER MOVES CAN BE MADE",  Toast.LENGTH_SHORT).show()
+                        }
+
+                        3 -> {
+                            Toast.makeText(this, "CHECK", Toast.LENGTH_SHORT).show()
                         }
                     }
 
@@ -146,9 +150,6 @@ class ChessActivity : AppCompatActivity() {
         }
 
         controller = ChessController(idArray)
-
-
-
 
         //exit button
         val exitButton = findViewById<ImageButton>(R.id.chessExitButton)
