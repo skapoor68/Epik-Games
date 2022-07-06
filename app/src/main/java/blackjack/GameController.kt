@@ -24,12 +24,27 @@ class GameController {
             }
         }
 
-        TODO("Create a transition after every card deal and return a transition list so " +
-                "that the GUI doesn't update immediately")
         for (i in 1..2) {
             for (player in game.players) {
                 val hand: Hand = player.hands[0]!!
                 game.dealer.deal(hand)
+            }
+            game.dealer.deal(game.dealer.hand, i % 2 == 1)
+        }
+
+        if (game.dealer.hand.cards[0].value == 10 || game.dealer.hand.cards[0].value == 11
+            && game.dealer.hand.getValue() == 21) {
+            for (player in game.players) {
+                if (player.hands[0]!!.getValue() == 21) {
+                    game.dealer.settle(player, player.hands[0]!!.betAmount as Double, 0)
+                }
+            }
+            return
+        }
+
+        for (player in game.players) {
+            if (player.hands[0]!!.getValue() == 21) {
+                game.dealer.settle(player, 2.5 * player.hands[0]!!.betAmount, 0)
             }
         }
 
