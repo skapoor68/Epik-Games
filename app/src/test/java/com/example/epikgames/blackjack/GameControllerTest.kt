@@ -1,8 +1,10 @@
 package com.example.epikgames.blackjack
 
 import blackjack.GameController
+import blackjack.GameTransition
 import org.junit.Assert.assertEquals
 import org.junit.Test
+import java.util.*
 
 class GameControllerTest {
     private val controller = GameController()
@@ -18,7 +20,9 @@ class GameControllerTest {
 
         assertEquals(10, game.players[0].hands[0]?.betAmount)
 
-        controller.dealFirstRound(game)
+        val transitionQueue: Queue<GameTransition> = LinkedList()
+
+        controller.dealFirstRound(game, transitionQueue)
 
         assertEquals(2, game.players[0].hands[0]?.cards?.size)
         println(game.players[0].hands[0]?.cards)
