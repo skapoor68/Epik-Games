@@ -1,9 +1,6 @@
 package blackjack
 
-class Dealer {
-
-    private var deck = Deck()
-    var hand = Hand()
+class Dealer(private var deck: Deck = Deck(), var hand: Hand = Hand()) {
 
     fun deal(hand: Hand, faceUp: Boolean = true) {
         if (deck.isEmpty()) {
@@ -27,5 +24,9 @@ class Dealer {
     fun settle(player: Player, betAmount: Double, handNumber: Int) {
         player.bank += betAmount
         player.hands[handNumber] = null
+    }
+
+    fun copy(): Dealer {
+        return Dealer(deck.copy(), hand.copy())
     }
 }

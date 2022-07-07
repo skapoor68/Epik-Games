@@ -1,81 +1,80 @@
 package blackjack
 
-enum class Rank {
+enum class Rank(val value: Int) {
 
-    TWO {
-        val value = 2
+    TWO(2) {
         override fun toString(): String {
             return "Two"
         }
         },
-    THREE{
-        val value = 3
+    THREE(3){
+
         override fun toString(): String {
             return "Three"
         }
     },
-    FOUR{
-        val value = 4
+    FOUR(4){
+
         override fun toString(): String {
             return "Four"
         }
     },
-    FIVE{
-        val value = 5
+    FIVE(5){
+
         override fun toString(): String {
             return "Five"
         }
     },
-    SIX{
-        val value = 6
+    SIX(6){
+
         override fun toString(): String {
             return "Six"
         }
     },
-    SEVEN{
-        val value = 7
+    SEVEN(7){
+
         override fun toString(): String {
             return "Seven"
         }
     },
-    EIGHT{
-        val value = 8
+    EIGHT(8){
+
         override fun toString(): String {
             return "Eight"
         }
     },
-    NINE{
-        val value = 9
+    NINE(9){
+
         override fun toString(): String {
             return "Nine"
         }
     },
-    TEN{
-        val value = 10
+    TEN(10){
+
         override fun toString(): String {
             return "Ten"
         }
     },
-    JACK{
-        val value = 10
+    JACK(10){
+
         override fun toString(): String {
             return "Jack"
         }
     },
-    QUEEN{
-        val value = 10
+    QUEEN(10){
+
         override fun toString(): String {
             return "Queen"
         }
     },
-    KING{
-        val value = 10
+    KING(10){
+
         override fun toString(): String {
             return "King"
         }
     },
-    ACE{
-        val value = 11
+    ACE(11){
+
         override fun toString(): String {
             return "Ace"
         }

@@ -1,5 +1,8 @@
 package blackjack
 
+import java.lang.IllegalArgumentException
+import java.util.*
+
 class GameController {
 
     fun initGame(vararg playerName: String): Game {
@@ -16,11 +19,15 @@ class GameController {
         player.placeInitialBet(amount)
     }
 
-    fun dealFirstRound(game: Game) {
+    fun dealFirstRound(game: Game, transitionQueue: Queue<GameTransition>) {
 
         for (player in game.players) {
             if (player.hands[0] == null) {
                 throw NullPointerException("Hand does not exist")
+            }
+
+            if (player.hands[0]?.cards?.size!! > 0) {
+                throw IllegalArgumentException("First round has already been dealt")
             }
         }
 
@@ -28,8 +35,10 @@ class GameController {
             for (player in game.players) {
                 val hand: Hand = player.hands[0]!!
                 game.dealer.deal(hand)
+                transitionQueue.add(DealTransition(game.copy()))
             }
             game.dealer.deal(game.dealer.hand, i % 2 == 1)
+            transitionQueue.add(DealTransition(game.copy()))
         }
 
         if (game.dealer.hand.cards[0].value == 10 || game.dealer.hand.cards[0].value == 11
@@ -38,6 +47,7 @@ class GameController {
                 if (player.hands[0]!!.getValue() == 21) {
                     game.dealer.settle(player, player.hands[0]!!.betAmount as Double, 0)
                 }
+                transitionQueue.add(SettlementTransition(game.copy()))
             }
             return
         }
@@ -45,6 +55,7 @@ class GameController {
         for (player in game.players) {
             if (player.hands[0]!!.getValue() == 21) {
                 game.dealer.settle(player, 2.5 * player.hands[0]!!.betAmount, 0)
+                transitionQueue.add(SettlementTransition(game.copy()))
             }
         }
 

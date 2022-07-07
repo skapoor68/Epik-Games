@@ -1,4 +1,6 @@
 package blackjack
 
-class GameTransition(val playerHands: Array<Hand>, val dealerHand: Hand) {
-}
+open class GameTransition(val game: Game)
+
+class SettlementTransition(game: Game): GameTransition(game)
+class DealTransition(game: Game): GameTransition(game)

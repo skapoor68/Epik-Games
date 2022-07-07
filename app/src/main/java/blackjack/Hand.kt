@@ -10,4 +10,14 @@ class Hand(val cards: ArrayList<Card> = arrayListOf(), val betAmount: Int = 0) {
 
         return total
     }
+
+    fun copy(): Hand {
+        val cards: ArrayList<Card> = arrayListOf()
+
+        for (card in this.cards) {
+            cards.add(card)
+        }
+
+        return Hand(cards, this.betAmount)
+    }
 }
