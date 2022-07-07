@@ -55,9 +55,7 @@ class ChessActivity : AppCompatActivity() {
                 DragEvent.ACTION_DROP -> {
                     val item = e.clipData.getItemAt(0)
                     val dragData = item.text
-                    if (dragData != null) {
-                        Toast.makeText(this, dragData, Toast.LENGTH_SHORT).show()
-                    }
+
                     view.invalidate()
 
                     val v = e.localState as View
@@ -66,7 +64,12 @@ class ChessActivity : AppCompatActivity() {
 
                     owner.removeView(v)
                     destination.addView(v)
-                    controller.movePiece(board, owner.id, destination.id)
+                    if (controller.movePiece(board, owner.id, destination.id)) {
+                        Toast.makeText(this, dragData, Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this, "INVALID MOVE", Toast.LENGTH_SHORT).show()
+                    }
+
                     val scenario = controller.chessScenarios(board)
 
                     when (scenario) {
