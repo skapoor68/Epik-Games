@@ -9,8 +9,10 @@ import com.github.bhlangonijr.chesslib.move.Move
 import java.lang.Exception
 import java.lang.IllegalArgumentException
 
+
 class ChessController(tileIdArr: Array<Int>) {
     private val tileIdSquareMap = mutableMapOf<Int, Square>()
+
 
     init {
         if (tileIdArr.size < 64) {
@@ -32,24 +34,23 @@ class ChessController(tileIdArr: Array<Int>) {
         }
     }
 
-    fun chessScenarios(board: Board): Int {
+    fun chessScenarios(board: Board): ChessScenarios? {
         if (board.isMated) {
-            return 0
+            return ChessScenarios.CHECKMATE
         }
 
         if (board.isDraw) {
-            return 1
+            return ChessScenarios.DRAW
         }
 
         if (board.isStaleMate) {
-            return 2
+            return ChessScenarios.STALEMATE
         }
 
         if (board.isKingAttacked) {
-            return 3
+            return ChessScenarios.CHECK
         }
-
-        return -1
+        return null
     }
 
     fun undo(board: Board) {
