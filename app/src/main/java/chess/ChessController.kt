@@ -1,8 +1,5 @@
 package chess
 
-import android.widget.GridLayout
-import android.widget.Toast
-import com.example.epikgames.activities.ChessActivity
 import com.github.bhlangonijr.chesslib.Board
 import com.github.bhlangonijr.chesslib.Square
 import com.github.bhlangonijr.chesslib.move.Move
@@ -24,12 +21,14 @@ class ChessController(tileIdArr: Array<Int>) {
         }
     }
 
-    fun movePiece(board: Board, tileIdOne: Int, tileIdTwo: Int) {
+    fun movePiece(board: Board, tileIdOne: Int, tileIdTwo: Int): Boolean {
         val squareOne = getSquare(tileIdOne)
         val squareTwo = getSquare(tileIdTwo)
         if (board.legalMoves().contains(Move(squareOne, squareTwo))) {
             board.doMove(Move(squareOne, squareTwo), true)
+            return true
         }
+        return false;
     }
 
     fun chessScenarios(board: Board): Int {
