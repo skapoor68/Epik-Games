@@ -10,7 +10,7 @@
         android:id="@+id/chess_tile"
         android:layout_width="0dp"
         android:layout_height="43dp"
-        android:layout_margin="2dp"
+        android:layout_margin="0dp"
         android:gravity="center"
         android:orientation="horizontal"
         android:textAlignment="center"
