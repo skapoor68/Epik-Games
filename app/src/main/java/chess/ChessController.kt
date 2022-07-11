@@ -59,8 +59,8 @@ class ChessController(tileIdArr: Array<Int>) {
         }
     }
 
-    fun resign() {
-        TODO()
+    fun resign(board: Board): String {
+        return board.sideToMove.value()
     }
 
     fun getSquare(tileId: Int): Square {

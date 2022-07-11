@@ -166,6 +166,12 @@ class ChessActivity : AppCompatActivity() {
             controller.undo(board)
             drawBoard()
         }
+
+        val resignButton = findViewById<Button>(R.id.resign_button)
+        resignButton.setOnClickListener {
+            val side = controller.resign(board)
+            Toast.makeText(this, "$side resigns!", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun drawBoard() {
