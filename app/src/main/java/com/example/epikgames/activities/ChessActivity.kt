@@ -14,6 +14,7 @@ import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.gridlayout.widget.GridLayout
 import chess.ChessController
+import chess.ChessScenarios
 import com.example.epikgames.R
 import com.github.bhlangonijr.chesslib.Board
 import com.github.bhlangonijr.chesslib.Piece
@@ -73,19 +74,19 @@ class ChessActivity : AppCompatActivity() {
                     val scenario = controller.chessScenarios(board)
 
                     when (scenario) {
-                        0 -> {
+                        ChessScenarios.CHECKMATE -> {
                             Toast.makeText(this, "CHECKMATE", Toast.LENGTH_SHORT).show()
                         }
 
-                        1 -> {
+                        ChessScenarios.DRAW -> {
                             Toast.makeText(this, "DRAW", Toast.LENGTH_SHORT).show()
                         }
 
-                        2 -> {
+                        ChessScenarios.STALEMATE -> {
                             Toast.makeText(this, "STALEMATE. NO OTHER MOVES CAN BE MADE",  Toast.LENGTH_SHORT).show()
                         }
 
-                        3 -> {
+                        ChessScenarios.CHECK -> {
                             Toast.makeText(this, "CHECK", Toast.LENGTH_SHORT).show()
                         }
                     }
