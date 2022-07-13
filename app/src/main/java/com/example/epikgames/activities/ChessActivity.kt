@@ -72,6 +72,8 @@ class ChessActivity : AppCompatActivity() {
                         Toast.makeText(this, "INVALID MOVE", Toast.LENGTH_SHORT).show()
                     }
 
+                    drawBoard()
+
                     val scenario = controller.chessScenarios(board)
 
                     when (scenario) {
@@ -89,10 +91,14 @@ class ChessActivity : AppCompatActivity() {
 
                         ChessScenarios.CHECK -> {
                             Toast.makeText(this, "CHECK", Toast.LENGTH_SHORT).show()
+                            val kingSquare = board.getKingSquare(board.sideToMove)
+                            val kingID = controller.getID(kingSquare)
+                            val kingTile = this.findViewById<LinearLayout>(kingID)
+                            kingTile.setBackgroundColor(Color.RED)
                         }
                     }
 
-                    drawBoard()
+
                     v.visibility = View.VISIBLE
                     true
                 }
@@ -173,6 +179,11 @@ class ChessActivity : AppCompatActivity() {
     private fun drawBoard() {
         for (i in 0..63) {
             val inTile = this.findViewById<LinearLayout>((7 - i / 8) * 8 + i % 8)
+            if ((i / 8 % 2 == 0 && i % 2 == 0) || (i / 8 % 2 == 1 && i % 2 == 1)) {
+                inTile.setBackgroundColor(Color.parseColor("#F6E1AF"))
+            } else {
+                inTile.setBackgroundColor(Color.parseColor("#A76D45"))
+            }
             inTile.removeAllViews()
             val tilePiece = board.getPiece(controller.getSquare(inTile.id))
             if (tilePiece != Piece.NONE) {
@@ -206,25 +217,11 @@ class ChessActivity : AppCompatActivity() {
                 inTile.addView(text)
                 continue
             }
-            val chessGrid = this.findViewById<GridLayout>(R.id.chess_grid)
-            val kingSquare = board.getKingSquare(board.sideToMove.flip())
-            val kingID = controller.getID(kingSquare)
-            val kingTile = chessGrid[kingID]
-
-            if (board.isKingAttacked) {
-                kingTile.setBackgroundColor(Color.RED)
-            } else {
-                println("HI")
-                if ((kingID / 8 % 2 == 0 && kingID % 2 == 0) || (kingID / 8 % 2 == 1 && kingID % 2 == 1)) {
-                    kingTile.setBackgroundColor(Color.parseColor("#F6E1AF"))
-                } else {
-                    kingTile.setBackgroundColor(Color.parseColor("#A76D45"))
-                }
-            }
 
             val text = TextView(this)
             inTile.addView(text);
         }
+
     }
 
     private fun generateNewTile(i: Int): ConstraintLayout {
