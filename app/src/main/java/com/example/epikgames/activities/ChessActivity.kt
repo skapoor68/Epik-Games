@@ -176,6 +176,7 @@ class ChessActivity : AppCompatActivity() {
             inTile.removeAllViews()
             val tilePiece = board.getPiece(controller.getSquare(inTile.id))
             if (tilePiece != Piece.NONE) {
+
                 val text = TextView(this)
                 text.text = tilePiece.fanSymbol
                 if (tilePiece.pieceSide == Side.WHITE) {
@@ -209,14 +210,17 @@ class ChessActivity : AppCompatActivity() {
             val kingSquare = board.getKingSquare(board.sideToMove.flip())
             val kingID = controller.getID(kingSquare)
             val kingTile = chessGrid[kingID]
-            val prevColor = kingTile.background
+
             if (board.isKingAttacked) {
-                kingTile.setBackgroundColor(Color.parseColor("#FE0000"))
-                println(prevColor)
+                kingTile.setBackgroundColor(Color.RED)
+            } else {
+                println("HI")
+                if ((kingID / 8 % 2 == 0 && kingID % 2 == 0) || (kingID / 8 % 2 == 1 && kingID % 2 == 1)) {
+                    kingTile.setBackgroundColor(Color.parseColor("#F6E1AF"))
+                } else {
+                    kingTile.setBackgroundColor(Color.parseColor("#A76D45"))
+                }
             }
-//            } else {
-//                kingTile.setBackgroundColor(prevColor)
-//            }
 
             val text = TextView(this)
             inTile.addView(text);
