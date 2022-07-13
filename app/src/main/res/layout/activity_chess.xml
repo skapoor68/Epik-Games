@@ -139,14 +139,13 @@
         android:textAlignment="center"
         android:textColor="#121212"
         android:textSize="22dp"
-        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/chess_grid"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.51"
         grid:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/playerLabel"
+        android:id="@+id/whiteLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="148dp"
@@ -161,7 +160,6 @@
         android:textAlignment="center"
         android:textColor="#121212"
         android:textSize="22dp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.392"
         app:layout_constraintTop_toBottomOf="@+id/chess_grid"
