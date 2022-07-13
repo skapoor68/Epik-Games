@@ -45,7 +45,7 @@ class GameController {
             && game.dealer.hand.getValue() == 21) {
             for (player in game.players) {
                 if (player.hands[0].getValue() == 21) {
-                    game.dealer.settle(player, player.hands[0].betAmount.toDouble(), 0)
+                    game.dealer.settle(player, player.hands[0].betAmount.toDouble(), player.hands[0])
                 }
                 transitionQueue.add(SettlementTransition(game.copy()))
             }
@@ -54,7 +54,7 @@ class GameController {
 
         for (player in game.players) {
             if (player.hands[0].getValue() == 21) {
-                game.dealer.settle(player, 2.5 * player.hands[0].betAmount, 0)
+                game.dealer.settle(player, 2.5 * player.hands[0].betAmount, player.hands[0])
                 transitionQueue.add(SettlementTransition(game.copy()))
             }
         }

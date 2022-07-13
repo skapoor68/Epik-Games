@@ -29,4 +29,18 @@ class Hand(val cards: ArrayList<Card> = arrayListOf(), val betAmount: Int = 0) {
 
         return Hand(cards, this.betAmount)
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (other !is Hand) {
+            return false
+        }
+
+        for (i in cards.indices) {
+            if (cards[i] != other.cards[i]) {
+                return false
+            }
+        }
+
+        return other.betAmount == betAmount
+    }
 }

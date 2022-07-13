@@ -21,9 +21,9 @@ class Dealer(private var deck: Deck = Deck(), var hand: Hand = Hand()) {
         TODO("Not yet implemented")
     }
 
-    fun settle(player: Player, betAmount: Double, handNumber: Int) {
+    fun settle(player: Player, betAmount: Double, hand: Hand) {
         player.bank += betAmount
-        player.hands[handNumber] = null
+        player.hands.remove(hand)
     }
 
     fun copy(): Dealer {

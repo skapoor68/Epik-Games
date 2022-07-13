@@ -18,13 +18,13 @@ class GameControllerTest {
             controller.placeBet(player, 10)
         }
 
-        assertEquals(10, game.players[0].hands[0]?.betAmount)
+        assertEquals(10, game.players[0].hands[0].betAmount)
 
         val transitionQueue: Queue<GameTransition> = LinkedList()
 
         controller.dealFirstRound(game, transitionQueue)
 
-        assertEquals(2, game.players[0].hands[0]?.cards?.size)
-        println(game.players[0].hands[0]?.cards)
+        assertEquals(2, game.players[0].hands[0].cards.size)
+        println(game.players[0].hands[0].cards)
     }
 }
