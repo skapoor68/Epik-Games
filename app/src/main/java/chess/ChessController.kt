@@ -72,4 +72,7 @@ class ChessController(tileIdArr: Array<Int>) {
         return tileIdSquareMap[tileId]!!
     }
 
+    fun getID(value: Square): Int {
+        return tileIdSquareMap.filter { value == it.value }.keys.first()
+    }
 }

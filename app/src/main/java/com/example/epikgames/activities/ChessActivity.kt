@@ -12,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.get
 import androidx.gridlayout.widget.GridLayout
 import chess.ChessController
 import chess.ChessScenarios
@@ -204,6 +205,18 @@ class ChessActivity : AppCompatActivity() {
                 inTile.addView(text)
                 continue
             }
+            val chessGrid = this.findViewById<GridLayout>(R.id.chess_grid)
+            val kingSquare = board.getKingSquare(board.sideToMove.flip())
+            val kingID = controller.getID(kingSquare)
+            val kingTile = chessGrid[kingID]
+            val prevColor = kingTile.background
+            if (board.isKingAttacked) {
+                kingTile.setBackgroundColor(Color.parseColor("#FE0000"))
+                println(prevColor)
+            }
+//            } else {
+//                kingTile.setBackgroundColor(prevColor)
+//            }
 
             val text = TextView(this)
             inTile.addView(text);
