@@ -79,7 +79,7 @@ class ChessActivity : AppCompatActivity() {
                         ChessScenarios.CHECKMATE -> {
                             Toast.makeText(this, "CHECKMATE", Toast.LENGTH_SHORT).show()
                             highLightKingSquare()
-                            TODO("Checkmate end game functionality")
+                            //TODO("Checkmate end game functionality")
                         }
 
                         ChessScenarios.DRAW -> {
