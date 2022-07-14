@@ -12,7 +12,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.get
 import androidx.gridlayout.widget.GridLayout
 import chess.ChessController
 import chess.ChessScenarios
@@ -79,6 +78,8 @@ class ChessActivity : AppCompatActivity() {
                     when (scenario) {
                         ChessScenarios.CHECKMATE -> {
                             Toast.makeText(this, "CHECKMATE", Toast.LENGTH_SHORT).show()
+                            highLightKingSquare()
+                            TODO("Checkmate end game functionality")
                         }
 
                         ChessScenarios.DRAW -> {
@@ -91,13 +92,9 @@ class ChessActivity : AppCompatActivity() {
 
                         ChessScenarios.CHECK -> {
                             Toast.makeText(this, "CHECK", Toast.LENGTH_SHORT).show()
-                            val kingSquare = board.getKingSquare(board.sideToMove)
-                            val kingID = controller.getID(kingSquare)
-                            val kingTile = this.findViewById<LinearLayout>(kingID)
-                            kingTile.setBackgroundColor(Color.RED)
+                            highLightKingSquare()
                         }
                     }
-
 
                     v.visibility = View.VISIBLE
                     true
@@ -221,7 +218,13 @@ class ChessActivity : AppCompatActivity() {
             val text = TextView(this)
             inTile.addView(text);
         }
+    }
 
+    private fun highLightKingSquare() {
+        val kingSquare = board.getKingSquare(board.sideToMove)
+        val kingID = controller.getID(kingSquare)
+        val kingTile = this.findViewById<LinearLayout>(kingID)
+        kingTile.setBackgroundColor(Color.RED)
     }
 
     private fun generateNewTile(i: Int): ConstraintLayout {
