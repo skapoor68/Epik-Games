@@ -167,6 +167,20 @@ class ChessActivity : AppCompatActivity() {
             controller.undo(board)
             drawBoard()
         }
+//        val blackLabel = findViewById<Button>(R.id.blackLabel)
+//        blackLabel.setOnDragListener {
+//            if (board.sideToMove == Side.BLACK) {
+//                blackLabel.setTypeface(null, Typeface.BOLD)
+//            }
+//        }
+//        val whiteLabel = findViewById<TextView>(R.id.whiteLabel)
+//update team turn to move
+//        if (board.sideToMove == Side.WHITE) {
+//            whiteLabel.setTypeface(null, Typeface.BOLD)
+//        }
+//        if (board.sideToMove == Side.BLACK) {
+//            blackLabel.setTypeface(null, Typeface.BOLD)
+//        }
     }
 
     private fun drawBoard() {
