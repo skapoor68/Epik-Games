@@ -71,14 +71,9 @@ class ChessActivity : AppCompatActivity() {
                         Toast.makeText(this, "INVALID MOVE", Toast.LENGTH_SHORT).show()
                     }
 
-                    drawBoard()
-
-                    val scenario = controller.chessScenarios(board)
-
-                    when (scenario) {
+                    when (controller.chessScenarios(board)) {
                         ChessScenarios.CHECKMATE -> {
                             Toast.makeText(this, "CHECKMATE", Toast.LENGTH_SHORT).show()
-                            highLightKingSquare()
                             //TODO("Checkmate end game functionality")
                         }
 
@@ -92,9 +87,10 @@ class ChessActivity : AppCompatActivity() {
 
                         ChessScenarios.CHECK -> {
                             Toast.makeText(this, "CHECK", Toast.LENGTH_SHORT).show()
-                            highLightKingSquare()
                         }
                     }
+
+                    drawBoard()
 
                     v.visibility = View.VISIBLE
                     true
@@ -217,6 +213,11 @@ class ChessActivity : AppCompatActivity() {
 
             val text = TextView(this)
             inTile.addView(text);
+        }
+
+        if (controller.chessScenarios(board) == ChessScenarios.CHECK ||
+            controller.chessScenarios(board) == ChessScenarios.CHECKMATE) {
+            highLightKingSquare()
         }
     }
 
