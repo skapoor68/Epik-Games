@@ -224,7 +224,7 @@ class ChessActivity : AppCompatActivity() {
     }
 
     private fun updateTurn() {
-        val whiteLabel = findViewById<TextView>(R.id.playerLabel)
+        val whiteLabel = findViewById<TextView>(R.id.whiteLabel)
         val blackLabel = findViewById<TextView>(R.id.blackLabel)
         if (board.sideToMove == Side.BLACK) {
             blackLabel.setTypeface(null, Typeface.BOLD)

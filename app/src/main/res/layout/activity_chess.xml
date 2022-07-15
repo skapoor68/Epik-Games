@@ -17,7 +17,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/playerLabel">
+        app:layout_constraintTop_toBottomOf="@+id/whiteLabel">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -89,7 +89,7 @@
         android:layout_marginEnd="16dp"
         android:padding="4dp"
         app:columnCount="8"
-        app:layout_constraintBottom_toTopOf="@+id/playerLabel"
+        app:layout_constraintBottom_toTopOf="@+id/whiteLabel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -145,7 +145,7 @@
         grid:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/playerLabel"
+        android:id="@+id/whiteLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="148dp"
