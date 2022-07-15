@@ -184,26 +184,7 @@ class ChessActivity : AppCompatActivity() {
                         }
 
                         ChessScenarios.CHECK -> {
-                            if (board.sideToMove == Side.WHITE) {
-                                val alert: AlertDialog.Builder = AlertDialog.Builder(this)
-                                val dialogView: View = layoutInflater.inflate(R.layout.white_king_check, null)
-                                val kingCheckView = dialogView.findViewById<TextView>(R.id.whiteKingCheckView)
-                                kingCheckView.textSize = 25F
-                                kingCheckView.text = "WHITE KING IS IN CHECK!"
-                                alert.setView(dialogView)
-                                alert.create()
-                                alert.show()
-                            } else {
-                                val alert: AlertDialog.Builder = AlertDialog.Builder(this)
-                                val dialogView: View = layoutInflater.inflate(R.layout.black_king_check, null)
-                                val kingCheckView = dialogView.findViewById<TextView>(R.id.blackKingCheckView)
-                                kingCheckView.textSize = 25F
-                                kingCheckView.text = "BLACK KING IS IN CHECK!"
-                                alert.setView(dialogView)
-                                alert.create()
-                                alert.show()
-                            }
-                     //       Toast.makeText(this, "CHECK", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, "CHECK", Toast.LENGTH_SHORT).show()
                         }
                     }
 
