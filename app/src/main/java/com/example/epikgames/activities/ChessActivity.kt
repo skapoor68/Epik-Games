@@ -72,9 +72,7 @@ class ChessActivity : AppCompatActivity() {
                         Toast.makeText(this, "INVALID MOVE", Toast.LENGTH_SHORT).show()
                     }
 
-                    val scenario = controller.chessScenarios(board)
-
-                    when (scenario) {
+                    when (controller.chessScenarios(board)) {
                         ChessScenarios.CHECKMATE -> {
                             if (board.sideToMove == Side.WHITE) {
                                 val alert: AlertDialog.Builder = AlertDialog.Builder(this)
@@ -210,6 +208,7 @@ class ChessActivity : AppCompatActivity() {
                     }
 
                     drawBoard()
+
                     v.visibility = View.VISIBLE
                     true
                 }
@@ -233,43 +232,9 @@ class ChessActivity : AppCompatActivity() {
             // Sets id so that 0 is in the bottom left corner
             inTile.id = (7 - i / 8) * 8 + i % 8
             idArray[(7 - i / 8) * 8 + i % 8] = inTile.id
-
-            val tilePiece = board.getPiece(controller.getSquare(inTile.id))
-
-            if (tilePiece != Piece.NONE) {
-                val text = TextView(this)
-                text.text = tilePiece.fanSymbol
-                if (tilePiece.pieceSide == Side.WHITE) {
-                    text.setTextColor(Color.WHITE)
-                    text.typeface = Typeface.defaultFromStyle(Typeface.BOLD)
-                } else {
-                    text.setTextColor(Color.BLACK)
-                }
-                text.textSize = 35f
-
-                text.setOnLongClickListener {
-                    text.setTextColor(Color.BLUE)
-                    val clipText = text.text as String? + " moved"
-                    val item = ClipData.Item(clipText)
-                    val mimeTypes = arrayOf(ClipDescription.MIMETYPE_TEXT_PLAIN)
-                    val data = ClipData(clipText, mimeTypes, item)
-
-                    val dragShadowBuilder = View.DragShadowBuilder(it)
-
-                    it.startDragAndDrop(data, dragShadowBuilder, it, 0)
-
-                    it.visibility = View.INVISIBLE
-
-                    true
-                }
-
-                inTile.addView(text)
-                continue
-            }
-
-            val text = TextView(this)
-            inTile.addView(text);
         }
+
+        drawBoard()
 
         controller = ChessController(idArray)
 
@@ -290,9 +255,15 @@ class ChessActivity : AppCompatActivity() {
     private fun drawBoard() {
         for (i in 0..63) {
             val inTile = this.findViewById<LinearLayout>((7 - i / 8) * 8 + i % 8)
+            if ((i / 8 % 2 == 0 && i % 2 == 0) || (i / 8 % 2 == 1 && i % 2 == 1)) {
+                inTile.setBackgroundColor(Color.parseColor("#F6E1AF"))
+            } else {
+                inTile.setBackgroundColor(Color.parseColor("#A76D45"))
+            }
             inTile.removeAllViews()
             val tilePiece = board.getPiece(controller.getSquare(inTile.id))
             if (tilePiece != Piece.NONE) {
+
                 val text = TextView(this)
                 text.text = tilePiece.fanSymbol
                 if (tilePiece.pieceSide == Side.WHITE) {
@@ -326,6 +297,18 @@ class ChessActivity : AppCompatActivity() {
             val text = TextView(this)
             inTile.addView(text);
         }
+
+        if (controller.chessScenarios(board) == ChessScenarios.CHECK ||
+            controller.chessScenarios(board) == ChessScenarios.CHECKMATE) {
+            highLightKingSquare()
+        }
+    }
+
+    private fun highLightKingSquare() {
+        val kingSquare = board.getKingSquare(board.sideToMove)
+        val kingID = controller.getID(kingSquare)
+        val kingTile = this.findViewById<LinearLayout>(kingID)
+        kingTile.setBackgroundColor(Color.RED)
     }
 
     private fun generateNewTile(i: Int): ConstraintLayout {
