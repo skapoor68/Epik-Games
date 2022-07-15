@@ -21,11 +21,10 @@
         app:layout_constraintVertical_bias="0.111">
 
         <TextView
-            android:id="@+id/stalemateTextView"
+            android:id="@+id/drawTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="STALEMATE! NO OTHER LEGAL MOVES CAN BE MADE"
             android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold" />

@@ -11,6 +11,7 @@ import android.view.DragEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.gridlayout.widget.GridLayout
 import chess.ChessController
@@ -75,19 +76,136 @@ class ChessActivity : AppCompatActivity() {
 
                     when (scenario) {
                         ChessScenarios.CHECKMATE -> {
-                            Toast.makeText(this, "CHECKMATE", Toast.LENGTH_SHORT).show()
+                            if (board.sideToMove == Side.WHITE) {
+                                val alert: AlertDialog.Builder = AlertDialog.Builder(this)
+                                val dialogView: View = layoutInflater.inflate(R.layout.white_checkmate, null)
+                                val checkmateView = dialogView.findViewById<TextView>(R.id.checkmateTextView)
+                                checkmateView.textSize = 25F
+                                checkmateView.text = "WHITE PLAYER IS CHECKMATED!"
+                                alert.setView(dialogView)
+
+                                val playAgain: Button = dialogView.findViewById(R.id.play_again)
+                                playAgain.setOnClickListener {
+                                    val intent = Intent(this,
+                                        ChessActivity::class.java)
+                                    while (controller.undo(board))
+                                    startActivity(intent)
+                                }
+
+                                val quitGame: Button = dialogView.findViewById(R.id.quit_game)
+                                quitGame.setOnClickListener {
+                                    val intent = Intent(this,
+                                        MainActivity::class.java)
+                                    while (controller.undo(board))
+                                    startActivity(intent)
+                                }
+                                alert.create()
+                                alert.show()
+                            } else {
+                                val alert: AlertDialog.Builder = AlertDialog.Builder(this)
+                                val dialogView: View = layoutInflater.inflate(R.layout.black_checkmate, null)
+                                alert.setView(dialogView)
+
+                                val checkmateView = dialogView.findViewById<TextView>(R.id.checkmateTextView)
+                                checkmateView.textSize = 25F
+                                checkmateView.text = "BLACK PLAYER IS CHECKMATED!"
+                                val playAgain: Button = dialogView.findViewById(R.id.play_again)
+                                playAgain.setOnClickListener {
+                                    val intent = Intent(this,
+                                        ChessActivity::class.java)
+
+                                    while (controller.undo(board))
+                                    startActivity(intent)
+                                }
+
+                                val quitGame: Button = dialogView.findViewById(R.id.quit_game)
+                                quitGame.setOnClickListener {
+                                    val intent = Intent(this,
+                                        MainActivity::class.java)
+                                    while (controller.undo(board))
+                                    startActivity(intent)
+                                }
+                                alert.create()
+                                alert.show()
+                            }
                         }
 
                         ChessScenarios.DRAW -> {
-                            Toast.makeText(this, "DRAW", Toast.LENGTH_SHORT).show()
+                            val alert: AlertDialog.Builder = AlertDialog.Builder(this)
+                            val dialogView: View = layoutInflater.inflate(R.layout.draw, null)
+                            alert.setView(dialogView)
+
+                            val drawView = dialogView.findViewById<TextView>(R.id.drawTextView)
+                            drawView.textSize = 25F
+                            drawView.text = "DRAW"
+
+                            val playAgain: Button = dialogView.findViewById(R.id.play_again)
+                            playAgain.setOnClickListener {
+                                val intent = Intent(this,
+                                    ChessActivity::class.java)
+                                while (controller.undo(board))
+                                    startActivity(intent)
+                            }
+
+                            val quitGame: Button = dialogView.findViewById(R.id.quit_game)
+                            quitGame.setOnClickListener {
+                                val intent = Intent(this,
+                                    MainActivity::class.java)
+                                while (controller.undo(board))
+                                    startActivity(intent)
+                            }
+                            alert.create()
+                            alert.show()
                         }
 
                         ChessScenarios.STALEMATE -> {
-                            Toast.makeText(this, "STALEMATE. NO OTHER MOVES CAN BE MADE",  Toast.LENGTH_SHORT).show()
+                            val alert: AlertDialog.Builder = AlertDialog.Builder(this)
+                            val dialogView: View = layoutInflater.inflate(R.layout.stalemate, null)
+                            val stalemateView = dialogView.findViewById<TextView>(R.id.whiteKingCheckView)
+                            stalemateView.textSize = 25F
+                            stalemateView.text = "STALEMATE! NO OTHER MOVES CAN BE MADE"
+                            alert.setView(dialogView)
+
+                            val playAgain: Button = dialogView.findViewById(R.id.play_again)
+                            playAgain.setOnClickListener {
+                                val intent = Intent(this,
+                                    ChessActivity::class.java)
+                                while (controller.undo(board))
+                                    startActivity(intent)
+                            }
+
+                            val quitGame: Button = dialogView.findViewById(R.id.quit_game)
+                            quitGame.setOnClickListener {
+                                val intent = Intent(this,
+                                    MainActivity::class.java)
+                                while (controller.undo(board))
+                                    startActivity(intent)
+                            }
+                            alert.create()
+                            alert.show()
                         }
 
                         ChessScenarios.CHECK -> {
-                            Toast.makeText(this, "CHECK", Toast.LENGTH_SHORT).show()
+                            if (board.sideToMove == Side.WHITE) {
+                                val alert: AlertDialog.Builder = AlertDialog.Builder(this)
+                                val dialogView: View = layoutInflater.inflate(R.layout.white_king_check, null)
+                                val kingCheckView = dialogView.findViewById<TextView>(R.id.whiteKingCheckView)
+                                kingCheckView.textSize = 25F
+                                kingCheckView.text = "WHITE KING IS IN CHECK!"
+                                alert.setView(dialogView)
+                                alert.create()
+                                alert.show()
+                            } else {
+                                val alert: AlertDialog.Builder = AlertDialog.Builder(this)
+                                val dialogView: View = layoutInflater.inflate(R.layout.black_king_check, null)
+                                val kingCheckView = dialogView.findViewById<TextView>(R.id.blackKingCheckView)
+                                kingCheckView.textSize = 25F
+                                kingCheckView.text = "BLACK KING IS IN CHECK!"
+                                alert.setView(dialogView)
+                                alert.create()
+                                alert.show()
+                            }
+                     //       Toast.makeText(this, "CHECK", Toast.LENGTH_SHORT).show()
                         }
                     }
 

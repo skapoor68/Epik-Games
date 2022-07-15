@@ -12,6 +12,7 @@
     <string name="congratulations_you_have_guessed_the_word_correctly">Congratulations! You have guessed the word correctly</string>
     <string name="draw">draw</string>
     <string name="resign">resign</string>
+    <string name="white_checkmated">White player is checkmated!</string>
 
     <!-- Strings used for fragments for navigation -->
 
