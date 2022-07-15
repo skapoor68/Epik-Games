@@ -115,43 +115,9 @@ class ChessActivity : AppCompatActivity() {
             // Sets id so that 0 is in the bottom left corner
             inTile.id = (7 - i / 8) * 8 + i % 8
             idArray[(7 - i / 8) * 8 + i % 8] = inTile.id
-
-            val tilePiece = board.getPiece(controller.getSquare(inTile.id))
-
-            if (tilePiece != Piece.NONE) {
-                val text = TextView(this)
-                text.text = tilePiece.fanSymbol
-                if (tilePiece.pieceSide == Side.WHITE) {
-                    text.setTextColor(Color.WHITE)
-                    text.typeface = Typeface.defaultFromStyle(Typeface.BOLD)
-                } else {
-                    text.setTextColor(Color.BLACK)
-                }
-                text.textSize = 35f
-
-                text.setOnLongClickListener {
-                    text.setTextColor(Color.BLUE)
-                    val clipText = text.text as String? + " moved"
-                    val item = ClipData.Item(clipText)
-                    val mimeTypes = arrayOf(ClipDescription.MIMETYPE_TEXT_PLAIN)
-                    val data = ClipData(clipText, mimeTypes, item)
-
-                    val dragShadowBuilder = View.DragShadowBuilder(it)
-
-                    it.startDragAndDrop(data, dragShadowBuilder, it, 0)
-
-                    it.visibility = View.INVISIBLE
-
-                    true
-                }
-
-                inTile.addView(text)
-                continue
-            }
-
-            val text = TextView(this)
-            inTile.addView(text);
         }
+
+        drawBoard()
 
         controller = ChessController(idArray)
 
