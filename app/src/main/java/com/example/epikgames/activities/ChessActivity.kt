@@ -29,6 +29,7 @@ class ChessActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chess)
+        updateTurn()
 
         val rulesButton = findViewById<ImageButton>(R.id.chessRulesButton)
         rulesButton.setOnClickListener {
@@ -179,6 +180,7 @@ class ChessActivity : AppCompatActivity() {
 
             val text = TextView(this)
             inTile.addView(text);
+            updateTurn()
         }
 
         if (controller.chessScenarios(board) == ChessScenarios.CHECK ||
@@ -203,5 +205,19 @@ class ChessActivity : AppCompatActivity() {
             tile.setBackgroundColor(Color.parseColor("#A76D45"))
         }
         return tile
+    }
+
+    private fun updateTurn() {
+        val whiteLabel = findViewById<TextView>(R.id.whiteLabel)
+        val blackLabel = findViewById<TextView>(R.id.blackLabel)
+        if (board.sideToMove == Side.BLACK) {
+            blackLabel.setTypeface(null, Typeface.BOLD)
+            whiteLabel.setTypeface(null, Typeface.NORMAL)
+        }
+
+        if (board.sideToMove == Side.WHITE) {
+            whiteLabel.setTypeface(null, Typeface.BOLD)
+            blackLabel.setTypeface(null, Typeface.NORMAL)
+        }
     }
 }
