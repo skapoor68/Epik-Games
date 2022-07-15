@@ -29,6 +29,7 @@ class ChessActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chess)
+        updateTurn()
 
         val rulesButton = findViewById<ImageButton>(R.id.chessRulesButton)
         rulesButton.setOnClickListener {
@@ -167,20 +168,6 @@ class ChessActivity : AppCompatActivity() {
             controller.undo(board)
             drawBoard()
         }
-//        val blackLabel = findViewById<Button>(R.id.blackLabel)
-//        blackLabel.setOnDragListener {
-//            if (board.sideToMove == Side.BLACK) {
-//                blackLabel.setTypeface(null, Typeface.BOLD)
-//            }
-//        }
-//        val whiteLabel = findViewById<TextView>(R.id.whiteLabel)
-//update team turn to move
-//        if (board.sideToMove == Side.WHITE) {
-//            whiteLabel.setTypeface(null, Typeface.BOLD)
-//        }
-//        if (board.sideToMove == Side.BLACK) {
-//            blackLabel.setTypeface(null, Typeface.BOLD)
-//        }
     }
 
     private fun drawBoard() {
@@ -221,6 +208,7 @@ class ChessActivity : AppCompatActivity() {
 
             val text = TextView(this)
             inTile.addView(text);
+            updateTurn()
         }
     }
 
@@ -233,5 +221,19 @@ class ChessActivity : AppCompatActivity() {
             tile.setBackgroundColor(Color.parseColor("#A76D45"))
         }
         return tile
+    }
+
+    private fun updateTurn() {
+        val whiteLabel = findViewById<TextView>(R.id.playerLabel)
+        val blackLabel = findViewById<TextView>(R.id.blackLabel)
+        if (board.sideToMove == Side.BLACK) {
+            blackLabel.setTypeface(null, Typeface.BOLD)
+            whiteLabel.setTypeface(null, Typeface.NORMAL)
+        }
+
+        if (board.sideToMove == Side.WHITE) {
+            whiteLabel.setTypeface(null, Typeface.BOLD)
+            blackLabel.setTypeface(null, Typeface.NORMAL)
+        }
     }
 }
