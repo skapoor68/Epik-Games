@@ -205,7 +205,6 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
         }
         for (i in row * WIDTH until row * WIDTH + WIDTH) {
             val tileView: View = this.findViewById(i)
-            val tile: View = tileView.findViewById(R.id.chess_tile)
             val tileChar: TextView = tileView.findViewById(R.id.tile_char)
             tileChar.text = board.tileArray[i].char.toString()
             tileChar.setTextColor(Color.BLACK)

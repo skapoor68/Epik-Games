@@ -38,12 +38,12 @@ class ChessController(tileIdArr: Array<Int>) {
             return ChessScenarios.CHECKMATE
         }
 
-        if (board.isDraw) {
-            return ChessScenarios.DRAW
-        }
-
         if (board.isStaleMate) {
             return ChessScenarios.STALEMATE
+        }
+
+        if (board.isDraw) {
+            return ChessScenarios.DRAW
         }
 
         if (board.isKingAttacked) {
@@ -52,11 +52,12 @@ class ChessController(tileIdArr: Array<Int>) {
         return null
     }
 
-    fun undo(board: Board) {
+    fun undo(board: Board): Boolean {
         try {
             board.undoMove()
+            return true
         } catch (e: Exception) {
-
+            return false
         }
     }
 
