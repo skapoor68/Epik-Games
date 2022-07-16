@@ -237,6 +237,33 @@ class ChessActivity : AppCompatActivity() {
         resignButton.setOnClickListener {
             val side = controller.resign(board)
             Toast.makeText(this, "$side resigns!", Toast.LENGTH_SHORT).show()
+
+            val alert: AlertDialog.Builder = AlertDialog.Builder(this)
+            val dialogView: View = layoutInflater.inflate(R.layout.chess_resign_popup, null)
+            alert.setView(dialogView)
+
+            val resignView = dialogView.findViewById<TextView>(R.id.resignTextView)
+            resignView.textSize = 25F
+            resignView.text = side + " resigns!"
+
+            val playAgain: Button = dialogView.findViewById(R.id.play_again)
+            playAgain.setOnClickListener {
+                val intent = Intent(this,
+                    ChessActivity::class.java)
+
+                while (controller.undo(board))
+                    startActivity(intent)
+            }
+
+            val quitGame: Button = dialogView.findViewById(R.id.quit_game)
+            quitGame.setOnClickListener {
+                val intent = Intent(this,
+                    MainActivity::class.java)
+                while (controller.undo(board))
+                    startActivity(intent)
+            }
+            alert.create()
+            alert.show()
         }
     }
 
