@@ -236,7 +236,7 @@ class ChessActivity : AppCompatActivity() {
         val resignButton = findViewById<Button>(R.id.resign_button)
         resignButton.setOnClickListener {
             val side = controller.resign(board)
-            Toast.makeText(this, "$side resigns!", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(this, "$side resigns!", Toast.LENGTH_SHORT).show()
 
             val alert: AlertDialog.Builder = AlertDialog.Builder(this)
             val dialogView: View = layoutInflater.inflate(R.layout.chess_resign_popup, null)
