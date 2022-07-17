@@ -334,8 +334,12 @@ class ChessActivity : AppCompatActivity() {
                 val intent = Intent(this,
                     ChessActivity::class.java)
 
-                while (controller.undo(board))
+                if (controller.undo(board)) {
+                    while (controller.undo(board))
+                        startActivity(intent)
+                } else {
                     startActivity(intent)
+                }
             }
 
             //quit button on the alert
@@ -343,8 +347,12 @@ class ChessActivity : AppCompatActivity() {
             quitGame.setOnClickListener {
                 val intent = Intent(this,
                     MainActivity::class.java)
-                while (controller.undo(board))
+                if (controller.undo(board)) {
+                    while (controller.undo(board))
+                        startActivity(intent)
+                } else {
                     startActivity(intent)
+                }
             }
             alert.create()
             alert.show()
