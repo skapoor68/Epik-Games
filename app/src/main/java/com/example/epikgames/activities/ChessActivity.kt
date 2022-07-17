@@ -270,8 +270,10 @@ class ChessActivity : AppCompatActivity() {
 
                 val playAgainNew: Button = dialogViewNew.findViewById(R.id.play_again)
                 playAgainNew.setOnClickListener {
-                    val intentNew = Intent(this,
-                        ChessActivity::class.java)
+                    val intentNew = Intent(
+                        this,
+                        ChessActivity::class.java
+                    )
                     if (controller.undo(board)) {
                         while (controller.undo(board))
                             startActivity(intentNew)
@@ -282,8 +284,10 @@ class ChessActivity : AppCompatActivity() {
 
                 val quitGameNew: Button = dialogViewNew.findViewById(R.id.quit_game)
                 quitGameNew.setOnClickListener {
-                    val intentNew = Intent(this,
-                        MainActivity::class.java)
+                    val intentNew = Intent(
+                        this,
+                        MainActivity::class.java
+                    )
                     if (controller.undo(board)) {
                         while (controller.undo(board))
                             startActivity(intentNew)
@@ -299,12 +303,15 @@ class ChessActivity : AppCompatActivity() {
             //remove the popup
             val decline: Button = dialogView.findViewById(R.id.decline)
             decline.setOnClickListener {
-                val intent = Intent(this,
-                    ChessActivity::class.java)
+                val intent = Intent(
+                    this,
+                    ChessActivity::class.java
+                )
                 startActivity(intent)
             }
             alert.create()
             alert.show()
+        }
 
         //resign button activity
         val resignButton = findViewById<Button>(R.id.resign_button)
