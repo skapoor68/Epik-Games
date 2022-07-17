@@ -228,6 +228,7 @@ class ChessActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        //undo button activity
         val undoButton = findViewById<Button>(R.id.undoButton)
         undoButton.setOnClickListener {
             controller.undo(board)
@@ -305,6 +306,41 @@ class ChessActivity : AppCompatActivity() {
             alert.create()
             alert.show()
 
+        //resign button activity
+        val resignButton = findViewById<Button>(R.id.resign_button)
+        resignButton.setOnClickListener {
+            val side = controller.resign(board)
+            //Toast.makeText(this, "$side resigns!", Toast.LENGTH_SHORT).show()
+
+            val alert: AlertDialog.Builder = AlertDialog.Builder(this)
+            val dialogView: View = layoutInflater.inflate(R.layout.chess_resign_popup, null)
+            alert.setView(dialogView)
+
+            //text on the alert
+            val resignView = dialogView.findViewById<TextView>(R.id.resignTextView)
+            resignView.textSize = 25F
+            resignView.text = side + " resigns!"
+
+            //play again button on the alert
+            val playAgain: Button = dialogView.findViewById(R.id.play_again)
+            playAgain.setOnClickListener {
+                val intent = Intent(this,
+                    ChessActivity::class.java)
+
+                while (controller.undo(board))
+                    startActivity(intent)
+            }
+
+            //quit button on the alert
+            val quitGame: Button = dialogView.findViewById(R.id.quit_game)
+            quitGame.setOnClickListener {
+                val intent = Intent(this,
+                    MainActivity::class.java)
+                while (controller.undo(board))
+                    startActivity(intent)
+            }
+            alert.create()
+            alert.show()
         }
     }
 

@@ -14,4 +14,14 @@ class Deck(private val cards: ArrayList<Card> = (ArrayList(List(52){ Card(Suite.
         return cards.isEmpty()
     }
 
+    fun copy(): Deck {
+        val cards: ArrayList<Card> = arrayListOf()
+
+        for (card in this.cards) {
+            cards.add(card)
+        }
+
+        return Deck(cards)
+    }
+
 }
