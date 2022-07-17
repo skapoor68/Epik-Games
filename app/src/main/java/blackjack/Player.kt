@@ -1,11 +1,13 @@
 package blackjack
 
-class Player(val name: String) {
-
-    val hands = arrayOfNulls<Hand>(4)
+class Player(val name: String, var bank: Double = 1000.0, val hands: ArrayList<Hand> = arrayListOf<Hand>()) {
 
     fun placeInitialBet(amount: Int) {
-        hands[0] = Hand(betAmount = amount)
+        if (amount < 2 || amount > 500) {
+            throw IllegalArgumentException("Not a valid amount")
+        }
+        hands.add(Hand(betAmount = amount))
+        bank -= amount
     }
 
     fun stand() {
@@ -22,5 +24,17 @@ class Player(val name: String) {
 
     fun doubleDown() {
         TODO("Not yet implemented")
+    }
+
+    fun copy(): Player {
+        val hands: ArrayList<Hand> = arrayListOf<Hand>()
+
+        for (i in hands.indices) {
+            if (this.hands[i] != null) {
+                hands[i] = this.hands[i]?.copy()
+            }
+        }
+
+        return Player(this.name, this.bank, hands)
     }
 }
