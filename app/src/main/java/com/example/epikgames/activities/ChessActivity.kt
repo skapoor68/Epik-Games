@@ -232,6 +232,44 @@ class ChessActivity : AppCompatActivity() {
             controller.undo(board)
             drawBoard()
         }
+
+        val drawButton = findViewById<Button>(R.id.draw_button)
+        drawButton.setOnClickListener {
+            val side = controller.draw(board)
+            var sideOther = ""
+            if (side.equals("WHITE")) {
+                sideOther = "BLACK"
+            } else {
+                sideOther = "WHITE"
+            }
+
+
+            val alert: AlertDialog.Builder = AlertDialog.Builder(this)
+            val dialogView: View = layoutInflater.inflate(R.layout.draw_button_pop_up, null)
+            alert.setView(dialogView)
+
+            //text on the alert
+            val drawButtonView = dialogView.findViewById<TextView>(R.id.drawButtonTextView)
+            drawButtonView.textSize = 25F
+            drawButtonView.text = side + " requests a draw. Does " + sideOther + " accept?"
+
+            val accept: Button = dialogView.findViewById(R.id.accept)
+            accept.setOnClickListener {
+                val intent = Intent(this,
+                    ChessActivity::class.java)
+
+                while (controller.undo(board))
+                    startActivity(intent)
+            }
+
+            val decline: Button = dialogView.findViewById(R.id.decline)
+            decline.setOnClickListener {
+
+            }
+            alert.create()
+            alert.show()
+
+        }
     }
 
     private fun drawBoard() {

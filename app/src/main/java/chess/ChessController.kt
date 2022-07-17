@@ -65,6 +65,10 @@ class ChessController(tileIdArr: Array<Int>) {
         TODO()
     }
 
+    fun draw(board: Board): String {
+        return board.sideToMove.value()
+    }
+
     fun getSquare(tileId: Int): Square {
         if (tileIdSquareMap[tileId] == null) {
             throw IllegalArgumentException("Not a valid tileId")
