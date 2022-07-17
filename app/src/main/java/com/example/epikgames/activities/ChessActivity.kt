@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.DialogFragment
 import androidx.gridlayout.widget.GridLayout
 import chess.ChessController
 import chess.ChessScenarios
@@ -233,6 +234,7 @@ class ChessActivity : AppCompatActivity() {
             drawBoard()
         }
 
+        //Draw button functionality
         val drawButton = findViewById<Button>(R.id.draw_button)
         drawButton.setOnClickListener {
             val side = controller.draw(board)
@@ -253,17 +255,40 @@ class ChessActivity : AppCompatActivity() {
             drawButtonView.textSize = 25F
             drawButtonView.text = side + " requests a draw. Does " + sideOther + " accept?"
 
+            //call the draw popup already implemented
             val accept: Button = dialogView.findViewById(R.id.accept)
             accept.setOnClickListener {
-                val intent = Intent(this,
-                    ChessActivity::class.java)
+                val alert: AlertDialog.Builder = AlertDialog.Builder(this)
+                val dialogView: View = layoutInflater.inflate(R.layout.draw, null)
+                alert.setView(dialogView)
 
-                while (controller.undo(board))
-                    startActivity(intent)
+                val drawView = dialogView.findViewById<TextView>(R.id.drawTextView)
+                drawView.textSize = 25F
+                drawView.text = "DRAW"
+
+                val playAgain: Button = dialogView.findViewById(R.id.play_again)
+                playAgain.setOnClickListener {
+                    val intent = Intent(this,
+                        ChessActivity::class.java)
+                    while (controller.undo(board))
+                        startActivity(intent)
+                }
+
+                val quitGame: Button = dialogView.findViewById(R.id.quit_game)
+                quitGame.setOnClickListener {
+                    val intent = Intent(this,
+                        MainActivity::class.java)
+                    while (controller.undo(board))
+                        startActivity(intent)
+                }
+                alert.create()
+                alert.show()
             }
 
+            //remove the popup
             val decline: Button = dialogView.findViewById(R.id.decline)
             decline.setOnClickListener {
+                alert.create().dismiss()
 
             }
             alert.create()
