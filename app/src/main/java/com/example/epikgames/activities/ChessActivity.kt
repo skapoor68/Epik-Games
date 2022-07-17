@@ -258,38 +258,41 @@ class ChessActivity : AppCompatActivity() {
             //call the draw popup already implemented
             val accept: Button = dialogView.findViewById(R.id.accept)
             accept.setOnClickListener {
-                val alert: AlertDialog.Builder = AlertDialog.Builder(this)
-                val dialogView: View = layoutInflater.inflate(R.layout.draw, null)
-                alert.setView(dialogView)
 
-                val drawView = dialogView.findViewById<TextView>(R.id.drawTextView)
-                drawView.textSize = 25F
-                drawView.text = "DRAW"
+                val alertNew: AlertDialog.Builder = AlertDialog.Builder(this)
+                val dialogViewNew: View = layoutInflater.inflate(R.layout.draw, null)
+                alertNew.setView(dialogViewNew)
 
-                val playAgain: Button = dialogView.findViewById(R.id.play_again)
-                playAgain.setOnClickListener {
-                    val intent = Intent(this,
+                val drawViewNew = dialogViewNew.findViewById<TextView>(R.id.drawTextView)
+                drawViewNew.textSize = 25F
+                drawViewNew.text = "DRAW BY AGREEMENT"
+
+                val playAgainNew: Button = dialogViewNew.findViewById(R.id.play_again)
+                playAgainNew.setOnClickListener {
+                    val intentNew = Intent(this,
                         ChessActivity::class.java)
                     while (controller.undo(board))
-                        startActivity(intent)
+                        startActivity(intentNew)
                 }
 
-                val quitGame: Button = dialogView.findViewById(R.id.quit_game)
-                quitGame.setOnClickListener {
-                    val intent = Intent(this,
+                val quitGameNew: Button = dialogViewNew.findViewById(R.id.quit_game)
+                quitGameNew.setOnClickListener {
+                    val intentNew = Intent(this,
                         MainActivity::class.java)
                     while (controller.undo(board))
-                        startActivity(intent)
+                        startActivity(intentNew)
                 }
-                alert.create()
-                alert.show()
+                alertNew.create()
+                alertNew.show()
+
             }
 
             //remove the popup
             val decline: Button = dialogView.findViewById(R.id.decline)
             decline.setOnClickListener {
-                alert.create().dismiss()
-
+                val intent = Intent(this,
+                    ChessActivity::class.java)
+                startActivity(intent)
             }
             alert.create()
             alert.show()
