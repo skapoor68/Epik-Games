@@ -271,16 +271,24 @@ class ChessActivity : AppCompatActivity() {
                 playAgainNew.setOnClickListener {
                     val intentNew = Intent(this,
                         ChessActivity::class.java)
-                    while (controller.undo(board))
+                    if (controller.undo(board)) {
+                        while (controller.undo(board))
+                            startActivity(intentNew)
+                    } else {
                         startActivity(intentNew)
+                    }
                 }
 
                 val quitGameNew: Button = dialogViewNew.findViewById(R.id.quit_game)
                 quitGameNew.setOnClickListener {
                     val intentNew = Intent(this,
                         MainActivity::class.java)
-                    while (controller.undo(board))
+                    if (controller.undo(board)) {
+                        while (controller.undo(board))
+                            startActivity(intentNew)
+                    } else {
                         startActivity(intentNew)
+                    }
                 }
                 alertNew.create()
                 alertNew.show()
