@@ -27,6 +27,8 @@
             android:exported="false" />
         <activity android:name=".activities.WordleRulesActivity" />
         <activity android:name=".activities.ChessRulesActivity" />
+        <activity android:name=".activities.BlackJackRulesActivity" />
+
 
         <activity
             android:name=".activities.MainActivity"
