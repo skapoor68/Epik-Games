@@ -10,6 +10,7 @@ class BlackJackActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_blackjack)
+
         val rulesButton = findViewById<ImageButton>(R.id.blackjackRules)
         rulesButton.setOnClickListener {
             val intent = Intent(this, BlackJackRulesActivity::class.java)
