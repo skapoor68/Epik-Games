@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.DialogFragment
 import androidx.gridlayout.widget.GridLayout
 import chess.ChessController
 import chess.ChessScenarios
@@ -234,6 +235,84 @@ class ChessActivity : AppCompatActivity() {
             drawBoard()
         }
 
+        //Draw button functionality
+        val drawButton = findViewById<Button>(R.id.draw_button)
+        drawButton.setOnClickListener {
+            val side = controller.draw(board)
+            var sideOther = ""
+            if (side.equals("WHITE")) {
+                sideOther = "BLACK"
+            } else {
+                sideOther = "WHITE"
+            }
+
+
+            val alert: AlertDialog.Builder = AlertDialog.Builder(this)
+            val dialogView: View = layoutInflater.inflate(R.layout.draw_button_pop_up, null)
+            alert.setView(dialogView)
+
+            //text on the alert
+            val drawButtonView = dialogView.findViewById<TextView>(R.id.drawButtonTextView)
+            drawButtonView.textSize = 25F
+            drawButtonView.text = side + " requests a draw. Does " + sideOther + " accept?"
+
+            //call the draw popup already implemented
+            val accept: Button = dialogView.findViewById(R.id.accept)
+            accept.setOnClickListener {
+
+                val alertNew: AlertDialog.Builder = AlertDialog.Builder(this)
+                val dialogViewNew: View = layoutInflater.inflate(R.layout.draw, null)
+                alertNew.setView(dialogViewNew)
+
+                val drawViewNew = dialogViewNew.findViewById<TextView>(R.id.drawTextView)
+                drawViewNew.textSize = 25F
+                drawViewNew.text = "DRAW BY AGREEMENT"
+
+                val playAgainNew: Button = dialogViewNew.findViewById(R.id.play_again)
+                playAgainNew.setOnClickListener {
+                    val intentNew = Intent(
+                        this,
+                        ChessActivity::class.java
+                    )
+                    if (controller.undo(board)) {
+                        while (controller.undo(board))
+                            startActivity(intentNew)
+                    } else {
+                        startActivity(intentNew)
+                    }
+                }
+
+                val quitGameNew: Button = dialogViewNew.findViewById(R.id.quit_game)
+                quitGameNew.setOnClickListener {
+                    val intentNew = Intent(
+                        this,
+                        MainActivity::class.java
+                    )
+                    if (controller.undo(board)) {
+                        while (controller.undo(board))
+                            startActivity(intentNew)
+                    } else {
+                        startActivity(intentNew)
+                    }
+                }
+                alertNew.create()
+                alertNew.show()
+
+            }
+
+            //remove the popup
+            val decline: Button = dialogView.findViewById(R.id.decline)
+            decline.setOnClickListener {
+                val intent = Intent(
+                    this,
+                    ChessActivity::class.java
+                )
+                startActivity(intent)
+            }
+            alert.create()
+            alert.show()
+        }
+
         //resign button activity
         val resignButton = findViewById<Button>(R.id.resign_button)
         resignButton.setOnClickListener {
@@ -255,8 +334,12 @@ class ChessActivity : AppCompatActivity() {
                 val intent = Intent(this,
                     ChessActivity::class.java)
 
-                while (controller.undo(board))
+                if (controller.undo(board)) {
+                    while (controller.undo(board))
+                        startActivity(intent)
+                } else {
                     startActivity(intent)
+                }
             }
 
             //quit button on the alert
@@ -264,8 +347,12 @@ class ChessActivity : AppCompatActivity() {
             quitGame.setOnClickListener {
                 val intent = Intent(this,
                     MainActivity::class.java)
-                while (controller.undo(board))
+                if (controller.undo(board)) {
+                    while (controller.undo(board))
+                        startActivity(intent)
+                } else {
                     startActivity(intent)
+                }
             }
             alert.create()
             alert.show()
