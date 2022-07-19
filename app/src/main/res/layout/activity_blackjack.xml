@@ -63,7 +63,7 @@
         app:layout_constraintEnd_toStartOf="@+id/PlayerCards"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/blackjackRules"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="0.46">
 
         <TextView
             android:id="@+id/textView3"
