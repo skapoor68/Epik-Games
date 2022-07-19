@@ -1,6 +1,7 @@
 package blackjack
 
-class Player(val name: String, var bank: Double = 1000.0, val hands: ArrayList<Hand> = arrayListOf<Hand>()) {
+class Player(val name: String, var bank: Double = 1000.0, val hands: ArrayList<Hand> = arrayListOf<Hand>(),
+var roundOver: Boolean = false) {
 
     fun placeInitialBet(amount: Int) {
         if (amount < 2 || amount > 500) {
@@ -11,7 +12,7 @@ class Player(val name: String, var bank: Double = 1000.0, val hands: ArrayList<H
     }
 
     fun stand() {
-        TODO("Not yet implemented")
+        roundOver = true
     }
 
     fun hit() {
