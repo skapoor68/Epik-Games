@@ -16,5 +16,11 @@ class BlackJackActivity : AppCompatActivity() {
             val intent = Intent(this, BlackJackRulesActivity::class.java)
             startActivity(intent)
         }
+
+        val exitButton = findViewById<ImageButton>(R.id.blackjackExit)
+        exitButton.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
