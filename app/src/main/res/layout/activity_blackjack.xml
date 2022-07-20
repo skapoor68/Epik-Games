@@ -26,17 +26,19 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
         android:fontFamily="@font/cinzel_decorative_bold"
+        android:gravity="center"
         android:text="Black Jack"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="40dp"
-        app:layout_constraintBottom_toTopOf="@+id/PlayerCards"
+        app:layout_constraintBottom_toTopOf="@+id/Buttons"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/blackjackRules"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.863" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <LinearLayout
         android:id="@+id/Buttons"
@@ -45,7 +47,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="1dp"
         android:layout_marginEnd="15dp"
-        android:layout_marginBottom="1dp"
+        android:layout_marginBottom="72dp"
         android:baselineAligned="false"
         android:gravity="center"
         android:orientation="horizontal"
@@ -74,7 +76,7 @@
             android:backgroundTint="#000000"
             android:text="Hit" />
     </LinearLayout>
-    
+
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="150dp"
@@ -94,6 +96,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/ace_of_clubs" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -128,7 +131,41 @@
         app:layout_constraintStart_toEndOf="@+id/blackjackRules"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/dealerLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="18dp"
+        android:text="Dealer"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        app:layout_constraintEnd_toStartOf="@+id/playerLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/playerLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="72dp"
+        android:layout_marginBottom="18dp"
+        android:text="Player"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/dealerLabel"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="1.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
