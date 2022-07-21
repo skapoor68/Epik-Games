@@ -22,80 +22,23 @@
         app:srcCompat="@android:drawable/ic_menu_info_details"
         tools:ignore="SpeakableTextPresentCheck" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/PlayerCards"
-        android:layout_width="155dp"
-        android:layout_height="298dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="160dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="299dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/DealerCards"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="122dp"
-            android:layout_marginEnd="17dp"
-            android:layout_marginBottom="157dp"
-            android:gravity="center"
-            android:text="Player Cards Filler"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/DealerCards"
-        android:layout_width="150dp"
-        android:layout_height="300dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="81dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="283dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/PlayerCards"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/blackjackRules"
-        app:layout_constraintVertical_bias="0.46">
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="19dp"
-            android:layout_marginTop="120dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="161dp"
-            android:text="Dealer Cards Filler"
-            android:textAlignment="center"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
         android:fontFamily="@font/cinzel_decorative_bold"
+        android:gravity="center"
         android:text="Black Jack"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="40dp"
-        app:layout_constraintBottom_toTopOf="@+id/PlayerCards"
+        app:layout_constraintBottom_toTopOf="@+id/Buttons"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/blackjackRules"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.863" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <LinearLayout
         android:id="@+id/Buttons"
@@ -104,7 +47,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="1dp"
         android:layout_marginEnd="15dp"
-        android:layout_marginBottom="1dp"
+        android:layout_marginBottom="72dp"
         android:baselineAligned="false"
         android:gravity="center"
         android:orientation="horizontal"
@@ -134,6 +77,91 @@
             android:text="Hit" />
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="112dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="160dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/Buttons"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ace_of_clubs" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="112dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginBottom="160dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/Buttons"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout3"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/clubs_5" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout9"
+        android:layout_width="112dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="37dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/Buttons"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/flipped_card" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout7"
+        android:layout_width="112dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginBottom="37dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/Buttons"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout9"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/flipped_card" />
+    </LinearLayout>
+
     <ImageButton
         android:id="@+id/blackjackExit"
         android:layout_width="wrap_content"
@@ -145,7 +173,40 @@
         app:layout_constraintStart_toEndOf="@+id/blackjackRules"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/dealerLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="18dp"
+        android:text="Dealer"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        app:layout_constraintEnd_toStartOf="@+id/playerLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/playerLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="72dp"
+        android:layout_marginBottom="18dp"
+        android:text="Player"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/dealerLabel"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
