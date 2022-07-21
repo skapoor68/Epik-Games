@@ -1,5 +1,7 @@
 package blackjack
 
+import java.util.*
+
 class Dealer(private var deck: Deck = Deck(), var hand: Hand = Hand()) {
 
     fun deal(hand: Hand, faceUp: Boolean = true) : Card {
@@ -18,7 +20,7 @@ class Dealer(private var deck: Deck = Deck(), var hand: Hand = Hand()) {
         TODO("Not yet implemented")
     }
 
-    fun play() {
+    fun play(game: Game, transitionQueue: Queue<GameTransition>) {
         //Dealer turns card that is face down face up
         var totalVal = 0
         for (c in hand.cards) {
@@ -33,6 +35,7 @@ class Dealer(private var deck: Deck = Deck(), var hand: Hand = Hand()) {
         //If hand is at least 17, stand
         while (totalVal < 16) {
             val c: Card = deal(hand)
+            transitionQueue.add(DealTransition(game.copy()))
             totalVal += c.value
         }
     }
