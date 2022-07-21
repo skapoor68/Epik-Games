@@ -23,7 +23,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
@@ -159,7 +159,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintBottom_toTopOf="@+id/Title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.943"
         app:layout_constraintStart_toEndOf="@+id/blackjackRules"
@@ -183,7 +183,7 @@
         app:layout_constraintBottom_toTopOf="@+id/dealerCards"
         app:layout_constraintEnd_toStartOf="@+id/playerLabel"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/Title" />
 
     <TextView
         android:id="@+id/playerLabel"
@@ -200,7 +200,7 @@
         app:layout_constraintBottom_toTopOf="@+id/playerCards"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/dealerLabel"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/Title" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
