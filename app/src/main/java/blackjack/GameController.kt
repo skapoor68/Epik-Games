@@ -60,4 +60,15 @@ class GameController {
         }
 
     }
+
+    fun stand(game: Game): Boolean {
+        if (game.getCurrentPlayer() == null) {
+            throw IllegalArgumentException("Game has no players")
+        }
+
+        game.getCurrentPlayer()!!.stand()
+
+        return game.moveToNextPlayer()
+    }
+
 }

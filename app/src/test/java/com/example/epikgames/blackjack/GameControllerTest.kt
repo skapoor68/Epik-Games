@@ -27,4 +27,20 @@ class GameControllerTest {
         assertEquals(2, game.players[0].hands[0].cards.size)
         println(game.players[0].hands[0].cards)
     }
+
+    @Test
+    fun stand() {
+        val game = controller.initGame("Player 1", "Player 2", "Player 3")
+
+        for (player in game.players) {
+            controller.placeBet(player, 10)
+        }
+
+        val transitionQueue: Queue<GameTransition> = LinkedList()
+
+        controller.stand(game)
+
+        assertEquals(true, game.players[0].roundOver)
+        assertEquals("Player 2", game.getCurrentPlayer()?.name)
+    }
 }
