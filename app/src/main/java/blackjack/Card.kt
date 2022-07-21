@@ -1,8 +1,10 @@
 package blackjack
 
-class Card(val suite: Suite, val rank: Rank, var faceUp: Boolean = false) {
+
+class Card(val suite: Suite, val rank: Rank, val faceUp: Boolean = false) {
 
     val value: Int = rank.value
+    val image: Int? = CardImages.getCardResource(suite, rank)
 
     override fun toString(): String {
         return "$rank of $suite"
