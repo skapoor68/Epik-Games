@@ -1,27 +1,28 @@
 package blackjack
 
 import com.example.epikgames.R
+import kotlin.random.Random
 
 data class Key<Suite, Rank>(val key1: Suite, val key2: Rank)
 
 object CardImages {
 
-    val cardDrawableMap: MutableMap<Key<*, *>, Int> = HashMap()
+    private val cardDrawableMap: MutableMap<Key<*, *>, Int> = HashMap()
 
     init {
-        cardDrawableMap[Key(Suite.SPADE, Rank.ACE)] = R.drawable.ace_of_clubs
-        cardDrawableMap[Key(Suite.SPADE, Rank.TWO)] = R.drawable.clubs_2
-        cardDrawableMap[Key(Suite.SPADE, Rank.THREE)] = R.drawable.clubs_3
-        cardDrawableMap[Key(Suite.SPADE, Rank.FOUR)] = R.drawable.clubs_4
-        cardDrawableMap[Key(Suite.SPADE, Rank.FIVE)] = R.drawable.clubs_5
-        cardDrawableMap[Key(Suite.SPADE, Rank.SIX)] = R.drawable.clubs_6
-        cardDrawableMap[Key(Suite.SPADE, Rank.SEVEN)] = R.drawable.clubs_7
-        cardDrawableMap[Key(Suite.SPADE, Rank.EIGHT)] = R.drawable.clubs_8
-        cardDrawableMap[Key(Suite.SPADE, Rank.NINE)] = R.drawable.clubs_9
-        cardDrawableMap[Key(Suite.SPADE, Rank.TEN)] = R.drawable.clubs_10
-        cardDrawableMap[Key(Suite.SPADE, Rank.JACK)] = R.drawable.jack_of_clubs
-        cardDrawableMap[Key(Suite.SPADE, Rank.QUEEN)] = R.drawable.queen_of_clubs
-        cardDrawableMap[Key(Suite.SPADE, Rank.KING)] = R.drawable.king_of_clubs
+        cardDrawableMap[Key(Suite.CLUB, Rank.ACE)] = R.drawable.ace_of_clubs
+        cardDrawableMap[Key(Suite.CLUB, Rank.TWO)] = R.drawable.clubs_2
+        cardDrawableMap[Key(Suite.CLUB, Rank.THREE)] = R.drawable.clubs_3
+        cardDrawableMap[Key(Suite.CLUB, Rank.FOUR)] = R.drawable.clubs_4
+        cardDrawableMap[Key(Suite.CLUB, Rank.FIVE)] = R.drawable.clubs_5
+        cardDrawableMap[Key(Suite.CLUB, Rank.SIX)] = R.drawable.clubs_6
+        cardDrawableMap[Key(Suite.CLUB, Rank.SEVEN)] = R.drawable.clubs_7
+        cardDrawableMap[Key(Suite.CLUB, Rank.EIGHT)] = R.drawable.clubs_8
+        cardDrawableMap[Key(Suite.CLUB, Rank.NINE)] = R.drawable.clubs_9
+        cardDrawableMap[Key(Suite.CLUB, Rank.TEN)] = R.drawable.clubs_10
+        cardDrawableMap[Key(Suite.CLUB, Rank.JACK)] = R.drawable.jack_of_clubs
+        cardDrawableMap[Key(Suite.CLUB, Rank.QUEEN)] = R.drawable.queen_of_clubs
+        cardDrawableMap[Key(Suite.CLUB, Rank.KING)] = R.drawable.king_of_clubs
 
 
         cardDrawableMap[Key(Suite.HEART, Rank.ACE)] = R.drawable.ace_of_hearts
@@ -71,5 +72,14 @@ object CardImages {
 
     fun getCardResource(suite: Suite, rank: Rank): Int? {
         return cardDrawableMap[Key(suite, rank)]
+    }
+    
+    fun getRandomCard(): Int {
+        val rand = Random
+        return cardDrawableMap.entries.elementAt(rand.nextInt(cardDrawableMap.size)).value
+    }
+
+    fun getMap(): MutableMap<Key<*, *>, Int> {
+        return cardDrawableMap
     }
 }
