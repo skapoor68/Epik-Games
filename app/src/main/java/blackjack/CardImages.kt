@@ -1,12 +1,13 @@
 package blackjack
 
 import com.example.epikgames.R
+import kotlin.random.Random
 
 data class Key<Suite, Rank>(val key1: Suite, val key2: Rank)
 
 object CardImages {
 
-    val cardDrawableMap: MutableMap<Key<*, *>, Int> = HashMap()
+    private val cardDrawableMap: MutableMap<Key<*, *>, Int> = HashMap()
 
     init {
         cardDrawableMap[Key(Suite.SPADE, Rank.ACE)] = R.drawable.ace_of_clubs
@@ -71,5 +72,14 @@ object CardImages {
 
     fun getCardResource(suite: Suite, rank: Rank): Int? {
         return cardDrawableMap[Key(suite, rank)]
+    }
+
+    fun getRandomCard(): Int {
+        val rand = Random
+        return cardDrawableMap.entries.elementAt(rand.nextInt(cardDrawableMap.size)).value
+    }
+
+    fun getMap(): MutableMap<Key<*, *>, Int> {
+        return cardDrawableMap
     }
 }
