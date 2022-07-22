@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/betLinearLayout"
+        android:layout_width="382dp"
+        android:layout_height="402dp"
+        android:layout_marginTop="172dp"
+        android:background="@drawable/rounded_borders"
+        android:backgroundTint="@color/bg_primary"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:radius="30dp"
+        android:layout_centerVertical="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/betTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="PLACE BETS"/>
+
+        <LinearLayout
+            android:id="@+id/LinearLayoutBlackjackBet"
+            android:layout_width="362dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="507dp">
+
+            <Button
+                android:id="@+id/go_back"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#032BF4"
+                android:text="GO BACK" />
+
+            <Button
+                android:id="@+id/clear"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#032BF4"
+                android:text="CLEAR" />
+
+            <Button
+                android:id="@+id/place_bet"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#032BF4"
+                android:text="PLACE BET"
+                tools:layout_editor_absoluteX="21dp"
+                tools:layout_editor_absoluteY="656dp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
