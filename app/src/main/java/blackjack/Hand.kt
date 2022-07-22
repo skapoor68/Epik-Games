@@ -43,4 +43,14 @@ class Hand(val cards: ArrayList<Card> = arrayListOf(), val betAmount: Int = 0) {
 
         return other.betAmount == betAmount
     }
+
+    fun getHardValue(): Int {
+        var total = 0
+
+        for (card in cards) {
+            total += card.value
+        }
+
+        return total
+    }
 }
