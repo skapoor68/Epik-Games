@@ -54,31 +54,34 @@
         app:layout_constraintTop_toBottomOf="@+id/dealerLabel">
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/dealerCard1"
             android:layout_width="112dp"
             android:layout_height="150dp"
-            app:srcCompat="@drawable/ace_of_clubs" />
+            app:srcCompat="@drawable/flipped_card" />
 
         <ImageView
-            android:id="@+id/imageView9"
+            android:id="@+id/dealerCard2"
             android:layout_width="112dp"
             android:layout_height="150dp"
-            android:layout_marginTop="50dp"
-            app:srcCompat="@drawable/diamonds_6" />
+            android:layout_marginTop="50dp" />
 
         <ImageView
-            android:id="@+id/imageView10"
+            android:id="@+id/dealerCard3"
             android:layout_width="112dp"
             android:layout_height="150dp"
-            android:layout_marginTop="100dp"
-            app:srcCompat="@drawable/spades_10" />
+            android:layout_marginTop="100dp" />
 
         <ImageView
-            android:id="@+id/imageView11"
+            android:id="@+id/dealerCard4"
             android:layout_width="112dp"
             android:layout_height="150dp"
-            android:layout_marginTop="150dp"
-            app:srcCompat="@drawable/clubs_2" />
+            android:layout_marginTop="150dp" />
+
+        <ImageView
+            android:id="@+id/dealerCard5"
+            android:layout_width="112dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="200dp" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -96,17 +99,33 @@
         app:layout_constraintVertical_bias="0.0">
 
         <ImageView
-            android:id="@+id/imageView12"
+            android:id="@+id/playerCard1"
             android:layout_width="112dp"
-            android:layout_height="150dp"
-            app:srcCompat="@drawable/diamonds_3" />
+            android:layout_height="150dp" />
 
         <ImageView
-            android:id="@+id/imageView13"
+            android:id="@+id/playerCard2"
             android:layout_width="112dp"
             android:layout_height="150dp"
-            android:layout_marginTop="50dp"
-            app:srcCompat="@drawable/clubs_8" />
+            android:layout_marginTop="50dp" />
+
+        <ImageView
+            android:id="@+id/playerCard3"
+            android:layout_width="112dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="100dp" />
+
+        <ImageView
+            android:id="@+id/playerCard4"
+            android:layout_width="112dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="150dp" />
+
+        <ImageView
+            android:id="@+id/playerCard5"
+            android:layout_width="112dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="200dp" />
     </RelativeLayout>
 
     <LinearLayout
