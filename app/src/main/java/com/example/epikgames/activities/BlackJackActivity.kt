@@ -51,6 +51,7 @@ class BlackJackActivity : AppCompatActivity() {
             //clear button on the alert
             val clear: Button = dialogView.findViewById(R.id.clear)
             clear.setOnClickListener {
+                //TODO
                 val intent = Intent(this,
                     MainActivity::class.java)
             }
@@ -59,7 +60,8 @@ class BlackJackActivity : AppCompatActivity() {
             val quit: Button = dialogView.findViewById(R.id.go_back)
             quit.setOnClickListener {
                 val intent = Intent(this,
-                    MainActivity::class.java)
+                    BlackJackActivity::class.java)
+                startActivity(intent)
             }
 
             alert.create()
