@@ -73,7 +73,7 @@ object CardImages {
     fun getCardResource(suite: Suite, rank: Rank): Int? {
         return cardDrawableMap[Key(suite, rank)]
     }
-
+    
     fun getRandomCard(): Int {
         val rand = Random
         return cardDrawableMap.entries.elementAt(rand.nextInt(cardDrawableMap.size)).value

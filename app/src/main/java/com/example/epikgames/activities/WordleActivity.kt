@@ -32,6 +32,7 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_wordle)
 
+
         val rulesButton = findViewById<ImageButton>(R.id.wordleRulesButton)
         rulesButton.setOnClickListener {
             val intent = Intent(this, WordleRulesActivity::class.java)
@@ -203,6 +204,7 @@ class WordleActivity : AppCompatActivity(), View.OnClickListener {
         if (row == 6) {
             row--
         }
+
         for (i in row * WIDTH until row * WIDTH + WIDTH) {
             val tileView: View = this.findViewById(i)
             val tileChar: TextView = tileView.findViewById(R.id.tile_char)
