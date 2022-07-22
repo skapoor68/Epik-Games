@@ -8,9 +8,8 @@ class Dealer(private var deck: Deck = Deck(), var hand: Hand = Hand()) {
         }
 
         val card: Card = deck.getTopCard()
-        card.faceUp = true
 
-        hand.cards.add(deck.getTopCard())
+        hand.cards.add(Card(card.suite, card.rank, card.faceUp))
     }
 
     fun payout() {
