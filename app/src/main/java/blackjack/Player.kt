@@ -30,10 +30,8 @@ var roundOver: Boolean = false) {
     fun copy(): Player {
         val hands: ArrayList<Hand> = arrayListOf<Hand>()
 
-        for (i in hands.indices) {
-            if (this.hands[i] != null) {
-                hands[i] = this.hands[i]?.copy()
-            }
+        for (hand in this.hands) {
+            hands.add(hand.copy())
         }
 
         return Player(this.name, this.bank, hands)

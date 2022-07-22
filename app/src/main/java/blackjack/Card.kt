@@ -17,4 +17,9 @@ class Card(val suite: Suite, val rank: Rank, val faceUp: Boolean = false) {
 
         return other.suite == suite && other.rank == rank && other.faceUp == faceUp
     }
+
+    fun copy(): Card {
+
+        return Card(this.suite, this.rank, this.faceUp)
+    }
 }
