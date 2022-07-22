@@ -72,7 +72,8 @@ class BlackJackActivity : AppCompatActivity() {
         var margin = 0
 
         for (card in dealer.hand.cards) {
-            val resource = cardImages.getCardResource(card.suite, card.rank)
+            val resource: Int? = if (card.faceUp) cardImages.getCardResource(card.suite, card.rank) else
+                R.drawable.flipped_card
             if (resource != null) {
                 val image = ImageView(this)
                 image.setImageResource(resource)
@@ -88,7 +89,8 @@ class BlackJackActivity : AppCompatActivity() {
 
         if (player.hands.size > 0) {
             for (card in player.hands[0].cards) {
-                val resource = cardImages.getCardResource(card.suite, card.rank)
+                val resource: Int? = if (card.faceUp) cardImages.getCardResource(card.suite, card.rank) else
+                    R.drawable.flipped_card
                 if (resource != null) {
                     val image = ImageView(this)
                     image.setImageResource(resource)
