@@ -58,7 +58,15 @@ class GameController {
                 transitionQueue.add(SettlementTransition(game.copy()))
             }
         }
+    }
 
+    fun roundOverForPlayers(game: Game): Boolean {
+        for (player in game.players) {
+            if (!player.roundOver) {
+                return false
+            }
+        }
+        return true
     }
 
     fun stand(game: Game): Boolean {
