@@ -49,81 +49,79 @@ class BlackJackActivity : AppCompatActivity() {
 
         val betButton = findViewById<Button>(R.id.betButton)
         betButton.setOnClickListener {
+            if (game.getCurrentPlayer() != null && game.getCurrentPlayer()!!.hands.size == 0) {
+                var betAmt = 0
+                val alert: AlertDialog.Builder = AlertDialog.Builder(this)
+                val dialogView: View = layoutInflater.inflate(R.layout.betting_popup, null)
+                alert.setView(dialogView)
 
-            var betAmt = 0
-            val alert: AlertDialog.Builder = AlertDialog.Builder(this)
-            val dialogView: View = layoutInflater.inflate(R.layout.betting_popup, null)
-            alert.setView(dialogView)
+                val betView = dialogView.findViewById<TextView>(R.id.betTextView)
+                betView.textSize = 25F
+                betView.text = "PLACE BETS"
 
-            val betView = dialogView.findViewById<TextView>(R.id.betTextView)
-            betView.textSize = 25F
-            betView.text = "PLACE BETS"
+                val betAmountText = dialogView.findViewById<TextView>(R.id.betPopUpAmount)
 
-            val betAmountText = dialogView.findViewById<TextView>(R.id.betPopUpAmount)
+                val bet2: ImageView = dialogView.findViewById(R.id.chip2)
+                bet2.setOnClickListener {
+                    betAmt += 2
+                    betAmountText.text = "Bet Amount: ".plus(betAmt)
+                }
 
-            val bet2: ImageView = dialogView.findViewById(R.id.chip2)
-            bet2.setOnClickListener {
-                betAmt += 2
-                betAmountText.text = "Bet Amount: ".plus(betAmt)
+                val bet10: ImageView = dialogView.findViewById(R.id.chip10)
+                bet10.setOnClickListener {
+                    betAmt += 10
+                    betAmountText.text = "Bet Amount: ".plus(betAmt)
+                }
+
+                val bet25: ImageView = dialogView.findViewById(R.id.chip25)
+                bet25.setOnClickListener {
+                    betAmt += 25
+                    betAmountText.text = "Bet Amount: ".plus(betAmt)
+                }
+
+                val bet100: ImageView = dialogView.findViewById(R.id.chip100)
+                bet100.setOnClickListener {
+                    betAmt += 100
+                    betAmountText.text = "Bet Amount: ".plus(betAmt)
+                }
+                //place bet button on the alert
+                val placeBet: Button = dialogView.findViewById(R.id.place_bet)
+                placeBet.setOnClickListener {
+
+                    controller.placeBet(game.players[0], betAmt)
+                    controller.dealFirstRound(game, transitionQueue)
+                    val intent = Intent(
+                        this,
+                        BlackJackActivity::class.java
+                    )
+                    startActivity(intent)
+                }
+
+                //clear button on the alert
+                val clear: Button = dialogView.findViewById(R.id.clear)
+                clear.setOnClickListener {
+                    betAmt = 0;
+                    betAmountText.text = "Bet Amount: ".plus(betAmt)
+                }
+
+                //quit(go back) button on the alert
+                val quit: Button = dialogView.findViewById(R.id.go_back)
+                quit.setOnClickListener {
+                    val intent = Intent(
+                        this,
+                        BlackJackActivity::class.java
+                    )
+                    startActivity(intent)
+                }
+
+                alert.create()
+                alert.show()
             }
-
-            val bet10: ImageView = dialogView.findViewById(R.id.chip10)
-            bet10.setOnClickListener {
-                betAmt += 10
-                betAmountText.text = "Bet Amount: ".plus(betAmt)
-            }
-
-            val bet25: ImageView = dialogView.findViewById(R.id.chip25)
-            bet25.setOnClickListener {
-                betAmt += 25
-                betAmountText.text = "Bet Amount: ".plus(betAmt)
-            }
-
-            val bet100: ImageView = dialogView.findViewById(R.id.chip100)
-            bet100.setOnClickListener {
-                betAmt += 100
-                betAmountText.text = "Bet Amount: ".plus(betAmt)
-            }
-            //place bet button on the alert
-            val placeBet: Button = dialogView.findViewById(R.id.place_bet)
-            placeBet.setOnClickListener {
-
-                controller.placeBet(game.players[0], betAmt)
-                val intent = Intent(this,
-                    BlackJackActivity::class.java)
-                startActivity(intent)
-            }
-
-            //clear button on the alert
-            val clear: Button = dialogView.findViewById(R.id.clear)
-            clear.setOnClickListener {
-                betAmt = 0;
-                betAmountText.text = "Bet Amount: ".plus(betAmt)
-            }
-
-            //quit(go back) button on the alert
-            val quit: Button = dialogView.findViewById(R.id.go_back)
-            quit.setOnClickListener {
-                val intent = Intent(this,
-                    BlackJackActivity::class.java)
-                startActivity(intent)
-            }
-
-            alert.create()
-            alert.show()
         }
 
 
 
-        if (game.players[0].hands.size == 0) {
-            controller.placeBet(game.players[0], 10)
-            controller.dealFirstRound(game, transitionQueue)
-
-            for (transition in transitionQueue) {
-                if (game.players[0].hands.size != 0) {
-                    println(transition.game.players[0].hands[0])
-                }
-            }
+        if (!transitionQueue.isEmpty()) {
             runTransitions()
         } else {
             drawBoard(game)
@@ -154,6 +152,7 @@ class BlackJackActivity : AppCompatActivity() {
                 dealerCards.addView(image)
                 val params = RelativeLayout.LayoutParams(image.layoutParams)
                 params.setMargins(0, -700 + margin, 0, 0)
+                params.setMargins(0, margin - 250, 0, 0)
                 image.layoutParams = params
                 margin += 250
             }
@@ -176,6 +175,17 @@ class BlackJackActivity : AppCompatActivity() {
                 }
             }
         }
+
+        val betAmountText = this.findViewById<TextView>(R.id.betAmount)
+        val balanceText = this.findViewById<TextView>(R.id.amount)
+
+        if (player.hands.size > 0) {
+            betAmountText.text = "$" + player.hands[0].betAmount
+        } else {
+            betAmountText.text = "$0"
+        }
+
+        balanceText.text = "$" + player.bank
     }
 
     private fun runTransitions() {

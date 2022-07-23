@@ -45,4 +45,14 @@ class Dealer(private var deck: Deck = Deck(), var hand: Hand = Hand()) {
         return Dealer(deck.copy(), hand.copy())
     }
 
+    fun flipCard() {
+        for (i in hand.cards.indices) {
+            hand.cards[i] = Card(hand.cards[i].suite, hand.cards[i].rank)
+        }
+    }
+
+    fun resetCards() {
+        hand = Hand()
+    }
+
 }
