@@ -55,7 +55,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/chip2"
                 android:layout_width="90dp"
                 android:layout_height="73dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -63,7 +63,7 @@
                 app:srcCompat="@drawable/chip2" />
 
             <ImageView
-                android:id="@+id/imageView15"
+                android:id="@+id/chip10"
                 android:layout_width="90dp"
                 android:layout_height="73dp"
                 android:layout_weight="1"
@@ -71,13 +71,13 @@
 
 
             <ImageView
-                android:id="@+id/imageView10"
+                android:id="@+id/chip25"
                 android:layout_width="90dp"
                 android:layout_height="73dp"
                 app:srcCompat="@drawable/chip25" />
 
             <ImageView
-                android:id="@+id/imageView7"
+                android:id="@+id/chip100"
                 android:layout_width="90dp"
                 android:layout_height="73dp"
                 app:layout_constraintEnd_toEndOf="parent"
