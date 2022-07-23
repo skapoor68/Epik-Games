@@ -24,7 +24,7 @@ class Hand(val cards: ArrayList<Card> = arrayListOf(), val betAmount: Int = 0) {
         val cards: ArrayList<Card> = arrayListOf()
 
         for (card in this.cards) {
-            cards.add(card)
+            cards.add(card.copy())
         }
 
         return Hand(cards, this.betAmount)
@@ -52,5 +52,15 @@ class Hand(val cards: ArrayList<Card> = arrayListOf(), val betAmount: Int = 0) {
         }
 
         return total
+    }
+
+    override fun toString(): String {
+        var s = ""
+
+        for (card in cards) {
+            s += card
+            s += ", "
+        }
+        return s
     }
 }
