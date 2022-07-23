@@ -84,8 +84,7 @@ class BlackJackActivity : AppCompatActivity() {
             //place bet button on the alert
             val placeBet: Button = dialogView.findViewById(R.id.place_bet)
             placeBet.setOnClickListener {
-
-                game.getCurrentPlayer()?.let { it1 -> controller.placeBet(it1, betAmt) }
+                controller.placeBet(game.players[0], betAmt)
                 val intent = Intent(this,
                     BlackJackActivity::class.java)
                 startActivity(intent)
@@ -117,7 +116,9 @@ class BlackJackActivity : AppCompatActivity() {
             controller.dealFirstRound(game, transitionQueue)
 
             for (transition in transitionQueue) {
-                println(transition.game.players[0].hands[0])
+                if (game.players[0].hands.size != 0) {
+                    println(transition.game.players[0].hands[0])
+                }
             }
             runTransitions()
         } else {
