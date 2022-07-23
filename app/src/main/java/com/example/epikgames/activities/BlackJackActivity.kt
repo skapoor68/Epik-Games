@@ -1,19 +1,16 @@
 package com.example.epikgames.activities
 
 import android.content.Intent
-import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
-import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.RelativeLayout
-import androidx.appcompat.app.AppCompatActivity
 import blackjack.CardImages
 import blackjack.Game
 import blackjack.GameController
@@ -88,7 +85,7 @@ class BlackJackActivity : AppCompatActivity() {
             val placeBet: Button = dialogView.findViewById(R.id.place_bet)
             placeBet.setOnClickListener {
 
-                controller.placeBet(player1, betAmt)
+                game.getCurrentPlayer()?.let { it1 -> controller.placeBet(it1, betAmt) }
                 val intent = Intent(this,
                     BlackJackActivity::class.java)
                 startActivity(intent)
