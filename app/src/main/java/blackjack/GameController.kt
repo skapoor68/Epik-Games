@@ -79,4 +79,7 @@ class GameController {
         return game.moveToNextPlayer()
     }
 
+    fun hit (game: Game, transitionQueue: Queue<GameTransition>) {
+        transitionQueue.add(DealTransition(game.copy()))
+    }
 }

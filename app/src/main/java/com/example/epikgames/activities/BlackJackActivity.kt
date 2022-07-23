@@ -11,10 +11,7 @@ import android.os.Looper
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.RelativeLayout
-import blackjack.CardImages
-import blackjack.Game
-import blackjack.GameController
-import blackjack.GameTransition
+import blackjack.*
 import com.example.epikgames.R
 import java.util.*
 
@@ -43,6 +40,12 @@ class BlackJackActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        val hitButton = findViewById<Button>(R.id.hitButton)
+        hitButton.setOnClickListener {
+            game.getCurrentPlayer()?.hit(game)
+            controller.hit(game, transitionQueue)
+            drawBoard(game)
+        }
 
         val betButton = findViewById<Button>(R.id.betButton)
         betButton.setOnClickListener {
