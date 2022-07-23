@@ -94,19 +94,6 @@ class BlackJackActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
 
-            val bet100: ImageView = dialogView.findViewById(R.id.chip100)
-            bet100.setOnClickListener {
-                betAmt += 100
-                betAmountText.text = "Bet Amount: ".plus(betAmt)
-            }
-            //place bet button on the alert
-            val placeBet: Button = dialogView.findViewById(R.id.place_bet)
-            placeBet.setOnClickListener {
-                controller.placeBet(game.players[0], betAmt)
-                val intent = Intent(this,
-                    BlackJackActivity::class.java)
-                startActivity(intent)
-            }
                 //clear button on the alert
                 val clear: Button = dialogView.findViewById(R.id.clear)
                 clear.setOnClickListener {
