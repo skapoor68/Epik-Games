@@ -148,7 +148,7 @@ class BlackJackActivity : AppCompatActivity() {
                 image.setImageResource(resource)
                 dealerCards.addView(image)
                 val params = RelativeLayout.LayoutParams(image.layoutParams)
-                params.setMargins(0, margin, 0, 0)
+                params.setMargins(0, margin - 250, 0, 0)
                 image.layoutParams = params
                 margin += 200
             }
@@ -165,7 +165,7 @@ class BlackJackActivity : AppCompatActivity() {
                     image.setImageResource(resource)
                     playerCards.addView(image)
                     val params = RelativeLayout.LayoutParams(image.layoutParams)
-                    params.setMargins(0, margin, 0, 0)
+                    params.setMargins(0, margin - 250, 0, 0)
                     image.layoutParams = params
                     margin += 200
                 }
