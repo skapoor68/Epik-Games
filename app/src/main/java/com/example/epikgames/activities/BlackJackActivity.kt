@@ -13,14 +13,12 @@ import blackjack.CardImages
 import blackjack.Game
 import blackjack.GameController
 import blackjack.Player
-import chess.ChessController
-import com.github.bhlangonijr.chesslib.Board
 
 class BlackJackActivity : AppCompatActivity() {
 
     var controller: GameController = GameController()
     var player1: Player = Player("Some rando") //can be modified
-    
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_blackjack)
