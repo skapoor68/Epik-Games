@@ -9,6 +9,7 @@
         android:id="@+id/backButton"
         android:layout_width="118dp"
         android:layout_height="64dp"
+        android:layout_marginTop="1dp"
         android:backgroundTint="#2196F3"
         android:onClick="onClick"
         android:text="Go Back"
@@ -16,19 +17,26 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/blackjackRules"
-        app:layout_constraintVertical_bias="0.317" />
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2" />
 
-    <ImageView
-        android:id="@+id/blackjackRules"
-        android:layout_width="366dp"
-        android:layout_height="626dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/backButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.247"
-        app:srcCompat="@drawable/blackjack_rules" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/blackjack_rules" />
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
