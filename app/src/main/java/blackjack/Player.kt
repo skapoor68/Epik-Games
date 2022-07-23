@@ -18,12 +18,15 @@ var roundOver: Boolean = false) {
         roundOver = true
     }
 
-    fun hit(game: Game){
+    fun hit(game: Game) {
         //draw card from deck
-        for (player in game.players) {
-            if (!player.roundOver) {
-                game.dealer.deal(player.hands[0])
-            }
+        if (hands.size == 0) {
+            throw Exception("Player must have a hand to hit")
+        }
+        game.dealer.deal(hands[0])
+
+        if (hands[0].getValue() > 21) {
+            roundOver = true
         }
     }
 

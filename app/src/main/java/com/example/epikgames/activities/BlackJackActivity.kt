@@ -42,9 +42,8 @@ class BlackJackActivity : AppCompatActivity() {
 
         val hitButton = findViewById<Button>(R.id.hitButton)
         hitButton.setOnClickListener {
-            game.getCurrentPlayer()?.hit(game)
             controller.hit(game, transitionQueue)
-            drawBoard(game)
+            runTransitions()
         }
 
         val betButton = findViewById<Button>(R.id.betButton)
@@ -151,8 +150,7 @@ class BlackJackActivity : AppCompatActivity() {
                 image.setImageResource(resource)
                 dealerCards.addView(image)
                 val params = RelativeLayout.LayoutParams(image.layoutParams)
-                params.setMargins(0, -700 + margin, 0, 0)
-                params.setMargins(0, margin - 250, 0, 0)
+                params.setMargins(0, -400 + margin, 0, 0)
                 image.layoutParams = params
                 margin += 250
             }
@@ -169,7 +167,7 @@ class BlackJackActivity : AppCompatActivity() {
                     image.setImageResource(resource)
                     playerCards.addView(image)
                     val params = RelativeLayout.LayoutParams(image.layoutParams)
-                    params.setMargins(0, -700 + margin, 0, 0)
+                    params.setMargins(0, -400 + margin, 0, 0)
                     image.layoutParams = params
                     margin += 250
                 }
@@ -197,9 +195,11 @@ class BlackJackActivity : AppCompatActivity() {
                 } catch (e: InterruptedException) {
                     e.printStackTrace()
                 }
-                val transition = transitionQueue.remove()
-                val handler = Handler(Looper.getMainLooper())
-                handler.post { drawBoard(transition.game) }
+                if (!transitionQueue.isEmpty()) {
+                    val transition = transitionQueue.remove()
+                    val handler = Handler(Looper.getMainLooper())
+                    handler.post { drawBoard(transition.game) }
+                }
             }
         }
 
