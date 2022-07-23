@@ -13,7 +13,9 @@
         android:id="@+id/blackjackRules"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="531dp"
+        app:layout_constraintBottom_toTopOf="@+id/Buttons"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.045"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,39 +53,7 @@
         app:layout_constraintBottom_toTopOf="@+id/Buttons"
         app:layout_constraintEnd_toStartOf="@+id/playerCards"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dealerLabel">
-
-        <ImageView
-            android:id="@+id/dealerCard1"
-            android:layout_width="112dp"
-            android:layout_height="150dp"
-            app:srcCompat="@drawable/flipped_card" />
-
-        <ImageView
-            android:id="@+id/dealerCard2"
-            android:layout_width="112dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="50dp" />
-
-        <ImageView
-            android:id="@+id/dealerCard3"
-            android:layout_width="112dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="100dp" />
-
-        <ImageView
-            android:id="@+id/dealerCard4"
-            android:layout_width="112dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="150dp" />
-
-        <ImageView
-            android:id="@+id/dealerCard5"
-            android:layout_width="112dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="200dp" />
-
-    </RelativeLayout>
+        app:layout_constraintTop_toBottomOf="@+id/dealerLabel"/>
 
     <RelativeLayout
         android:id="@+id/playerCards"
@@ -97,46 +67,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/dealerCards"
         app:layout_constraintTop_toBottomOf="@+id/playerLabel"
-        app:layout_constraintVertical_bias="0.0">
-
-        <ImageView
-            android:id="@+id/playerCard1"
-            android:layout_width="112dp"
-            android:layout_height="150dp" />
-
-        <ImageView
-            android:id="@+id/playerCard2"
-            android:layout_width="112dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="50dp" />
-
-        <ImageView
-            android:id="@+id/playerCard3"
-            android:layout_width="112dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="100dp" />
-
-        <ImageView
-            android:id="@+id/playerCard4"
-            android:layout_width="112dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="150dp" />
-
-        <ImageView
-            android:id="@+id/playerCard5"
-            android:layout_width="112dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="200dp" />
-
-    </RelativeLayout>
+        app:layout_constraintVertical_bias="0.0"/>
 
     <LinearLayout
         android:id="@+id/Buttons"
         android:layout_width="405dp"
-        android:layout_height="142dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="15dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="598dp"
         android:baselineAligned="false"
         android:gravity="center"
         android:orientation="horizontal"
@@ -144,7 +81,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/playerCards">
+        app:layout_constraintTop_toTopOf="parent">
 
         <Button
             android:id="@+id/standButton"
@@ -205,6 +142,65 @@
         app:layout_constraintEnd_toStartOf="@+id/playerLabel"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Title" />
+
+    <TextView
+        android:id="@+id/amountLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Balance"
+        android:textColor="#121212"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.513" />
+
+    <TextView
+        android:id="@+id/betAmountLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="270dp"
+        android:layout_marginBottom="431dp"
+        android:text="Bet Amount"
+        android:textColor="#121212"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="380dp"
+        android:text="$ 1000"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/betAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="292dp"
+        android:layout_marginBottom="279dp"
+        android:text="$ 0"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/Buttons"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/playerLabel"
