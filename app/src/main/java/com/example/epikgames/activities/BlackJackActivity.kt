@@ -46,6 +46,12 @@ class BlackJackActivity : AppCompatActivity() {
             runTransitions()
         }
 
+        val standButton = findViewById<Button>(R.id.standButton)
+        standButton.setOnClickListener {
+            controller.stand(game)
+            runTransitions()
+        }
+
         val betButton = findViewById<Button>(R.id.betButton)
         betButton.setOnClickListener {
             if (game.getCurrentPlayer() != null && game.getCurrentPlayer()!!.hands.size == 0) {
