@@ -40,6 +40,7 @@ class GameControllerTest {
 
         controller.stand(game)
 
+        assertEquals(game.players.size, 3)
         assertEquals(true, game.players[0].roundOver)
         assertEquals("Player 2", game.getCurrentPlayer()?.name)
     }
