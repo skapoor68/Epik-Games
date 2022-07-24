@@ -11,10 +11,7 @@ import android.os.Looper
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.RelativeLayout
-import blackjack.CardImages
-import blackjack.Game
-import blackjack.GameController
-import blackjack.GameTransition
+import blackjack.*
 import com.example.epikgames.R
 import java.util.*
 
@@ -43,6 +40,11 @@ class BlackJackActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        val hitButton = findViewById<Button>(R.id.hitButton)
+        hitButton.setOnClickListener {
+            controller.hit(game, transitionQueue)
+            runTransitions()
+        }
 
         val betButton = findViewById<Button>(R.id.betButton)
         betButton.setOnClickListener {
@@ -148,9 +150,9 @@ class BlackJackActivity : AppCompatActivity() {
                 image.setImageResource(resource)
                 dealerCards.addView(image)
                 val params = RelativeLayout.LayoutParams(image.layoutParams)
-                params.setMargins(0, margin - 250, 0, 0)
+                params.setMargins(0, -400 + margin, 0, 0)
                 image.layoutParams = params
-                margin += 200
+                margin += 250
             }
         }
 
@@ -165,9 +167,9 @@ class BlackJackActivity : AppCompatActivity() {
                     image.setImageResource(resource)
                     playerCards.addView(image)
                     val params = RelativeLayout.LayoutParams(image.layoutParams)
-                    params.setMargins(0, margin - 250, 0, 0)
+                    params.setMargins(0, -400 + margin, 0, 0)
                     image.layoutParams = params
-                    margin += 200
+                    margin += 250
                 }
             }
         }
@@ -193,9 +195,11 @@ class BlackJackActivity : AppCompatActivity() {
                 } catch (e: InterruptedException) {
                     e.printStackTrace()
                 }
-                val transition = transitionQueue.remove()
-                val handler = Handler(Looper.getMainLooper())
-                handler.post { drawBoard(transition.game) }
+                if (!transitionQueue.isEmpty()) {
+                    val transition = transitionQueue.remove()
+                    val handler = Handler(Looper.getMainLooper())
+                    handler.post { drawBoard(transition.game) }
+                }
             }
         }
 

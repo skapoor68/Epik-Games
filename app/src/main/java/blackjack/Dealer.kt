@@ -12,7 +12,6 @@ class Dealer(private var deck: Deck = Deck(), var hand: Hand = Hand()) {
         val card: Card = deck.getTopCard()
 
         hand.cards.add(Card(card.suite, card.rank, faceUp))
-
     }
 
     fun payout() {
@@ -48,7 +47,7 @@ class Dealer(private var deck: Deck = Deck(), var hand: Hand = Hand()) {
 
     fun flipCard() {
         for (i in hand.cards.indices) {
-            hand.cards[i] = Card(hand.cards[i].suite, hand.cards[i].rank)
+            hand.cards[i] = Card(hand.cards[i].suite, hand.cards[i].rank, true)
         }
     }
 

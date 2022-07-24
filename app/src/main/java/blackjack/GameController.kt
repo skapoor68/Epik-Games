@@ -1,5 +1,6 @@
 package blackjack
 
+import com.example.epikgames.activities.BlackJackActivity
 import java.lang.IllegalArgumentException
 import java.util.*
 import kotlin.collections.ArrayList
@@ -89,4 +90,19 @@ class GameController {
         return game.moveToNextPlayer()
     }
 
+    fun hit (game: Game, transitionQueue: Queue<GameTransition>) {
+        val player = game.getCurrentPlayer()
+        if (player != null && player.hands.size > 0) {
+            player.hit(game)
+            transitionQueue.add(DealTransition(game.copy()))
+
+            if (player.roundOver) {
+                game.dealer.settle(player, 0.0, player.hands[0])
+                transitionQueue.add(SettlementTransition(game.copy()))
+                game.dealer.resetCards()
+                transitionQueue.add(ResetTransition(game.copy()))
+            }
+        }
+
+    }
 }
