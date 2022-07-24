@@ -55,7 +55,6 @@ class BlackJackActivity : AppCompatActivity() {
             }
             runTransitions()
         }
-
         if (controller.roundOverForPlayers(game)) {
             if (game.players[0].bank == 0.0) {
                 val alert: AlertDialog.Builder = AlertDialog.Builder(this)
@@ -159,6 +158,8 @@ class BlackJackActivity : AppCompatActivity() {
             alert.create()
             alert.show()
         }
+
+
 
         val betButton = findViewById<Button>(R.id.betButton)
         betButton.setOnClickListener {
