@@ -94,69 +94,73 @@ class BlackJackActivity : AppCompatActivity() {
         //If the dealer loses (goes above 21)
 
         if (controller.roundOverForPlayers(game)) {
-            val alert: AlertDialog.Builder = AlertDialog.Builder(this)
-            val dialogView: View = layoutInflater.inflate(R.layout.player_wins, null)
-            alert.setView(dialogView)
-            val playerWins = dialogView.findViewById<TextView>(R.id.playerWinsView)
-            playerWins.textSize = 30F
-            playerWins.text = "PLAYER WINS!"
-            val playAgain: Button = dialogView.findViewById(R.id.play_again)
+            if (game.dealer.hand.getHardValue() > 21) {
+                val alert: AlertDialog.Builder = AlertDialog.Builder(this)
+                val dialogView: View = layoutInflater.inflate(R.layout.player_wins, null)
+                alert.setView(dialogView)
+                val playerWins = dialogView.findViewById<TextView>(R.id.playerWinsView)
+                playerWins.textSize = 30F
+                playerWins.text = "PLAYER WINS!"
+                val playAgain: Button = dialogView.findViewById(R.id.play_again)
 
-            playAgain.setOnClickListener {
-                val intent = Intent(
-                    this,
-                    BlackJackActivity::class.java
-                )
-                game = Game()
-                game = controller.initGame()
-                drawBoard(game)
-                startActivity(intent)
-            }
+                playAgain.setOnClickListener {
+                    val intent = Intent(
+                        this,
+                        BlackJackActivity::class.java
+                    )
+                    game = Game()
+                    game = controller.initGame()
+                    drawBoard(game)
+                    startActivity(intent)
+                }
 
-            val quitGame: Button = dialogView.findViewById(R.id.quit_game)
-            quitGame.setOnClickListener {
-                val intent = Intent(
-                    this,
-                    MainActivity::class.java
-                )
-                startActivity(intent)
+                val quitGame: Button = dialogView.findViewById(R.id.quit_game)
+                quitGame.setOnClickListener {
+                    val intent = Intent(
+                        this,
+                        MainActivity::class.java
+                    )
+                    startActivity(intent)
+                }
+                alert.create()
+                alert.show()
             }
-            alert.create()
-            alert.show()
         }
 
         //If the player loses (goes above 21)
 
         if (controller.roundOverForPlayers(game)) {
-            val alert: AlertDialog.Builder = AlertDialog.Builder(this)
-            val dialogView: View = layoutInflater.inflate(R.layout.dealer_wins, null)
-            alert.setView(dialogView)
-            val dealerWins = dialogView.findViewById<TextView>(R.id.playerWinsView)
-            dealerWins.textSize = 30F
-            dealerWins.text = "DEALER WINS!"
-            val playAgain: Button = dialogView.findViewById(R.id.play_again)
+            if (game.players[0].hands[0].getHardValue() > 21) {
+                val alert: AlertDialog.Builder = AlertDialog.Builder(this)
+                val dialogView: View = layoutInflater.inflate(R.layout.dealer_wins, null)
+                alert.setView(dialogView)
+                val dealerWins = dialogView.findViewById<TextView>(R.id.playerWinsView)
+                dealerWins.textSize = 30F
+                dealerWins.text = "DEALER WINS!"
+                val playAgain: Button = dialogView.findViewById(R.id.play_again)
 
-            playAgain.setOnClickListener {
-                val intent = Intent(
-                    this,
-                    BlackJackActivity::class.java
-                )
-                game = Game()
-                game = controller.initGame()
-                drawBoard(game)
-                startActivity(intent)
-            }
+                playAgain.setOnClickListener {
+                    val intent = Intent(
+                        this,
+                        BlackJackActivity::class.java
+                    )
+                    game = Game()
+                    game = controller.initGame()
+                    drawBoard(game)
+                    startActivity(intent)
+                }
 
-            val quitGame: Button = dialogView.findViewById(R.id.quit_game)
-            quitGame.setOnClickListener {
-                val intent = Intent(
-                    this,
-                    MainActivity::class.java
-                )
-                startActivity(intent)
+                val quitGame: Button = dialogView.findViewById(R.id.quit_game)
+                quitGame.setOnClickListener {
+                    val intent = Intent(
+                        this,
+                        MainActivity::class.java
+                    )
+                    startActivity(intent)
+                }
+                alert.create()
+                alert.show()
             }
-            alert.create()
-            alert.show()
         }
 
 
