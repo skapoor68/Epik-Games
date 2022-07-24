@@ -7,9 +7,6 @@ class Player(val name: String, var bank: Double = 1000.0, val hands: ArrayList<H
 var roundOver: Boolean = false) {
 
     fun placeInitialBet(amount: Int) {
-        if (amount < 2 || amount > 500) {
-            throw IllegalArgumentException("Not a valid amount")
-        }
         hands.add(Hand(betAmount = amount))
         bank -= amount
     }

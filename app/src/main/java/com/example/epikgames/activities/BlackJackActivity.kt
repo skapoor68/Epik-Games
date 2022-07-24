@@ -205,17 +205,19 @@ class BlackJackActivity : AppCompatActivity() {
                 //place bet button on the alert
                 val placeBet: Button = dialogView.findViewById(R.id.place_bet)
                 placeBet.setOnClickListener {
-
-                    controller.placeBet(game.players[0], betAmt)
-                    controller.dealFirstRound(game, transitionQueue)
-                    val intent = Intent(
-                        this,
-                        BlackJackActivity::class.java
-                    )
-                    startActivity(intent)
+                    if (betAmt > game.players[0].bank || betAmt == 0) {
+                        Toast.makeText(this, "INVALID BET", Toast.LENGTH_SHORT).show()
+                    } else {
+                        controller.placeBet(game.players[0], betAmt)
+                        controller.dealFirstRound(game, transitionQueue)
+                        val intent = Intent(
+                            this,
+                            BlackJackActivity::class.java
+                        )
+                        startActivity(intent)
+                    }
                 }
 
-                //clear button on the alert
                 val clear: Button = dialogView.findViewById(R.id.clear)
                 clear.setOnClickListener {
                     betAmt = 0;
