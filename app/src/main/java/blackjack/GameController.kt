@@ -69,6 +69,11 @@ class GameController {
                 transitionQueue.add(SettlementTransition(game.copy()))
             }
         }
+
+        if (roundOverForPlayers(game)) {
+            dealer.resetCards()
+            transitionQueue.add(ResetTransition(game.copy()))
+        }
     }
 
     fun roundOverForPlayers(game: Game): Boolean {
@@ -104,5 +109,28 @@ class GameController {
             }
         }
 
+    }
+
+    fun endRound(game: Game, transitionQueue: Queue<GameTransition>) {
+        val dealer = game.dealer
+
+        dealer.play(game, transitionQueue)
+
+        for (player in game.players) {
+            if (player.hands.size > 0) {
+                if (dealer.hand.getValue() > player.hands[0].getValue()) {
+                    game.dealer.settle(player, 0.0, player.hands[0])
+                } else if (dealer.hand.getValue() == player.hands[0].getValue()) {
+                    game.dealer.settle(player, player.hands[0].betAmount.toDouble(), player.hands[0])
+                } else {
+                    game.dealer.settle(player, 2 * player.hands[0].betAmount.toDouble(), player.hands[0])
+                }
+
+                transitionQueue.add(SettlementTransition(game.copy()))
+            }
+        }
+
+        game.dealer.resetCards()
+        transitionQueue.add(ResetTransition(game.copy()))
     }
 }

@@ -49,6 +49,9 @@ class BlackJackActivity : AppCompatActivity() {
         val standButton = findViewById<Button>(R.id.standButton)
         standButton.setOnClickListener {
             controller.stand(game)
+            if (controller.roundOverForPlayers(game)) {
+                controller.endRound(game, transitionQueue)
+            }
             runTransitions()
         }
 

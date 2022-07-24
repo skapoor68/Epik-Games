@@ -20,12 +20,8 @@ class Dealer(private var deck: Deck = Deck(), var hand: Hand = Hand()) {
 
     fun play(game: Game, transitionQueue: Queue<GameTransition>) {
         //Dealer turns card that is face down face up
-        for (i in hand.cards.indices) {
-            if (!hand.cards[i].faceUp) {
-                hand.cards[i] = Card(hand.cards[i].suite, hand.cards[i].rank)
-                transitionQueue.add(FlipTransition(game.copy()))
-            }
-        }
+        flipCard()
+        transitionQueue.add(FlipTransition(game.copy()))
 
         //Check total of current hand
         //If hand is below 16, keep drawing
@@ -39,6 +35,7 @@ class Dealer(private var deck: Deck = Deck(), var hand: Hand = Hand()) {
     fun settle(player: Player, betAmount: Double, hand: Hand) {
         player.bank += betAmount
         player.hands.remove(hand)
+        player.roundOver = true
     }
 
     fun copy(): Dealer {
