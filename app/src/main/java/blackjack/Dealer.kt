@@ -49,6 +49,7 @@ class Dealer(private var deck: Deck = Deck(), var hand: Hand = Hand()) {
     }
 
     fun resetCards() {
+        println("HI")
         hand = Hand()
     }
 

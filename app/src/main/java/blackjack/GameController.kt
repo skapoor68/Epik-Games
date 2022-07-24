@@ -18,6 +18,7 @@ class GameController {
     }
 
     fun placeBet(player: Player, amount: Int) {
+        player.roundOver = false
         player.placeInitialBet(amount)
     }
 
