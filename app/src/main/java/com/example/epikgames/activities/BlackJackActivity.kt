@@ -13,6 +13,7 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import blackjack.*
 import com.example.epikgames.R
+import wordle.Board
 import java.util.*
 
 
@@ -20,8 +21,8 @@ class BlackJackActivity : AppCompatActivity() {
 
     companion object {
         val controller: GameController = GameController()
-        val game: Game = controller.initGame("Player 1")
-        val transitionQueue: Queue<GameTransition> = LinkedList()
+        var game: Game = controller.initGame("Player 1")
+        var transitionQueue: Queue<GameTransition> = LinkedList()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,7 +44,12 @@ class BlackJackActivity : AppCompatActivity() {
         val hitButton = findViewById<Button>(R.id.hitButton)
         hitButton.setOnClickListener {
             controller.hit(game, transitionQueue)
+            if (game.players[0].bank <= 0.0 && game.players[0].hands.size == 0) {
+                transitionQueue.add(LoseTransition(game))
+            }
+
             runTransitions()
+
         }
 
         val standButton = findViewById<Button>(R.id.standButton)
@@ -51,9 +57,19 @@ class BlackJackActivity : AppCompatActivity() {
             controller.stand(game)
             if (controller.roundOverForPlayers(game)) {
                 controller.endRound(game, transitionQueue)
+                if (game.players[0].bank <= 0.0 && game.players[0].hands.size == 0) {
+                    transitionQueue.add(LoseTransition(game))
+                }
             }
+
             runTransitions()
+
         }
+
+        if (game.players[0].bank <= 0.0 && game.players[0].hands.size == 0) {
+            loseDialog()
+        }
+
 
         val betButton = findViewById<Button>(R.id.betButton)
         betButton.setOnClickListener {
@@ -95,17 +111,20 @@ class BlackJackActivity : AppCompatActivity() {
                 //place bet button on the alert
                 val placeBet: Button = dialogView.findViewById(R.id.place_bet)
                 placeBet.setOnClickListener {
-
-                    controller.placeBet(game.players[0], betAmt)
-                    controller.dealFirstRound(game, transitionQueue)
-                    val intent = Intent(
-                        this,
-                        BlackJackActivity::class.java
-                    )
-                    startActivity(intent)
+                    if (betAmt > game.players[0].bank || betAmt == 0) {
+                        Toast.makeText(this, "INVALID BET", Toast.LENGTH_SHORT).show()
+                        betAmt = 0
+                    } else {
+                        controller.placeBet(game.players[0], betAmt)
+                        controller.dealFirstRound(game, transitionQueue)
+                        val intent = Intent(
+                            this,
+                            BlackJackActivity::class.java
+                        )
+                        startActivity(intent)
+                    }
                 }
 
-                //clear button on the alert
                 val clear: Button = dialogView.findViewById(R.id.clear)
                 clear.setOnClickListener {
                     betAmt = 0;
@@ -126,8 +145,6 @@ class BlackJackActivity : AppCompatActivity() {
                 alert.show()
             }
         }
-
-
 
         if (!transitionQueue.isEmpty()) {
             runTransitions()
@@ -207,11 +224,49 @@ class BlackJackActivity : AppCompatActivity() {
                 if (!transitionQueue.isEmpty()) {
                     val transition = transitionQueue.remove()
                     val handler = Handler(Looper.getMainLooper())
-                    handler.post { drawBoard(transition.game) }
+                    if (transition.throwLoseDialog()) {
+                        handler.post { loseDialog() }
+                    } else {
+                        handler.post { drawBoard(transition.game) }
+                    }
                 }
             }
         }
 
         Thread(runnable).start()
+    }
+
+    private fun loseDialog() {
+            val alert = AlertDialog.Builder(this)
+            val dialogView: View = layoutInflater.inflate(R.layout.player_wins, null)
+            alert.setView(dialogView)
+
+            val playerWins = dialogView.findViewById<TextView>(R.id.playerWinsView)
+            playerWins.textSize = 30F
+            playerWins.text = "YOU LOST!"
+
+            val playAgain: Button = dialogView.findViewById(R.id.play_again)
+
+            playAgain.setOnClickListener {
+                val intent = Intent(
+                    this,
+                    BlackJackActivity::class.java
+                )
+                game = Game()
+                game = controller.initGame("Player 1")
+                transitionQueue = LinkedList()
+                startActivity(intent)
+            }
+
+            val quitGame: Button = dialogView.findViewById(R.id.quit_game)
+            quitGame.setOnClickListener {
+                val intent = Intent(
+                    this,
+                    MainActivity::class.java
+                )
+                startActivity(intent)
+            }
+            alert.create()
+            alert.show()
     }
 }

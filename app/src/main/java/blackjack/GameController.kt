@@ -5,7 +5,7 @@ import java.lang.IllegalArgumentException
 import java.util.*
 import kotlin.collections.ArrayList
 
-class GameController {
+class GameController  {
 
     fun initGame(vararg playerName: String): Game {
         val game = Game()
