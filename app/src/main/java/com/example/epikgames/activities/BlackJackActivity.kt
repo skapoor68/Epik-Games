@@ -45,10 +45,10 @@ class BlackJackActivity : AppCompatActivity() {
         hitButton.setOnClickListener {
             controller.hit(game, transitionQueue)
             if (game.players[0].bank <= 0.0 && game.players[0].hands.size == 0) {
-                loseDialog()
-            } else {
-                runTransitions()
+                transitionQueue.add(LoseTransition(game))
             }
+
+            runTransitions()
 
         }
 
@@ -58,13 +58,11 @@ class BlackJackActivity : AppCompatActivity() {
             if (controller.roundOverForPlayers(game)) {
                 controller.endRound(game, transitionQueue)
                 if (game.players[0].bank <= 0.0 && game.players[0].hands.size == 0) {
-                    loseDialog()
-                } else {
-                    runTransitions()
+                    transitionQueue.add(LoseTransition(game))
                 }
-            } else {
-                runTransitions()
             }
+
+            runTransitions()
 
         }
 
@@ -226,7 +224,11 @@ class BlackJackActivity : AppCompatActivity() {
                 if (!transitionQueue.isEmpty()) {
                     val transition = transitionQueue.remove()
                     val handler = Handler(Looper.getMainLooper())
-                    handler.post { drawBoard(transition.game) }
+                    if (transition.throwLoseDialog()) {
+                        handler.post { loseDialog() }
+                    } else {
+                        handler.post { drawBoard(transition.game) }
+                    }
                 }
             }
         }
