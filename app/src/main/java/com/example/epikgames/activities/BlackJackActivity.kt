@@ -207,6 +207,7 @@ class BlackJackActivity : AppCompatActivity() {
                 placeBet.setOnClickListener {
                     if (betAmt > game.players[0].bank || betAmt == 0) {
                         Toast.makeText(this, "INVALID BET", Toast.LENGTH_SHORT).show()
+                        betAmt = 0
                     } else {
                         controller.placeBet(game.players[0], betAmt)
                         controller.dealFirstRound(game, transitionQueue)
