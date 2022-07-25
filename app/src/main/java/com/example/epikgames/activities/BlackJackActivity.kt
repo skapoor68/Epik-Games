@@ -56,8 +56,7 @@ class BlackJackActivity : AppCompatActivity() {
             runTransitions()
         }
 
-        if (game.players[0].bank <= 0.0) {
-            val alert: AlertDialog.Builder = AlertDialog.Builder(this)
+        if (game.players[0].bank <= 0.0 && game.players[0].hands.size == 0) {            val alert: AlertDialog.Builder = AlertDialog.Builder(this)
             val dialogView: View = layoutInflater.inflate(R.layout.player_wins, null)
             alert.setView(dialogView)
 
@@ -89,6 +88,8 @@ class BlackJackActivity : AppCompatActivity() {
             alert.create()
             alert.show()
         }
+
+
 
 
         val betButton = findViewById<Button>(R.id.betButton)
@@ -131,17 +132,20 @@ class BlackJackActivity : AppCompatActivity() {
                 //place bet button on the alert
                 val placeBet: Button = dialogView.findViewById(R.id.place_bet)
                 placeBet.setOnClickListener {
-
-                    controller.placeBet(game.players[0], betAmt)
-                    controller.dealFirstRound(game, transitionQueue)
-                    val intent = Intent(
-                        this,
-                        BlackJackActivity::class.java
-                    )
-                    startActivity(intent)
+                    if (betAmt > game.players[0].bank || betAmt == 0) {
+                        Toast.makeText(this, "INVALID BET", Toast.LENGTH_SHORT).show()
+                        betAmt = 0
+                    } else {
+                        controller.placeBet(game.players[0], betAmt)
+                        controller.dealFirstRound(game, transitionQueue)
+                        val intent = Intent(
+                            this,
+                            BlackJackActivity::class.java
+                        )
+                        startActivity(intent)
+                    }
                 }
 
-                //clear button on the alert
                 val clear: Button = dialogView.findViewById(R.id.clear)
                 clear.setOnClickListener {
                     betAmt = 0;
