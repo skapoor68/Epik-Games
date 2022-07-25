@@ -22,7 +22,7 @@ class BlackJackActivity : AppCompatActivity() {
     companion object {
         val controller: GameController = GameController()
         var game: Game = controller.initGame("Player 1")
-        val transitionQueue: Queue<GameTransition> = LinkedList()
+        var transitionQueue: Queue<GameTransition> = LinkedList()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,7 +44,12 @@ class BlackJackActivity : AppCompatActivity() {
         val hitButton = findViewById<Button>(R.id.hitButton)
         hitButton.setOnClickListener {
             controller.hit(game, transitionQueue)
-            runTransitions()
+            if (game.players[0].bank <= 0.0 && game.players[0].hands.size == 0) {
+                loseDialog()
+            } else {
+                runTransitions()
+            }
+
         }
 
         val standButton = findViewById<Button>(R.id.standButton)
@@ -52,44 +57,20 @@ class BlackJackActivity : AppCompatActivity() {
             controller.stand(game)
             if (controller.roundOverForPlayers(game)) {
                 controller.endRound(game, transitionQueue)
+                if (game.players[0].bank <= 0.0 && game.players[0].hands.size == 0) {
+                    loseDialog()
+                } else {
+                    runTransitions()
+                }
+            } else {
+                runTransitions()
             }
-            runTransitions()
+
         }
 
-        if (game.players[0].bank <= 0.0 && game.players[0].hands.size == 0) {            val alert: AlertDialog.Builder = AlertDialog.Builder(this)
-            val dialogView: View = layoutInflater.inflate(R.layout.player_wins, null)
-            alert.setView(dialogView)
-
-            val playerWins = dialogView.findViewById<TextView>(R.id.playerWinsView)
-            playerWins.textSize = 30F
-            playerWins.text = "YOU LOST!"
-
-            val playAgain: Button = dialogView.findViewById(R.id.play_again)
-
-            playAgain.setOnClickListener {
-                val intent = Intent(
-                    this,
-                    BlackJackActivity::class.java
-                )
-                game = Game()
-                game = controller.initGame()
-                drawBoard(game)
-                startActivity(intent)
-            }
-
-            val quitGame: Button = dialogView.findViewById(R.id.quit_game)
-            quitGame.setOnClickListener {
-                val intent = Intent(
-                    this,
-                    MainActivity::class.java
-                )
-                startActivity(intent)
-            }
-            alert.create()
-            alert.show()
+        if (game.players[0].bank <= 0.0 && game.players[0].hands.size == 0) {
+            loseDialog()
         }
-
-
 
 
         val betButton = findViewById<Button>(R.id.betButton)
@@ -251,5 +232,39 @@ class BlackJackActivity : AppCompatActivity() {
         }
 
         Thread(runnable).start()
+    }
+
+    private fun loseDialog() {
+            val alert = AlertDialog.Builder(this)
+            val dialogView: View = layoutInflater.inflate(R.layout.player_wins, null)
+            alert.setView(dialogView)
+
+            val playerWins = dialogView.findViewById<TextView>(R.id.playerWinsView)
+            playerWins.textSize = 30F
+            playerWins.text = "YOU LOST!"
+
+            val playAgain: Button = dialogView.findViewById(R.id.play_again)
+
+            playAgain.setOnClickListener {
+                val intent = Intent(
+                    this,
+                    BlackJackActivity::class.java
+                )
+                game = Game()
+                game = controller.initGame("Player 1")
+                transitionQueue = LinkedList()
+                startActivity(intent)
+            }
+
+            val quitGame: Button = dialogView.findViewById(R.id.quit_game)
+            quitGame.setOnClickListener {
+                val intent = Intent(
+                    this,
+                    MainActivity::class.java
+                )
+                startActivity(intent)
+            }
+            alert.create()
+            alert.show()
     }
 }
